@@ -123,10 +123,6 @@ jobs:
           echo "BRIDE_BANK=${BRIDE_BANK}" >> $GITHUB_ENV
           echo "BRIDE_ACCOUNT=${BRIDE_ACCOUNT}" >> $GITHUB_ENV
 
-      # Install Vercel CLI to deploy the project.
-      - name: Install Vercel CLI
-        run: npm install -g vercel@latest
-
       # Determine a custom project name that will be used when deploying.
       - name: Generate Project Name
         run: |
@@ -203,54 +199,6 @@ jobs:
           export default config;
           EOL
 
-      # Create the Vercel configuration file using the generated project name.
-      - name: Create Vercel Config
-        run: |
-          rm vercel.json
-          cat > vercel.json << EOL
-          {
-            "version": 2,
-            "buildCommand": "bun run build",
-            "outputDirectory": "dist",
-            "github": {
-              "enabled": false
-            },
-            "builds": [
-              {
-                "src": "package.json",
-                "use": "@vercel/static-build"
-              }
-            ],
-            "rewrites": [
-              {
-                "source": "/(.*)",
-                "destination": "/"
-              }
-            ],
-            "alias": ["\${PROJECT_NAME}.vercel.app"]
-          }
-          EOL
-
-      # Deploy the project to Vercel using the Vercel CLI.
-      - name: Setup and Deploy to Vercel
-        run: |
-          echo "Set to Create new project"
-          vercel project add \${{ env.PROJECT_NAME }} --token=\${{ secrets.VERCEL_TOKEN }}
-
-          echo "Set to Pull environment information"
-          vercel pull --yes --environment=production --token=\${{ secrets.VERCEL_TOKEN }}
-
-          echo "Set to Build project"
-          vercel build --prod --token=\${{ secrets.VERCEL_TOKEN }} -A vercel.json
-
-          echo "Set to Deploy with custom project name"
-          DEPLOYMENT_URL=$(vercel deploy --prebuilt --prod --token=\${{ secrets.VERCEL_TOKEN }} --name \${{ env.PROJECT_NAME }})
-
-          echo "Set to Alias Domain"
-          vercel alias set \$DEPLOYMENT_URL \${{ env.PROJECT_NAME }}.vercel.app --token=\${{ secrets.VERCEL_TOKEN }}
-
-          echo "DEPLOYMENT_URL=\$DEPLOYMENT_URL" >> \$GITHUB_ENV
-
       # Create a pull request with the new wedding invitation changes.
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
@@ -271,4 +219,4 @@ jobs:
             - Address: \${{ env.VENUE_ADDRESS }}
 
             ## Deployment
-            🌐 Website URL: https://\${{ env.PROJECT_NAME }}.vercel.app
+            🌐 Website URL: https://\${{ env.PROJECT_NAME }}.sakeenah.app
