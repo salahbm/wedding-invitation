@@ -5,7 +5,7 @@ import { formatEventDate } from '@/lib/formatEventDate';
 import { useTranslation } from 'react-i18next';
 
 export default function Location() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <>
       {/* Location section */}
@@ -99,7 +99,7 @@ export default function Location() {
                   <div className="flex items-center space-x-4">
                     <CalendarCheck className="w-5 h-5 text-rose-500" />
                     <p className="text-gray-600">
-                      {formatEventDate(config.data.date)}
+                      {formatEventDate(config.data.date, 'full', i18n.language)}
                     </p>
                   </div>
 

@@ -55,7 +55,10 @@ function App() {
         {/* Favicon */}
         <link rel="icon" type="image/x-icon" href={config.data.favicon} />
         {/* Additional Meta Tags */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
         <meta name="theme-color" content="#FDA4AF" /> {/* Rose-300 color */}
       </Helmet>
 

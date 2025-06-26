@@ -1,79 +1,109 @@
 {
   "meta": {
-    "title": "{{groomName}} va {{brideName}} to'yi",
-    "description": "Biz turmush quryapmiz va sizni bu quvonchli lahzani biz bilan nishonlashga taklif qilamiz."
+    "title": "{{groomName}} va {{brideName}} toʻyi",
+    "description": "Biz turmush qurmoqchimiz va sizni shu quvonchli onamizga taklif qilamiz."
   },
   "landing": {
-    "invitation": "To'y Taklifnomasi",
-    "for": "Uchun:",
-    "openInvitation": "Taklifnomani ochish"
+    "invitation": "To‘y Taklifi",
+    "for": "Kimga:",
+    "openInvitation": "Taklifnomani ochish",
+    "78": "Va Biz sizlarni juft qilib yaratdik. 78:8"
   },
   "hero": {
-    "bismillah": "Mehribon va rahmli Alloh nomi bilan",
-    "weddingOf": "To'y marosimi",
+    "bismillah": "Mehribon va Rahmli Alloh nomi bilan",
+    "weddingOf": "Toʻyi",
     "and": "va",
-    "childOf": "{{name}}, {{parents}} farzandi",
+    "childOf": "{{name}}, ota-onasi: {{parents}}",
     "date": "Sana",
     "time": "Vaqt",
     "venue": "Joy",
     "address": "Manzil",
-    "saveTheDate": "Sanani belgilang",
-    "withJoy": "Quvonch va barakalar bilan, sizni to'yimizga taklif etamiz"
+    "saveTheDate": "Sanani belgilab qo‘ying",
+    "withJoy": "Quvonch ila sizni to‘yimizga taklif qilamiz"
   },
   "events": {
     "title": "Tadbirlar",
-    "addToCalendar": "Taqvimga qo'shish",
-    "googleCalendar": "Google Taqvim",
-    "appleCalendar": "Apple Taqvim",
-    "outlookCalendar": "Outlook Taqvim",
-    "timeZoneShort": "WIB",
-    "saveTheDate": "Bu muhim sanani saqlab qo'ying",
-    "weddingEvents": "To'y marosimlari",
-    "invitation": "Sizni bizning muhim kunimizni nishonlashga va muhabbat yo'limiz boshlanishiga taklif qilamiz"
+    "addToCalendar": "Kalendariga qo‘shish",
+    "googleCalendar": "Google Kalendar",
+    "appleCalendar": "Apple Kalendar",
+    "outlookCalendar": "Outlook Kalendar",
+    "saveTheDate": "Muhim sanani saqlang",
+    "weddingEvents": "To‘y Tadbirlari",
+    "invitation": "Sevgi yo‘limiz boshlanishida sizni biz bilan bayram qilishga taklif qilamiz"
   },
   "location": {
-    "title": "Joylashuv",
-    "openMap": "Google Xaritalarda ochish",
-    "getDirections": "Yo'nalishlarni olish",
-    "eventVenue": "Tadbir joyi",
-    "viewMap": "Xaritani ko'rish"
-  },
-  "gifts": {
-    "title": "Sovg'alar",
-    "message": "Inshaalloh, barcha sovg'alarni bir nechta masjid va ehtiyojmand muassasalarga taqsimlaymiz.",
-    "digitalGift": "Raqamli sovg'a",
-    "copyAccount": "Hisob raqamini nusxalash",
-    "copied": "Nusxalandi!",
-    "weddingGift": "To'y sovg'asi",
-    "giveGift": "Sovg'a qilish",
-    "thankYou": "Jazakumullahu xayran, Barakallahu fiykum",
-    "copy": "Nusxalash"
+    "title": "Manzil",
+    "openMap": "Google xaritada ochish",
+    "getDirections": "Yo‘nalishni ko‘rish",
+    "eventVenue": "Tadbir o‘tkaziladigan joy",
+    "viewMap": "Xaritani ko‘rish"
   },
   "wishes": {
     "title": "Tilaklar",
     "yourName": "Ismingiz",
     "yourMessage": "Xabaringiz",
-    "send": "Tilakni yuborish",
+    "send": "Tilak yuborish",
     "sending": "Yuborilmoqda...",
-    "thankYou": "Tilaklaringiz uchun rahmat!",
-    "recentWishes": "So'nggi tilaklar",
-    "sendYourBestWishes": "Eng yaxshi tilaklaringiz va duolaringizni yuboring",
+    "thankYou": "Tilagingiz uchun rahmat!",
+    "recentWishes": "So‘nggi tilaklar",
+    "sendYourBestWishes": "Yaxshi tilak va duolaringizni yuboring",
     "yourWish": "Tilagingiz",
-    "placeholder": "Kelin-kuyov uchun tilaklaringiz va duolaringizni yuboring...",
-    "giveYourWish": "Tilagingizni bildiring",
-    "attending": "Ha, men qatnashaman",
-    "notAttending": "Yo'q, men qatnasha olmayman",
-    "maybe": "Balki, keyinroq tasdiqlayman"
+    "placeholder": "Kelinning-kuyovga tilak va duolaringizni yozing...",
+    "giveYourWish": "Tilak yozish",
+    "attending": "Ha, boraman",
+    "notAttending": "Yo‘q, bora olmayman",
+    "maybe": "Balki, keyin aytaman",
+    "namePlaceholder": "Ismingizni kiriting",
+    "attendance": "To‘yga borasizmi?",
+    "selectAttendance": "Ishtirokni tanlang",
+    "successMessage": "Rahmat! Tilagingiz muvaffaqiyatli yuborildi.",
+    "errorMessage": "Xatolik yuz berdi. Qayta urinib ko‘ring.",
+    "fetchError": "Tilaklar yuklab olinmadi. Sahifani yangilang.",
+    "noWishes": "Hali hech kim tilak yubormagan. Birinchi bo‘ling!"
+  },
+  "table": {
+    "title": "Dastur",
+    "weddingSchedule": "To‘y Dasturi",
+    "timetable": "Tadbir vaqtlari",
+    "message": "Biz siz uchun chiroyli tadbir tayyorladik. Quyidagi jadval bilan tanishing.",
+    "thankYou": "Siz bilan bayram qilishni intiqlik bilan kutamiz",
+    "timeHeader": "Vaqt",
+    "eventHeader": "Tadbir",
+    "descriptionHeader": "Tavsif",
+    "guestArrival": "Mehmonlar kelishi",
+    "arrivalDesc": "Mehmonlarni kutib olish va o‘rindiqlarga joylashish",
+    "entrance": "Kelin-kuyov kirishi",
+    "entranceDesc": "Kelin-kuyovning tantanali kirishi",
+    "firstCourse": "Birinchi taomlar",
+    "firstCourseDesc": "Yengil taomlar va salatlar tortilishi",
+    "mainCourse": "Asosiy taomlar",
+    "mainCourseDesc": "Asosiy taomlar tortilishi",
+    "dance": "Raqs maydoni ochiladi",
+    "danceDesc": "Hamma mehmonlar uchun raqs va bayram",
+    "games": "To‘y o‘yinlari",
+    "gamesDesc": "Mehmonlar uchun qiziqarli o‘yinlar",
+    "waltz": "Kelin-kuyovning raqsi",
+    "waltzDesc": "Kelin-kuyovdan maxsus raqs",
+    "celebration": "Bayram davom etadi",
+    "celebrationDesc": "Kecha oxirigacha raqs va quvonch"
   },
   "bottomBar": {
     "home": "Bosh sahifa",
     "events": "Tadbirlar",
-    "location": "Joylashuv",
-    "gifts": "Sovg'alar"
+    "location": "Manzil",
+    "table": "Dastur",
+    "wishes": "Tilaklar"
+  },
+  "countdown": {
+    "title": "Qolgan vaqt",
+    "days": "Kun",
+    "hours": "Soat",
+    "minutes": "Daqiqa",
+    "seconds": "Soniya"
   },
   "language": {
     "en": "Inglizcha",
-    "uz": "O'zbekcha",
+    "uz": "O‘zbekcha",
     "ru": "Ruscha"
   }
 }

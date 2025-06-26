@@ -39,18 +39,6 @@ const config = {
       autoplay: true,
       loop: true,
     },
-    banks: [
-      {
-        bank: 'Bank Central Asia',
-        accountNumber: '1234567890',
-        accountName: 'Muhammad',
-      },
-      {
-        bank: 'Bank Mandiri',
-        accountNumber: '0987654321',
-        accountName: 'Saodat',
-      },
-    ],
   },
 };
 ``;

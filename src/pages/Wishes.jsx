@@ -12,73 +12,132 @@ import {
   CheckCircle,
   XCircle,
   HelpCircle,
+  ScrollText,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { formatEventDate } from '@/lib/formatEventDate';
 import { useTranslation } from 'react-i18next';
 
 export default function Wishes() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [showConfetti, setShowConfetti] = useState(false);
   const [newWish, setNewWish] = useState('');
+  const [guestName, setGuestName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [attendance, setAttendance] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
+  const [wishes, setWishes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const wishesContainerRef = useRef(null);
 
   const options = [
-    { value: 'ATTENDING', label: t('wishes.attending') },
-    { value: 'NOT_ATTENDING', label: t('wishes.notAttending') },
-    { value: 'MAYBE', label: t('wishes.maybe') },
+    { value: 'attending', label: t('wishes.attending') },
+    { value: 'not-attending', label: t('wishes.notAttending') },
+    { value: 'maybe', label: t('wishes.maybe') },
   ];
-  // Example wishes - replace with your actual data
-  const [wishes, setWishes] = useState([
-    {
-      id: 1,
-      name: 'John Doe',
-      message:
-        'Wishing you both a lifetime of love, laughter, and happiness! 🎉',
-      timestamp: '2024-12-24T23:20:00Z',
-      attending: 'attending',
-    },
-    {
-      id: 2,
-      name: 'Natalie',
-      message:
-        'Wishing you both a lifetime of love, laughter, and happiness! 🎉',
-      timestamp: '2024-12-24T23:20:00Z',
-      attending: 'attending',
-    },
-    {
-      id: 3,
-      name: 'Abdur Rofi',
-      message:
-        'Congratulations on your special day! May Allah bless your union! 🤲',
-      timestamp: '2024-12-25T23:08:09Z',
-      attending: 'maybe',
-    },
-  ]);
+
+  // Fetch wishes from SheetDB API
+  useEffect(() => {
+    const fetchWishes = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch('https://sheetdb.io/api/v1/f36xx8efcnu8x');
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        // Sort wishes by timestamp, newest first
+        const sortedWishes = data.sort((a, b) => {
+          return new Date(b.timestamp) - new Date(a.timestamp);
+        });
+        setWishes(sortedWishes);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching wishes:', err);
+        setError(t('wishes.fetchError'));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchWishes();
+  }, [t]);
+
+  // Reset form after successful submission
+  useEffect(() => {
+    if (submitStatus === 'success') {
+      const timer = setTimeout(() => {
+        setSubmitStatus(null);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [submitStatus]);
 
   const handleSubmitWish = async (e) => {
     e.preventDefault();
-    if (!newWish.trim()) return;
+
+    // Form validation
+    if (!guestName.trim() || !newWish.trim() || !attendance) {
+      return;
+    }
 
     setIsSubmitting(true);
-    // Simulating API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    setSubmitStatus(null);
 
-    const newWishObj = {
-      id: wishes.length + 1,
-      name: 'Guest', // Replace with actual user name
-      message: newWish,
-      attend: 'attending',
-      timestamp: new Date().toISOString(),
+    // Prepare data for SheetDB
+    const timestamp = new Date().toISOString();
+    const wishData = {
+      name: guestName.trim(),
+      message: newWish.trim(),
+      attendance: attendance,
+      timestamp: timestamp,
     };
 
-    setWishes((prev) => [newWishObj, ...prev]);
-    setNewWish('');
-    setIsSubmitting(false);
-    setShowConfetti(true);
-    setTimeout(() => setShowConfetti(false), 3000);
+    try {
+      // Send data to SheetDB API
+      const response = await fetch('https://sheetdb.io/api/v1/f36xx8efcnu8x', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(wishData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      // Add to local state for immediate display
+      const newWishObj = {
+        id: `temp-${Date.now()}`,
+        name: guestName,
+        message: newWish,
+        attending: attendance, // Note: this is 'attending' for display but 'attendance' for API
+        timestamp: timestamp,
+      };
+
+      setWishes((prev) => [newWishObj, ...prev]);
+
+      // Scroll to top of wishes container to show new wish
+      if (wishesContainerRef.current) {
+        wishesContainerRef.current.scrollTop = 0;
+      }
+
+      // Reset form
+      setGuestName('');
+      setNewWish('');
+      setAttendance('');
+      setSubmitStatus('success');
+      setShowConfetti(true);
+      setTimeout(() => setShowConfetti(false), 3000);
+    } catch (error) {
+      console.error('Error submitting wish:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   const getAttendanceIcon = (status) => {
     switch (status) {
@@ -95,7 +154,6 @@ export default function Wishes() {
   return (
     <>
       <section id="wishes" className="min-h-screen relative overflow-hidden">
-        {showConfetti && <Confetti recycle={false} numberOfPieces={200} />}
         <div className="container mx-auto px-4 py-20 relative z-10">
           {/* Section Header */}
           <motion.div
@@ -119,7 +177,7 @@ export default function Wishes() {
               transition={{ delay: 0.3 }}
               className="text-4xl md:text-5xl font-serif text-gray-800"
             >
-              Pesan dan Doa
+              {t('wishes.title')}
             </motion.h2>
 
             {/* Decorative Divider */}
@@ -135,74 +193,97 @@ export default function Wishes() {
             </motion.div>
           </motion.div>
 
-          {/* Wishes List */}
+          {/* Wishes List - Marquee */}
           <div className="max-w-2xl mx-auto space-y-6">
-            <AnimatePresence>
-              <Marquee
-                speed={20}
-                gradient={false}
-                className="[--duration:20s] py-2"
-              >
-                {wishes.map((wish, index) => (
-                  <motion.div
-                    key={wish.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="group relative w-[280px]"
+            {loading ? (
+              <div className="flex justify-center py-8">
+                <div className="w-8 h-8 border-4 border-rose-200 border-t-rose-500 rounded-full animate-spin"></div>
+              </div>
+            ) : error ? (
+              <div className="text-center py-4 text-rose-600">{error}</div>
+            ) : wishes.length === 0 ? (
+              <div className="text-center py-4 text-gray-500">
+                {t('wishes.noWishes')}
+              </div>
+            ) : (
+              <>
+                <AnimatePresence>
+                  <Marquee
+                    speed={20}
+                    gradient={false}
+                    pauseOnHover={true}
+                    pauseOnClick={true}
+                    className="[--duration:20s] py-2"
                   >
-                    {/* Background gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-rose-100/50 to-pink-100/50 rounded-xl transform transition-transform group-hover:scale-[1.02] duration-300" />
+                    {wishes.map((wish, index) => (
+                      <motion.div
+                        key={wish.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ delay: index * 0.1 }}
+                        className="group relative w-[300px] mx-2"
+                      >
+                        {/* Background gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-rose-100/50 to-pink-100/50 rounded-xl transform transition-transform group-hover:scale-[1.02] duration-300" />
 
-                    {/* Card content */}
-                    <div className="relative backdrop-blur-sm bg-white/80 p-4 rounded-xl border border-rose-100/50 shadow-md">
-                      {/* Header */}
-                      <div className="flex items-start space-x-3 mb-2">
-                        {/* Avatar */}
-                        <div className="flex-shrink-0">
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-rose-400 to-pink-400 flex items-center justify-center text-white text-sm font-medium">
-                            {wish.name[0].toUpperCase()}
+                        {/* Card content */}
+                        <div className="relative backdrop-blur-sm bg-white/80 p-4 rounded-xl border border-rose-100/50 shadow-md h-[140px] overflow-y-auto flex flex-col">
+                          {/* Header */}
+                          <div className="flex items-start space-x-3 mb-2">
+                            {/* Avatar */}
+                            <div className="flex-shrink-0">
+                              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-rose-400 to-pink-400 flex items-center justify-center text-white text-sm font-medium">
+                                {wish.name[0].toUpperCase()}
+                              </div>
+                            </div>
+
+                            {/* Name, Time, and Attendance */}
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center space-x-2">
+                                <h4 className="font-medium text-gray-800 text-sm truncate">
+                                  {wish.name}
+                                </h4>
+                                {getAttendanceIcon(
+                                  wish.attending || wish.attendance
+                                )}
+                              </div>
+                              <div className="flex items-center space-x-1 text-gray-500 text-xs">
+                                <Clock className="w-3 h-3" />
+                                <time className="truncate">
+                                  {formatEventDate(
+                                    wish.timestamp,
+                                    'short',
+                                    i18n.language
+                                  )}
+                                </time>
+                              </div>
+                            </div>
                           </div>
-                        </div>
 
-                        {/* Name, Time, and Attendance */}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center space-x-2">
-                            <h4 className="font-medium text-gray-800 text-sm truncate">
-                              {wish.name}
-                            </h4>
-                            {getAttendanceIcon(wish.attending)}
-                          </div>
-                          <div className="flex items-center space-x-1 text-gray-500 text-xs">
-                            <Clock className="w-3 h-3" />
-                            <time className="truncate">
-                              {formatEventDate(wish.timestamp)}
-                            </time>
-                          </div>
-                        </div>
-                      </div>
+                          {/* Message */}
+                          <p className="text-gray-600 text-sm leading-relaxed mb-2  flex-grow">
+                            {wish.message}
+                          </p>
 
-                      {/* Message */}
-                      <p className="text-gray-600 text-sm leading-relaxed mb-2 line-clamp-3">
-                        {wish.message}
-                      </p>
-
-                      {/* Optional: Time indicator for recent messages */}
-                      {Date.now() - new Date(wish.timestamp).getTime() <
-                        3600000 && (
-                        <div className="absolute top-2 right-2">
-                          <span className="px-2 py-1 rounded-full bg-rose-100 text-rose-600 text-xs font-medium">
-                            New
-                          </span>
+                          {/* Optional: Time indicator for recent messages */}
+                          {Date.now() - new Date(wish.timestamp).getTime() <
+                            3600000 && (
+                            <div className="absolute top-2 right-2">
+                              <span className="px-2 py-1 rounded-full bg-rose-100 text-rose-600 text-xs font-medium">
+                                New
+                              </span>
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
-                  </motion.div>
-                ))}
-              </Marquee>
-            </AnimatePresence>
+                      </motion.div>
+                    ))}
+                  </Marquee>
+                </AnimatePresence>
+              </>
+            )}
           </div>
+          {showConfetti && <Confetti recycle={false} numberOfPieces={350} />}
           {/* Wishes Form */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -212,18 +293,21 @@ export default function Wishes() {
           >
             <form onSubmit={handleSubmitWish} className="relative">
               <div className="backdrop-blur-sm bg-white/80 p-6 rounded-2xl border border-rose-100/50 shadow-lg">
-                <div className="space-y-2">
+                <div className="space-y-5">
                   {/* Name Input */}
                   <div className="space-y-2">
                     <div className="flex items-center space-x-2 text-gray-500 text-sm mb-1">
                       <User className="w-4 h-4" />
-                      <span>Nama Kamu</span>
+                      <span>{t('wishes.yourName')}</span>
                     </div>
                     <input
                       type="text"
-                      placeholder="Masukan nama kamu..."
+                      value={guestName}
+                      onChange={(e) => setGuestName(e.target.value)}
+                      placeholder={t('wishes.namePlaceholder')}
                       className="w-full px-4 py-2.5 rounded-xl bg-white/50 border border-rose-100 focus:border-rose-300 focus:ring focus:ring-rose-200 focus:ring-opacity-50 transition-all duration-200 text-gray-700 placeholder-gray-400"
                       required
+                      maxLength={75}
                     />
                   </div>
                   <motion.div
@@ -234,7 +318,7 @@ export default function Wishes() {
                   >
                     <div className="flex items-center space-x-2 text-gray-500 text-sm mb-1">
                       <Calendar className="w-4 h-4" />
-                      <span>Apakah kamu hadir?</span>
+                      <span>{t('wishes.attendance')}</span>
                     </div>
 
                     {/* Custom Select Button */}
@@ -251,7 +335,7 @@ export default function Wishes() {
                         {attendance
                           ? options.find((opt) => opt.value === attendance)
                               ?.label
-                          : 'Pilih kehadiran...'}
+                          : t('wishes.selectAttendance')}
                       </span>
                       <ChevronDown
                         className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${
@@ -301,36 +385,105 @@ export default function Wishes() {
                       <span>{t('wishes.yourWish')}</span>
                     </div>
                     <textarea
+                      value={newWish}
+                      onChange={(e) => setNewWish(e.target.value)}
                       placeholder={t('wishes.placeholder')}
                       className="w-full h-32 p-4 rounded-xl bg-white/50 border border-rose-100 focus:border-rose-300 focus:ring focus:ring-rose-200 focus:ring-opacity-50 resize-none transition-all duration-200"
                       required
+                      maxLength={300}
                     />
                   </div>
                 </div>
+                {/* Status Messages */}
+                {submitStatus === 'success' && (
+                  <div className="mt-4 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-700 text-sm flex items-center">
+                    <CheckCircle className="w-5 h-5 mr-2" />
+                    {t('wishes.successMessage')}
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="mt-4 p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-sm flex items-center">
+                    <XCircle className="w-5 h-5 mr-2" />
+                    {t('wishes.errorMessage')}
+                  </div>
+                )}
+
                 <div className="flex items-center justify-between mt-4">
                   <div className="flex items-center space-x-2 text-gray-500">
                     <Smile className="w-5 h-5" />
-                    <span className="text-sm">{t('wishes.giveYourWish')}</span>
+                    <span className="text-xs">{t('wishes.giveYourWish')}</span>
                   </div>
                   <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className={`flex items-center space-x-2 px-6 py-2.5 rounded-xl text-white font-medium transition-all duration-200
+                    type="submit"
+                    disabled={isSubmitting}
+                    whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                    whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                    className={`flex items-center text-sm space-x-2 px-6 py-2.5 rounded-xl text-white font-medium transition-all duration-200
                     ${
                       isSubmitting
                         ? 'bg-gray-300 cursor-not-allowed'
                         : 'bg-rose-500 hover:bg-rose-600'
                     }`}
                   >
-                    <Send className="w-4 h-4" />
-                    <span>
-                      {isSubmitting ? t('wishes.sending') : t('wishes.send')}
-                    </span>
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                        <span>{t('wishes.sending')}</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" />
+                        <span>{t('wishes.send')}</span>
+                      </>
+                    )}
                   </motion.button>
                 </div>
               </div>
             </form>
           </motion.div>
+
+          {/* Scrollable Wishes Section */}
+          <div className="mt-8">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-medium text-gray-700 flex items-center gap-2">
+                <ScrollText className="w-5 h-5 text-rose-500" />
+                {t('wishes.recentWishes')}
+              </h3>
+            </div>
+
+            <div
+              ref={wishesContainerRef}
+              className="max-h-[300px] overflow-y-auto pr-2 space-y-4 custom-scrollbar"
+              style={{
+                scrollbarWidth: 'thin',
+                scrollbarColor: '#f43f5e #fee2e2',
+              }}
+            >
+              {wishes.slice(0, 8).map((wish, index) => (
+                <motion.div
+                  key={`scroll-${wish.id || index}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ delay: index * 0.05 }}
+                  className="bg-white/80 rounded-lg border border-rose-100 shadow-sm p-2"
+                >
+                  <div className="flex items-center justify-start gap-x-2">
+                    <figure className="w-6 h-6 shrink-0 rounded-full bg-gradient-to-r from-rose-400 to-pink-400 flex items-center justify-center text-white text-sm font-medium">
+                      {wish.name && wish.name[0]
+                        ? wish.name[0].toUpperCase()
+                        : '?'}
+                    </figure>
+
+                    <figcaption className="text-gray-600 text-sm leading-relaxed line-clamp-5">
+                      {wish.message}
+                    </figcaption>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </>

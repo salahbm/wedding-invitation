@@ -52,7 +52,14 @@
     "giveYourWish": "Give Your Wish",
     "attending": "Yes, I will attend",
     "notAttending": "No, I cannot attend",
-    "maybe": "Maybe, I will confirm later"
+    "maybe": "Maybe, I will confirm later",
+    "namePlaceholder": "Enter your name",
+    "attendance": "Will you attend?",
+    "selectAttendance": "Select your attendance",
+    "successMessage": "Thank you! Your wish has been sent successfully.",
+    "errorMessage": "Sorry, there was an error sending your wish. Please try again.",
+    "fetchError": "Unable to load wishes. Please refresh the page.",
+    "noWishes": "No wishes yet. Be the first to send your wishes!"
   },
   "table": {
     "title": "Timetable",
