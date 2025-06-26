@@ -16,7 +16,9 @@
     "date": "Sana",
     "time": "Vaqt",
     "venue": "Joy",
-    "address": "Manzil"
+    "address": "Manzil",
+    "saveTheDate": "Sanani belgilang",
+    "withJoy": "Quvonch va barakalar bilan, sizni to'yimizga taklif etamiz"
   },
   "events": {
     "title": "Tadbirlar",

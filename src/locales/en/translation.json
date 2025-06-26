@@ -17,7 +17,9 @@
     "date": "Date",
     "time": "Time",
     "venue": "Venue",
-    "address": "Address"
+    "address": "Address",
+    "saveTheDate": "Save the Date",
+    "withJoy": "With joy and blessings, we invite you to our wedding"
   },
   "events": {
     "title": "Events",
@@ -68,8 +70,15 @@
     "home": "Home",
     "events": "Events",
     "location": "Location",
-    "gifts": "Gifts",
+    "table": "Table",
     "wishes": "Wishes"
+  },
+  "countdown": {
+    "title": "Countdown",
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds"
   },
   "language": {
     "en": "English",

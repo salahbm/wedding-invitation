@@ -14,7 +14,7 @@ const Layout = ({ children, startInvitation }) => {
       <motion.div
         className={cn(
           'mx-auto w-full bg-white relative overflow-hidden border border-gray-200 shadow-lg',
-          startInvitation && 'max-w-[430px] '
+          startInvitation && 'max-w-screen-md'
         )}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

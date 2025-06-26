@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import config from '@/config/config';
 import { formatEventDate } from '@/lib/formatEventDate';
 import { safeBase64 } from '@/lib/base64';
+import FloatingHearts from '@/components/shared/FloatingHearts';
 
 export default function Hero() {
   const [guestName, setGuestName] = useState('');
@@ -43,7 +44,7 @@ export default function Hero() {
       }
       return timeLeft;
     }, [targetDate]); // t is from context and doesn't need to be in the dependency array
-    
+
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
     useEffect(() => {
       const timer = setInterval(() => {
@@ -71,50 +72,8 @@ export default function Hero() {
     );
   };
 
-  const FloatingHearts = () => {
-    return (
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            initial={{
-              opacity: 0,
-              scale: 0,
-              x: Math.random() * window.innerWidth,
-              y: window.innerHeight,
-            }}
-            animate={{
-              opacity: [0, 1, 1, 0],
-              scale: [0, 1, 1, 0.5],
-              x: Math.random() * window.innerWidth,
-              y: -100,
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              delay: i * 0.8,
-              ease: 'easeOut',
-            }}
-            className="absolute"
-          >
-            <Heart
-              className={`w-${Math.floor(Math.random() * 2) + 8} h-${Math.floor(Math.random() * 2) + 8} ${
-                i % 3 === 0
-                  ? 'text-rose-400'
-                  : i % 3 === 1
-                    ? 'text-pink-400'
-                    : 'text-red-400'
-              }`}
-              fill="currentColor"
-            />
-          </motion.div>
-        ))}
-      </div>
-    );
-  };
-
   CountdownTimer.propTypes = {
-    targetDate: PropTypes.string.isRequired
+    targetDate: PropTypes.string.isRequired,
   };
 
   return (
@@ -127,7 +86,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="space-y-6 relative z-10"
+          className="space-y-10 relative z-10"
         >
           <motion.div
             initial={{ scale: 0 }}
@@ -136,7 +95,7 @@ export default function Hero() {
             className="inline-block mx-auto"
           >
             <span className="px-4 py-1 text-sm bg-rose-50 text-rose-600 rounded-full border border-rose-200">
-              Catat Tanggal Penting Ini
+              {t('hero.saveTheDate')}
             </span>
           </motion.div>
 
@@ -147,7 +106,7 @@ export default function Hero() {
               transition={{ delay: 0.4 }}
               className="text-gray-500 font-light italic text-base sm:text-lg"
             >
-              InsyaAllah Kami Akan Menikah
+              {t('hero.withJoy')}
             </motion.p>
             <motion.h2
               initial={{ scale: 0.8, opacity: 0 }}
@@ -183,7 +142,9 @@ export default function Hero() {
                     </div>
                     <div className="text-3xl sm:text-4xl md:text-5xl mb-2">
                       {config.data.groomName}
-                      <span className="text-rose-400 mx-2">
+                    </div>
+                    <div className="text-3xl sm:text-4xl md:text-5xl mb-2">
+                      <span className="text-rose-400 mx-2 text-md">
                         {t('hero.and')}
                       </span>
                       {config.data.brideName}
@@ -247,12 +208,12 @@ export default function Hero() {
 
           <CountdownTimer targetDate={config.data.date} />
 
-          <div className="pt-6 relative">
+          <div className="pt-10 relative">
             <FloatingHearts />
             <motion.div
               animate={{
-                scale: [1, 1.1, 1],
-                rotate: [0, 5, -5, 0],
+                scale: [1, 1.05, 1.1, 1.05, 1],
+                rotate: [0, 3, -3, 0],
               }}
               transition={{
                 duration: 2,

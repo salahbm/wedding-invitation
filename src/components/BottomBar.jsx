@@ -6,8 +6,8 @@ import {
   Home,
   CalendarHeart,
   MapPin,
-  Gift,
   MessageCircleHeart,
+  Table,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -25,7 +25,7 @@ const getMenuItems = (t) => [
     href: '#location',
     id: 'location',
   },
-  { icon: Gift, label: t('bottomBar.gifts'), href: '#gifts', id: 'gifts' },
+  { icon: Table, label: t('bottomBar.table'), href: '#table', id: 'table' },
   {
     icon: MessageCircleHeart,
     label: t('bottomBar.wishes'),
@@ -41,7 +41,7 @@ const BottomBar = () => {
 
   return (
     <motion.div
-      className="fixed bottom-4 transform -translate-x-1/2 z-50 w-full px-4 max-w-[430px]"
+      className="fixed bottom-4 transform -translate-x-1/2 z-50 w-full px-4 max-w-screen-md"
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, type: 'spring', stiffness: 100 }}
