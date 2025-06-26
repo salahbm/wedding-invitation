@@ -2,8 +2,10 @@ import config from "@/config/config";
 import { Clock, Navigation as NavigationIcon, MapPin, CalendarCheck, Phone, ExternalLink } from 'lucide-react'
 import { motion } from 'framer-motion';
 import { formatEventDate } from "@/lib/formatEventDate";
+import { useTranslation } from 'react-i18next';
 
 export default function Location() {
+    const { t } = useTranslation();
     return (<>
         {/* Location section */}
         <section id="location" className="min-h-screen relative overflow-hidden">
@@ -23,7 +25,7 @@ export default function Location() {
                         viewport={{ once: true }}
                         className="inline-block text-rose-500 font-medium"
                     >
-                        Lokasi Acara
+                        {t('location.eventVenue')}
                     </motion.span>
 
                     <motion.h2
@@ -33,7 +35,7 @@ export default function Location() {
                         viewport={{ once: true }}
                         className="text-4xl md:text-5xl font-serif text-gray-800"
                     >
-                        Lokasi
+                        {t('location.title')}
                     </motion.h2>
 
                     {/* Decorative Divider */}
@@ -111,7 +113,7 @@ export default function Location() {
                                         className="w-full flex items-center justify-center gap-1.5 bg-white text-gray-600 px-4 py-2 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors text-sm"
                                     >
                                         <ExternalLink className="w-3.5 h-3.5" />
-                                        <span className="font-semibold">View Map</span>
+                                        <span className="font-semibold">{t('location.viewMap')}</span>
                                     </motion.a>
                                 </div>
                             </div>

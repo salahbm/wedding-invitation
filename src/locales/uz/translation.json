@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "title": "{{groomName}} va {{brideName}} to'yi",
+    "description": "Biz turmush quryapmiz va sizni bu quvonchli lahzani biz bilan nishonlashga taklif qilamiz."
+  },
+  "landing": {
+    "invitation": "To'y Taklifnomasi",
+    "for": "Uchun:",
+    "openInvitation": "Taklifnomani ochish"
+  },
+  "hero": {
+    "bismillah": "Mehribon va rahmli Alloh nomi bilan",
+    "weddingOf": "To'y marosimi",
+    "and": "va",
+    "childOf": "{{name}}, {{parents}} farzandi",
+    "date": "Sana",
+    "time": "Vaqt",
+    "venue": "Joy",
+    "address": "Manzil"
+  },
+  "events": {
+    "title": "Tadbirlar",
+    "addToCalendar": "Taqvimga qo'shish",
+    "googleCalendar": "Google Taqvim",
+    "appleCalendar": "Apple Taqvim",
+    "outlookCalendar": "Outlook Taqvim",
+    "timeZoneShort": "WIB",
+    "saveTheDate": "Bu muhim sanani saqlab qo'ying",
+    "weddingEvents": "To'y marosimlari",
+    "invitation": "Sizni bizning muhim kunimizni nishonlashga va muhabbat yo'limiz boshlanishiga taklif qilamiz"
+  },
+  "location": {
+    "title": "Joylashuv",
+    "openMap": "Google Xaritalarda ochish",
+    "getDirections": "Yo'nalishlarni olish",
+    "eventVenue": "Tadbir joyi",
+    "viewMap": "Xaritani ko'rish"
+  },
+  "gifts": {
+    "title": "Sovg'alar",
+    "message": "Inshaalloh, barcha sovg'alarni bir nechta masjid va ehtiyojmand muassasalarga taqsimlaymiz.",
+    "digitalGift": "Raqamli sovg'a",
+    "copyAccount": "Hisob raqamini nusxalash",
+    "copied": "Nusxalandi!",
+    "weddingGift": "To'y sovg'asi",
+    "giveGift": "Sovg'a qilish",
+    "thankYou": "Jazakumullahu xayran, Barakallahu fiykum",
+    "copy": "Nusxalash"
+  },
+  "wishes": {
+    "title": "Tilaklar",
+    "yourName": "Ismingiz",
+    "yourMessage": "Xabaringiz",
+    "send": "Tilakni yuborish",
+    "sending": "Yuborilmoqda...",
+    "thankYou": "Tilaklaringiz uchun rahmat!",
+    "recentWishes": "So'nggi tilaklar",
+    "sendYourBestWishes": "Eng yaxshi tilaklaringiz va duolaringizni yuboring",
+    "yourWish": "Tilagingiz",
+    "placeholder": "Kelin-kuyov uchun tilaklaringiz va duolaringizni yuboring...",
+    "giveYourWish": "Tilagingizni bildiring",
+    "attending": "Ha, men qatnashaman",
+    "notAttending": "Yo'q, men qatnasha olmayman",
+    "maybe": "Balki, keyinroq tasdiqlayman"
+  },
+  "bottomBar": {
+    "home": "Bosh sahifa",
+    "events": "Tadbirlar",
+    "location": "Joylashuv",
+    "gifts": "Sovg'alar"
+  },
+  "language": {
+    "en": "Inglizcha",
+    "uz": "O'zbekcha",
+    "ru": "Ruscha"
+  }
+}

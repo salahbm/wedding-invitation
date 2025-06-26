@@ -1,6 +1,7 @@
 // EventCard.jsx
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import {
   Calendar,
   Clock,
@@ -84,6 +85,7 @@ const CalendarButton = ({ icon: Icon, label, onClick, className = "" }) => (
  * @returns {JSX.Element} A JSX element representing the event card.
  */
 const SingleEventCard = ({ eventData }) => {
+  const { t } = useTranslation();
   const [showCalendarModal, setShowCalendarModal] = useState(false);
 
   const googleCalendarLink = () => {
@@ -155,7 +157,7 @@ END:VCALENDAR`;
           </div>
           <div className="flex items-center space-x-3">
             <Clock className="w-5 h-5 text-rose-500" />
-            <span>{eventData.startTime} - {eventData.endTime} WIB</span>
+            <span>{eventData.startTime} - {eventData.endTime} {t('events.timeZoneShort')}</span>
           </div>
           <div className="flex items-center space-x-3">
             <MapPin className="w-5 h-5 text-rose-500" />
@@ -170,7 +172,7 @@ END:VCALENDAR`;
       >
         <div className="space-y-6 ">
           <div className="flex justify-between  items-center">
-            <h3 className="text-xl font-semibold text-gray-800">Add to Calendar</h3>
+            <h3 className="text-xl font-semibold text-gray-800">{t('events.addToCalendar')}</h3>
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -184,19 +186,19 @@ END:VCALENDAR`;
           <div className="space-y-3">
             <CalendarButton
               icon={(props) => <Chrome {...props} className="w-5 h-5 text-rose-500" />}
-              label="Google Calendar"
+              label={t('events.googleCalendar')}
               onClick={() => window.open(googleCalendarLink(), '_blank')}
             />
 
             <CalendarButton
               icon={(props) => <Apple {...props} className="w-5 h-5 text-gray-900" />}
-              label="Apple Calendar"
+              label={t('events.appleCalendar')}
               onClick={downloadICSFile}
             />
 
             <CalendarButton
               icon={(props) => <CalendarIcon {...props} className="w-5 h-5 text-blue-600" />}
-              label="Outlook Calendar"
+              label={t('events.outlookCalendar')}
               onClick={downloadICSFile}
             />
           </div>

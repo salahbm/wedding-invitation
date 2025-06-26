@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "title": "Wedding of {{groomName}} & {{brideName}}",
+    "description": "We are getting married and invite you to celebrate this special moment with us."
+  },
+  "landing": {
+    "invitation": "Wedding Invitation",
+    "for": "For:",
+    "openInvitation": "Open Invitation"
+  },
+  "hero": {
+    "bismillah": "In the name of Allah, the Most Gracious, the Most Merciful",
+    "weddingOf": "The Wedding of",
+    "and": "and",
+    "childOf": "{{name}}, child of {{parents}}",
+    "date": "Date",
+    "time": "Time",
+    "venue": "Venue",
+    "address": "Address"
+  },
+  "events": {
+    "title": "Events",
+    "addToCalendar": "Add to Calendar",
+    "googleCalendar": "Google Calendar",
+    "appleCalendar": "Apple Calendar",
+    "outlookCalendar": "Outlook Calendar",
+    "timeZoneShort": "WIB",
+    "saveTheDate": "Save This Important Date",
+    "weddingEvents": "Wedding Events",
+    "invitation": "We Invite You to Celebrate Our Special Day as the Beginning of Our Love Journey"
+  },
+  "location": {
+    "title": "Location",
+    "openMap": "Open in Google Maps",
+    "getDirections": "Get Directions",
+    "eventVenue": "Event Venue",
+    "viewMap": "View Map"
+  },
+  "gifts": {
+    "title": "Gifts",
+    "message": "Insha Allah, we will distribute all gifts to several mosques and institutions in need.",
+    "digitalGift": "Digital Gift",
+    "copyAccount": "Copy Account Number",
+    "copied": "Copied!",
+    "weddingGift": "Wedding Gift",
+    "giveGift": "Give a Gift",
+    "thankYou": "Jazakumullahu khairan, Barakallah fiikum",
+    "copy": "Copy"
+  },
+  "wishes": {
+    "title": "Wishes",
+    "yourName": "Your Name",
+    "yourMessage": "Your Message",
+    "send": "Send Wishes",
+    "sending": "Sending...",
+    "thankYou": "Thank you for your wishes!",
+    "recentWishes": "Recent Wishes",
+    "sendYourBestWishes": "Send Your Best Wishes and Prayers",
+    "yourWish": "Your Wish",
+    "placeholder": "Send your wishes and prayers for the couple...",
+    "giveYourWish": "Give Your Wish",
+    "attending": "Yes, I will attend",
+    "notAttending": "No, I cannot attend",
+    "maybe": "Maybe, I will confirm later"
+  },
+  "bottomBar": {
+    "home": "Home",
+    "events": "Events",
+    "location": "Location",
+    "gifts": "Gifts"
+  },
+  "language": {
+    "en": "English",
+    "uz": "Uzbek",
+    "ru": "Russian"
+  }
+}

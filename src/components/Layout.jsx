@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Music, PauseCircle, PlayCircle } from 'lucide-react';
 import config from '@/config/config';
 import BottomBar from '@/components/BottomBar';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
+import PropTypes from 'prop-types';
 
 const Layout = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -10,23 +12,19 @@ const Layout = ({ children }) => {
   const audioRef = useRef(null);
   const wasPlayingRef = useRef(false);
 
-  // First useEffect to handle initial setup and auto-play attempt
   useEffect(() => {
-    // Create audio element
-    audioRef.current = new Audio(config.data.audio.src);
-    audioRef.current.loop = config.data.audio.loop;
-
-    // Try to autoplay
     const attemptAutoplay = async () => {
       try {
-        await audioRef.current.play();
+        const audio = new Audio(config.data.audio.src);
+        audio.loop = config.data.audio.loop;
+        audioRef.current = audio;
+        await audio.play();
         setIsPlaying(true);
         wasPlayingRef.current = true;
         setShowToast(true);
         setTimeout(() => setShowToast(false), 3000);
-      } catch (error) {
+      } catch {
         console.log('Autoplay failed, waiting for user interaction');
-        // Add click event listener for first interaction
         const handleFirstInteraction = async () => {
           try {
             await audioRef.current.play();
@@ -53,7 +51,6 @@ const Layout = ({ children }) => {
     };
   }, []);
 
-  // Second useEffect to handle visibility and focus changes
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
@@ -156,6 +153,11 @@ const Layout = ({ children }) => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
+        {/* Language Switcher */}
+        <div className="fixed top-4 left-4 z-50">
+          <LanguageSwitcher />
+        </div>
+        
         {/* Music Control Button with Status Indicator */}
         <motion.button
           initial={{ scale: 0 }}
@@ -201,6 +203,10 @@ const Layout = ({ children }) => {
       </motion.div>
     </div>
   );
+};
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired
 };
 
 export default Layout;

@@ -15,8 +15,10 @@ import {
 } from 'lucide-react'
 import { useState } from 'react';
 import { formatEventDate } from '@/lib/formatEventDate';
+import { useTranslation } from 'react-i18next';
 
 export default function Wishes() {
+    const { t } = useTranslation();
     const [showConfetti, setShowConfetti] = useState(false);
     const [newWish, setNewWish] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -24,9 +26,9 @@ export default function Wishes() {
     const [isOpen, setIsOpen] = useState(false);
 
     const options = [
-        { value: 'ATTENDING', label: 'Ya, saya akan hadir' },
-        { value: 'NOT_ATTENDING', label: 'Tidak, saya tidak bisa hadir' },
-        { value: 'MAYBE', label: 'Mungkin, saya akan konfirmasi nanti' }
+        { value: 'ATTENDING', label: t('wishes.attending') },
+        { value: 'NOT_ATTENDING', label: t('wishes.notAttending') },
+        { value: 'MAYBE', label: t('wishes.maybe') }
     ];
     // Example wishes - replace with your actual data
     const [wishes, setWishes] = useState([
@@ -104,7 +106,7 @@ export default function Wishes() {
                         transition={{ delay: 0.2 }}
                         className="inline-block text-rose-500 font-medium"
                     >
-                        Kirimkan Doa dan Harapan Terbaik Anda
+                        {t('wishes.sendYourBestWishes')}
                     </motion.span>
 
                     <motion.h2
@@ -280,10 +282,10 @@ export default function Wishes() {
                                 <div className="space-y-2">
                                     <div className="flex items-center space-x-2 text-gray-500 text-sm mb-1">
                                         <MessageCircle className="w-4 h-4" />
-                                        <span>Harapan kamu</span>
+                                        <span>{t('wishes.yourWish')}</span>
                                     </div>
                                     <textarea
-                                        placeholder="Kirimkan harapan dan doa untuk kedua mempelai..."
+                                        placeholder={t('wishes.placeholder')}
                                         className="w-full h-32 p-4 rounded-xl bg-white/50 border border-rose-100 focus:border-rose-300 focus:ring focus:ring-rose-200 focus:ring-opacity-50 resize-none transition-all duration-200"
                                         required
                                     />
@@ -292,7 +294,7 @@ export default function Wishes() {
                             <div className="flex items-center justify-between mt-4">
                                 <div className="flex items-center space-x-2 text-gray-500">
                                     <Smile className="w-5 h-5" />
-                                    <span className="text-sm">Berikan Doa Anda</span>
+                                    <span className="text-sm">{t('wishes.giveYourWish')}</span>
                                 </div>
                                 <motion.button
                                     whileHover={{ scale: 1.02 }}
@@ -303,7 +305,7 @@ export default function Wishes() {
                                             : 'bg-rose-500 hover:bg-rose-600'}`}
                                 >
                                     <Send className="w-4 h-4" />
-                                    <span>{isSubmitting ? 'Sedang Mengirim...' : 'Kirimkan Doa'}</span>
+                                    <span>{isSubmitting ? t('wishes.sending') : t('wishes.send')}</span>
                                 </motion.button>
                             </div>
                         </div>

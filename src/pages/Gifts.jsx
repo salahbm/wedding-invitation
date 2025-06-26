@@ -8,8 +8,10 @@ import {
     Building2,
 } from 'lucide-react'
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function Gifts() {
+    const { t } = useTranslation();
     const [copiedAccount, setCopiedAccount] = useState(null);
     const [hasAnimated, setHasAnimated] = useState(false);
     
@@ -40,7 +42,7 @@ export default function Gifts() {
                         transition={{ delay: 0.2 }}
                         className="inline-block text-rose-500 font-medium"
                     >
-                        Hadiah Pernikahan
+                        {t('gifts.weddingGift')}
                     </motion.span>
 
                     <motion.h2
@@ -49,7 +51,7 @@ export default function Gifts() {
                         transition={{ delay: 0.3 }}
                         className="text-4xl md:text-5xl font-serif text-gray-800"
                     >
-                        Berikan Hadiah
+                        {t('gifts.giveGift')}
                     </motion.h2>
 
                     {/* Decorative Divider */}
@@ -78,7 +80,7 @@ export default function Gifts() {
 
                         {/* Main Message */}
                         <p className="text-gray-600 leading-relaxed">
-                            Insya Allah, Kami Akan Menyalurkan Semua Hadiah yang Diberikan ke Beberapa Masjid dan Lembaga yang Membutuhkan
+                            {t('gifts.message')}
                         </p>
 
                         {/* Arabic Dua */}
@@ -87,7 +89,7 @@ export default function Gifts() {
                                 جزاكم الله خيرا وبارك الله فيكم
                             </p>
                             <p className="text-gray-600 italic text-sm">
-                                Jazakumullahu khairan, Barakallah fiikum
+                                {t('gifts.thankYou')}
                             </p>
                         </div>
                     </motion.div>
@@ -145,7 +147,7 @@ export default function Gifts() {
                                                 <Copy className="w-4 h-4" />
                                             )}
                                             <span className="text-sm">
-                                                {copiedAccount === account.bank ? 'Copied!' : 'Copy'}
+                                                {copiedAccount === account.bank ? t('gifts.copied') : t('gifts.copy')}
                                             </span>
                                         </motion.button>
                                     </div>

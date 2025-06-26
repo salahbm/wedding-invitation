@@ -2,8 +2,10 @@ import EventCards from '@/components/EventsCard'
 import config from '@/config/config'
 import { motion } from 'framer-motion'
 import { Heart } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 export default function Events() {
+    const { t } = useTranslation();
     return (
         <>
             {/* Event Section */}
@@ -30,7 +32,7 @@ export default function Events() {
                             transition={{ delay: 0.2 }}
                             className="inline-block text-rose-500 font-medium mb-2"
                         >
-                            Catat Tanggal Penting Ini
+                            {t('events.saveTheDate')}
                         </motion.span>
 
                         <motion.h2
@@ -40,7 +42,7 @@ export default function Events() {
                             transition={{ delay: 0.3 }}
                             className="text-4xl md:text-5xl font-serif text-gray-800 leading-tight"
                         >
-                            Rangkaian Acara Pernikahan
+                            {t('events.weddingEvents')}
                         </motion.h2>
 
                         <motion.p
@@ -50,7 +52,7 @@ export default function Events() {
                             transition={{ delay: 0.4 }}
                             className="text-gray-500 max-w-md mx-auto"
                         >
-                            Kami Mengundang Anda untuk Merayakan Hari Istimewa Sebagai Awal Perjalanan Cinta Kami
+                            {t('events.invitation')}
                         </motion.p>
 
                         {/* Decorative Line */}
