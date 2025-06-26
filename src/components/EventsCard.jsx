@@ -11,7 +11,7 @@ import {
   X,
   Chrome,
   Apple,
-  Calendar as CalendarIcon
+  Calendar as CalendarIcon,
 } from 'lucide-react';
 import { formatEventDate } from '@/lib/formatEventDate';
 
@@ -43,7 +43,7 @@ const Modal = ({ isOpen, onClose, children }) => {
   );
 };
 
-const CalendarButton = ({ icon: Icon, label, onClick, className = "" }) => (
+const CalendarButton = ({ icon: Icon, label, onClick, className = '' }) => (
   <motion.button
     onClick={onClick}
     className={`flex items-center space-x-3 w-full p-4 rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors ${className}`}
@@ -56,7 +56,7 @@ const CalendarButton = ({ icon: Icon, label, onClick, className = "" }) => (
 );
 
 /**
- * SingleEventCard component displays an event card with options to add the event 
+ * SingleEventCard component displays an event card with options to add the event
  * to various calendars (Google Calendar, Apple Calendar, and Outlook Calendar).
  *
  * @component
@@ -78,7 +78,7 @@ const CalendarButton = ({ icon: Icon, label, onClick, className = "" }) => (
  *   title: 'Wedding Ceremony - Reception',
  *   description: 'Join us to celebrate the wedding ceremony and reception.',
  *   location: 'Sunset Gardens',
- *   timeZone: 'Asia/Jakarta'
+ *   timeZone: 'Asia/Samarkand'
  * };
  *
  * <SingleEventCard eventData={eventData} />
@@ -123,7 +123,9 @@ END:VCALENDAR`;
 
   const downloadICSFile = () => {
     const icsContent = generateICSContent();
-    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const blob = new Blob([icsContent], {
+      type: 'text/calendar;charset=utf-8',
+    });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
     link.download = `${eventData.title.toLowerCase().replace(/ /g, '-')}.ics`;
@@ -141,7 +143,9 @@ END:VCALENDAR`;
         transition={{ duration: 0.5 }}
       >
         <div className="flex justify-between items-center">
-          <h3 className="text-xl font-semibold text-gray-800">{eventData.title.split(' - ')[0]}</h3>
+          <h3 className="text-xl font-semibold text-gray-800">
+            {eventData.title.split(' - ')[0]}
+          </h3>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -154,11 +158,16 @@ END:VCALENDAR`;
         <div className="space-y-3 text-gray-600">
           <div className="flex items-center space-x-3">
             <Calendar className="w-5 h-5 text-rose-500" />
-            <span>{formatEventDate(eventData.date, 'short', i18n.language)}</span>
+            <span>
+              {formatEventDate(eventData.date, 'short', i18n.language)}
+            </span>
           </div>
           <div className="flex items-center space-x-3">
             <Clock className="w-5 h-5 text-rose-500" />
-            <span>{eventData.startTime} - {eventData.endTime} {t('events.timeZoneShort')}</span>
+            <span>
+              {eventData.startTime} - {eventData.endTime}{' '}
+              {t('events.timeZoneShort')}
+            </span>
           </div>
           <div className="flex items-center space-x-3">
             <MapPin className="w-5 h-5 text-rose-500" />
@@ -173,7 +182,9 @@ END:VCALENDAR`;
       >
         <div className="space-y-6 ">
           <div className="flex justify-between  items-center">
-            <h3 className="text-xl font-semibold text-gray-800">{t('events.addToCalendar')}</h3>
+            <h3 className="text-xl font-semibold text-gray-800">
+              {t('events.addToCalendar')}
+            </h3>
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -186,19 +197,25 @@ END:VCALENDAR`;
 
           <div className="space-y-3">
             <CalendarButton
-              icon={(props) => <Chrome {...props} className="w-5 h-5 text-rose-500" />}
+              icon={(props) => (
+                <Chrome {...props} className="w-5 h-5 text-rose-500" />
+              )}
               label={t('events.googleCalendar')}
               onClick={() => window.open(googleCalendarLink(), '_blank')}
             />
 
             <CalendarButton
-              icon={(props) => <Apple {...props} className="w-5 h-5 text-gray-900" />}
+              icon={(props) => (
+                <Apple {...props} className="w-5 h-5 text-gray-900" />
+              )}
               label={t('events.appleCalendar')}
               onClick={downloadICSFile}
             />
 
             <CalendarButton
-              icon={(props) => <CalendarIcon {...props} className="w-5 h-5 text-blue-600" />}
+              icon={(props) => (
+                <CalendarIcon {...props} className="w-5 h-5 text-blue-600" />
+              )}
               label={t('events.outlookCalendar')}
               onClick={downloadICSFile}
             />
@@ -223,14 +240,14 @@ const EventCards = ({ events }) => {
 Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 CalendarButton.propTypes = {
   icon: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 SingleEventCard.propTypes = {
@@ -241,8 +258,8 @@ SingleEventCard.propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
-    timeZone: PropTypes.string
-  }).isRequired
+    timeZone: PropTypes.string,
+  }).isRequired,
 };
 
 EventCards.propTypes = {
@@ -254,9 +271,9 @@ EventCards.propTypes = {
       title: PropTypes.string.isRequired,
       description: PropTypes.string,
       location: PropTypes.string.isRequired,
-      timeZone: PropTypes.string
+      timeZone: PropTypes.string,
     })
-  ).isRequired
+  ).isRequired,
 };
 
 export default EventCards;

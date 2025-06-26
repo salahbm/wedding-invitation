@@ -82,7 +82,9 @@ const LandingPage = ({ onOpenInvitation }) => {
               transition={{ delay: 0.8 }}
               className="text-center py-4 font-thin"
             >
-              <p>{config.data.description}</p>
+              <p className="text-sm text-gray-500 font-thin">
+                {t('landing.78')}
+              </p>
             </motion.div>
 
             {/* Open Invitation Button */}

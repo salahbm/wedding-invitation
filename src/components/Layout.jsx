@@ -1,150 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Music, PauseCircle, PlayCircle } from 'lucide-react';
-import config from '@/config/config';
 import BottomBar from '@/components/BottomBar';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import PropTypes from 'prop-types';
 import { cn } from '@/lib/utils';
+import useMusic from '@/hooks/music/useMusic';
 
 const Layout = ({ children, startInvitation }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [showToast, setShowToast] = useState(false);
-  const audioRef = useRef(null);
-  const wasPlayingRef = useRef(false);
-
-  useEffect(() => {
-    const attemptAutoplay = async () => {
-      try {
-        const audio = new Audio(config.data.audio.src);
-        audio.loop = config.data.audio.loop;
-        audioRef.current = audio;
-        await audio.play();
-        setIsPlaying(true);
-        wasPlayingRef.current = true;
-        setShowToast(true);
-        setTimeout(() => setShowToast(false), 3000);
-      } catch {
-        console.log('Autoplay failed, waiting for user interaction');
-        const handleFirstInteraction = async () => {
-          try {
-            await audioRef.current.play();
-            setIsPlaying(true);
-            wasPlayingRef.current = true;
-            setShowToast(true);
-            setTimeout(() => setShowToast(false), 3000);
-            document.removeEventListener('click', handleFirstInteraction);
-          } catch (err) {
-            console.error('Playback failed after interaction:', err);
-          }
-        };
-        document.addEventListener('click', handleFirstInteraction);
-      }
-    };
-
-    attemptAutoplay();
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        wasPlayingRef.current = isPlaying;
-        if (audioRef.current && isPlaying) {
-          audioRef.current.pause();
-          setIsPlaying(false);
-        }
-      } else {
-        if (audioRef.current && wasPlayingRef.current) {
-          audioRef.current.play().catch(console.error);
-          setIsPlaying(true);
-        }
-      }
-    };
-
-    const handleWindowBlur = () => {
-      wasPlayingRef.current = isPlaying;
-      if (audioRef.current && isPlaying) {
-        audioRef.current.pause();
-        setIsPlaying(false);
-      }
-    };
-
-    const handleWindowFocus = () => {
-      if (audioRef.current && wasPlayingRef.current) {
-        audioRef.current.play().catch(console.error);
-        setIsPlaying(true);
-      }
-    };
-
-    // Audio event listeners
-    const handlePlay = () => {
-      setIsPlaying(true);
-      setShowToast(true);
-      setTimeout(() => setShowToast(false), config.audio.toastDuration);
-    };
-
-    const handlePause = () => {
-      setIsPlaying(false);
-      setShowToast(false);
-    };
-
-    if (audioRef.current) {
-      audioRef.current.addEventListener('play', handlePlay);
-      audioRef.current.addEventListener('pause', handlePause);
-    }
-
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    window.addEventListener('blur', handleWindowBlur);
-    window.addEventListener('focus', handleWindowFocus);
-
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-      window.removeEventListener('blur', handleWindowBlur);
-      window.removeEventListener('focus', handleWindowFocus);
-
-      if (audioRef.current) {
-        audioRef.current.removeEventListener('play', handlePlay);
-        audioRef.current.removeEventListener('pause', handlePause);
-      }
-    };
-  }, [isPlaying]);
-
-  // Toggle music function
-  const toggleMusic = async () => {
-    if (audioRef.current) {
-      try {
-        if (isPlaying) {
-          audioRef.current.pause();
-          wasPlayingRef.current = false;
-        } else {
-          await audioRef.current.play();
-          wasPlayingRef.current = true;
-        }
-      } catch (error) {
-        console.error('Playback error:', error);
-      }
-    }
-  };
-
-  // Handle page unload
-  useEffect(() => {
-    const handleBeforeUnload = () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        setIsPlaying(false);
-      }
-    };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, []);
+  const { isPlaying, showToast, toggleMusic, audioTitle } = useMusic();
 
   return (
     <div className="relative w-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
@@ -200,9 +63,7 @@ const Layout = ({ children, startInvitation }) => {
             >
               <div className="bg-black/80 text-white transform -translate-x-1/2 px-4 py-2 rounded-full backdrop-blur-sm flex items-center space-x-2">
                 <Music className="w-4 h-4 animate-pulse" />
-                <span className="text-sm whitespace-nowrap">
-                  {config.data.audio.title}
-                </span>
+                <span className="text-sm whitespace-nowrap">{audioTitle}</span>
               </div>
             </motion.div>
           )}

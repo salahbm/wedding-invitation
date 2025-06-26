@@ -1,7 +1,6 @@
 const config = {
   data: {
-    title: 'Muhammad & Saodat', // Nanti ini otomatis
-    description: 'And We created you in pairs 78:8',
+    title: 'Muhammad & Saodat',
     groomName: 'Muhammad',
     brideName: 'Saodat',
     parentGroom: 'Salohiddin & Gulorom',
@@ -18,18 +17,18 @@ const config = {
     favicon: '/images/favicon.ico',
     agenda: [
       {
-        title: 'Akad Nikah',
-        date: '2025-08-14',
-        startTime: '16:16',
-        endTime: '17:30',
-        location: 'Zahid Zarafshon Wedding Hall',
-        address: 'Allama Muhammad Iqbal Street, 7, Bukhara, Uzbekistan',
+        title: 'Nikah',
+        date: '2025-08-11',
+        startTime: '10:00',
+        endTime: '11:00',
+        location: 'Masjid',
+        address: 'Masjid, Bukhara, Uzbekistan',
       },
       {
-        title: 'Resepsi Nikah',
+        title: 'Wedding',
         date: '2025-08-14',
-        startTime: '16:16',
-        endTime: '17:30',
+        startTime: '19:30',
+        endTime: '01:30',
         location: 'Zahid Zarafshon Wedding Hall',
         address: 'Allama Muhammad Iqbal Street, 7, Bukhara, Uzbekistan',
       },
@@ -54,5 +53,5 @@ const config = {
     ],
   },
 };
-
+``;
 export default config;
