@@ -16,7 +16,8 @@ const LanguageSwitcher = () => {
   const languages = [
     { code: 'en', name: t('language.en') },
     { code: 'uz', name: t('language.uz') },
-    { code: 'ru', name: t('language.ru') }
+    { code: 'ru', name: t('language.ru') },
+    { code: 'kr', name: t('language.kr') },
   ];
 
   // Change language handler
@@ -49,8 +50,10 @@ const LanguageSwitcher = () => {
                 key={language.code}
                 onClick={() => changeLanguage(language.code)}
                 className={cn(
-                  "w-full text-left px-4 py-2 text-sm hover:bg-rose-50 transition-colors",
-                  i18n.language === language.code ? "text-rose-500 font-medium" : "text-gray-700"
+                  'w-full text-left px-4 py-2 text-sm hover:bg-rose-50 transition-colors',
+                  i18n.language === language.code
+                    ? 'text-rose-500 font-medium'
+                    : 'text-gray-700'
                 )}
               >
                 {language.name}

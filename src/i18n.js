@@ -6,6 +6,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import enTranslation from './locales/en/translation.json';
 import uzTranslation from './locales/uz/translation.json';
 import ruTranslation from './locales/ru/translation.json';
+import krTranslation from './locales/kr/translation.json';
 
 // Configure i18next
 i18n
@@ -29,6 +30,9 @@ i18n
       },
       ru: {
         translation: ruTranslation,
+      },
+      kr: {
+        translation: krTranslation,
       },
     },
     detection: {

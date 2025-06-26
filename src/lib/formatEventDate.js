@@ -39,6 +39,7 @@ export const formatEventDate = (
     en: 'en-US',
     ru: 'ru-RU',
     uz: 'uz-Cyrl-UZ', // fallback, but we override manually below
+    kr: 'ko-KR',
   };
 
   const options = {
