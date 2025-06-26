@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 import {
   Calendar,
   Clock,
@@ -85,7 +86,7 @@ const CalendarButton = ({ icon: Icon, label, onClick, className = "" }) => (
  * @returns {JSX.Element} A JSX element representing the event card.
  */
 const SingleEventCard = ({ eventData }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [showCalendarModal, setShowCalendarModal] = useState(false);
 
   const googleCalendarLink = () => {
@@ -153,7 +154,7 @@ END:VCALENDAR`;
         <div className="space-y-3 text-gray-600">
           <div className="flex items-center space-x-3">
             <Calendar className="w-5 h-5 text-rose-500" />
-            <span>{formatEventDate(eventData.date)}</span>
+            <span>{formatEventDate(eventData.date, 'short', i18n.language)}</span>
           </div>
           <div className="flex items-center space-x-3">
             <Clock className="w-5 h-5 text-rose-500" />
@@ -217,6 +218,45 @@ const EventCards = ({ events }) => {
       ))}
     </div>
   );
+};
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired
+};
+
+CalendarButton.propTypes = {
+  icon: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  className: PropTypes.string
+};
+
+SingleEventCard.propTypes = {
+  eventData: PropTypes.shape({
+    date: PropTypes.string.isRequired,
+    startTime: PropTypes.string.isRequired,
+    endTime: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    timeZone: PropTypes.string
+  }).isRequired
+};
+
+EventCards.propTypes = {
+  events: PropTypes.arrayOf(
+    PropTypes.shape({
+      date: PropTypes.string.isRequired,
+      startTime: PropTypes.string.isRequired,
+      endTime: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      location: PropTypes.string.isRequired,
+      timeZone: PropTypes.string
+    })
+  ).isRequired
 };
 
 export default EventCards;

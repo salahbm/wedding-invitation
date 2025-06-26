@@ -96,9 +96,11 @@ function App() {
 
       <AnimatePresence mode="wait">
         {!isInvitationOpen ? (
-          <LandingPage onOpenInvitation={() => setIsInvitationOpen(true)} />
+          <Layout startInvitation={false}>
+            <LandingPage onOpenInvitation={() => setIsInvitationOpen(true)} />
+          </Layout>
         ) : (
-          <Layout>
+          <Layout startInvitation={true}>
             <MainContent />
           </Layout>
         )}

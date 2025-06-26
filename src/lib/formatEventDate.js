@@ -1,20 +1,23 @@
 /**
- * Formats a date string into Indonesian format
+ * Formats a date string based on the current language
  * @param {string} isoString - The ISO date string to format
  * @param {('full'|'short'|'time')} [format='full'] - The format type to use
- * @returns {string} The formatted date string in Indonesian
+ * @param {string} [language='en'] - The language code (en, ru, uz)
+ * @returns {string} The formatted date string in the specified language
  * 
  * @example
- * // returns "Senin, 1 Januari 2024"
- * formatEventDate("2024-01-01T00:00:00.000Z", "full")
+ * // returns "Monday, January 1, 2024" (in English)
+ * // returns "Понедельник, 1 января 2024" (in Russian)
+ * // returns "Dushanba, 1 yanvar 2024" (in Uzbek)
+ * formatEventDate("2024-01-01T00:00:00.000Z", "full", "en|ru|uz")
  * 
- * // returns "1 Januari 2024"
- * formatEventDate("2024-01-01T00:00:00.000Z", "short")
+ * // returns "January 1, 2024" (in English)
+ * formatEventDate("2024-01-01T00:00:00.000Z", "short", "en")
  * 
  * // returns "00:00"
  * formatEventDate("2024-01-01T00:00:00.000Z", "time")
  */
-export const formatEventDate = (isoString, format = 'full') => {
+export const formatEventDate = (isoString, format = 'full', language = 'en') => {
     const date = new Date(isoString);
 
     const formats = {
@@ -38,53 +41,32 @@ export const formatEventDate = (isoString, format = 'full') => {
             timeZone: 'Asia/Jakarta'
         }
     };
-
-    // Indonesian month names mapping
-    const monthsIndonesian = {
-        'January': 'Januari',
-        'February': 'Februari',
-        'March': 'Maret',
-        'April': 'April',
-        'May': 'Mei',
-        'June': 'Juni',
-        'July': 'Juli',
-        'August': 'Agustus',
-        'September': 'September',
-        'October': 'Oktober',
-        'November': 'November',
-        'December': 'Desember'
+    
+    // Language mapping for locale strings
+    const localeMap = {
+        'en': 'en-US',
+        'ru': 'ru-RU',
+        'uz': 'uz-UZ'
     };
 
-    // Indonesian day names mapping
-    const daysIndonesian = {
-        'Sunday': 'Minggu',
-        'Monday': 'Senin',
-        'Tuesday': 'Selasa',
-        'Wednesday': 'Rabu',
-        'Thursday': 'Kamis',
-        'Friday': 'Jumat',
-        'Saturday': 'Sabtu'
-    };
+    // We'll use the native locale formatting for each language
+    // This will automatically handle month and day names in the correct language
 
-    let formatted = date.toLocaleDateString('en-US', formats[format]);
-
+    // Get the appropriate locale based on language
+    const locale = localeMap[language] || 'en-US';
+    
     // Handle time format separately
     if (format === 'time') {
-        return date.toLocaleTimeString('en-US', formats[format]);
+        return date.toLocaleTimeString(locale, formats[format]);
     }
-
-    // Replace English month and day names with Indonesian ones
-    Object.keys(monthsIndonesian).forEach(english => {
-        formatted = formatted.replace(english, monthsIndonesian[english]);
-    });
-
-    Object.keys(daysIndonesian).forEach(english => {
-        formatted = formatted.replace(english, daysIndonesian[english]);
-    });
-
-    // Format adjustment for full date
+    
+    // Use the appropriate locale for date formatting
+    let formatted = date.toLocaleDateString(locale, formats[format]);
+    
+    // Format adjustment for full date if needed
     if (format === 'full') {
-        // Convert "Hari, Tanggal Bulan Tahun" format
+        // For some languages, we might need specific adjustments
+        // But the native locale formatting should handle most cases correctly
         const parts = formatted.split(', ');
         if (parts.length === 2) {
             formatted = `${parts[0]}, ${parts[1]}`;

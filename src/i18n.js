@@ -22,27 +22,27 @@ i18n
     },
     resources: {
       en: {
-        translation: enTranslation
+        translation: enTranslation,
       },
       uz: {
-        translation: uzTranslation
+        translation: uzTranslation,
       },
       ru: {
-        translation: ruTranslation
-      }
+        translation: ruTranslation,
+      },
     },
     detection: {
       // Order and from where user language should be detected
       order: ['querystring', 'cookie', 'localStorage', 'navigator', 'htmlTag'],
-      
+
       // Keys or params to lookup language from
       lookupQuerystring: 'lng',
       lookupCookie: 'i18next',
       lookupLocalStorage: 'i18nextLng',
-      
+
       // Cache user language on
       caches: ['localStorage', 'cookie'],
-    }
+    },
   });
 
 export default i18n;

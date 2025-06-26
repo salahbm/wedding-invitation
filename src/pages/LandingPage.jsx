@@ -4,9 +4,10 @@ import { formatEventDate } from '@/lib/formatEventDate';
 import { motion } from 'framer-motion';
 import { Calendar, Clock } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 
 const LandingPage = ({ onOpenInvitation }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <motion.div
@@ -47,7 +48,7 @@ const LandingPage = ({ onOpenInvitation }) => {
               <div className="inline-flex flex-col items-center space-y-1 bg-white/80 px-4 sm:px-6 py-2 sm:py-3 rounded-xl">
                 <Calendar className="w-5 h-5 text-rose-400" />
                 <p className="text-gray-700 font-medium">
-                  {formatEventDate(config.data.date)}
+                  {formatEventDate(config.data.date, 'full', i18n.language)}
                 </p>
               </div>
 
@@ -105,6 +106,10 @@ const LandingPage = ({ onOpenInvitation }) => {
       </div>
     </motion.div>
   );
+};
+
+LandingPage.propTypes = {
+  onOpenInvitation: PropTypes.func.isRequired
 };
 
 export default LandingPage;

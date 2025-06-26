@@ -9,7 +9,7 @@ import { safeBase64 } from '@/lib/base64';
 
 export default function Hero() {
   const [guestName, setGuestName] = useState('');
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -197,9 +197,9 @@ export default function Hero() {
                     className="flex items-center justify-center space-x-2"
                   >
                     <Calendar className="w-4 h-4 text-rose-400" />
-                    <span className="text-gray-700 font-medium text-sm sm:text-base">
-                      {formatEventDate(config.data.date, 'full')}
-                    </span>
+                    <p className="text-gray-700 font-medium">
+                      {formatEventDate(config.data.date, 'full', i18n.language)}
+                    </p>
                   </motion.div>
 
                   <motion.div
