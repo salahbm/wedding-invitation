@@ -10,7 +10,12 @@ const Layout = ({ children, startInvitation }) => {
   const { isPlaying, showToast, toggleMusic, audioTitle } = useMusic();
 
   return (
-    <div className="relative w-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+    <div
+      className={cn(
+        'relative w-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center',
+        startInvitation ? 'min-h-screen' : 'h-screen'
+      )}
+    >
       <motion.div
         className={cn(
           'mx-auto w-full bg-white relative overflow-hidden border border-gray-200 shadow-lg',
@@ -21,10 +26,8 @@ const Layout = ({ children, startInvitation }) => {
         transition={{ duration: 0.5 }}
       >
         {/* Language Switcher - positioned relative to container instead of fixed */}
-        <div className="absolute top-4 left-4 z-50">
-          <div className="relative">
-            <LanguageSwitcher />
-          </div>
+        <div className="fixed top-4 left-4 z-50">
+          <LanguageSwitcher />
         </div>
 
         {/* Music Control Button with Status Indicator - matched size with language switcher */}
@@ -34,7 +37,7 @@ const Layout = ({ children, startInvitation }) => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={toggleMusic}
-          className="absolute top-4 right-4 z-50 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg border border-rose-100/50"
+          className="fixed top-4 right-4 z-50 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg border border-rose-100/50"
         >
           {isPlaying ? (
             <div className="relative">
@@ -46,7 +49,14 @@ const Layout = ({ children, startInvitation }) => {
           )}
         </motion.button>
 
-        <main className="relative h-full w-full pb-[100px]">{children}</main>
+        <main
+          className={cn(
+            'relative h-full w-full ',
+            startInvitation && 'pb-[100px]'
+          )}
+        >
+          {children}
+        </main>
         {startInvitation && <BottomBar />}
         {/* Music Info Toast */}
         <AnimatePresence>

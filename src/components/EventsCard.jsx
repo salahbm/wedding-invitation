@@ -159,14 +159,13 @@ END:VCALENDAR`;
           <div className="flex items-center space-x-3">
             <Calendar className="w-5 h-5 text-rose-500" />
             <span>
-              {formatEventDate(eventData.date, 'short', i18n.language)}
+              {formatEventDate(eventData.date, 'long', i18n.language)}
             </span>
           </div>
           <div className="flex items-center space-x-3">
             <Clock className="w-5 h-5 text-rose-500" />
             <span>
-              {eventData.startTime} - {eventData.endTime}{' '}
-              {t('events.timeZoneShort')}
+              {eventData.startTime} - {eventData.endTime}
             </span>
           </div>
           <div className="flex items-center space-x-3">

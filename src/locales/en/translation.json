@@ -27,7 +27,6 @@
     "googleCalendar": "Google Calendar",
     "appleCalendar": "Apple Calendar",
     "outlookCalendar": "Outlook Calendar",
-    "timeZoneShort": "WIB",
     "saveTheDate": "Save This Important Date",
     "weddingEvents": "Wedding Events",
     "invitation": "We Invite You to Celebrate Our Special Day as the Beginning of Our Love Journey"
@@ -38,17 +37,6 @@
     "getDirections": "Get Directions",
     "eventVenue": "Event Venue",
     "viewMap": "View Map"
-  },
-  "gifts": {
-    "title": "Gifts",
-    "message": "Insha Allah, we will distribute all gifts to several mosques and institutions in need.",
-    "digitalGift": "Digital Gift",
-    "copyAccount": "Copy Account Number",
-    "copied": "Copied!",
-    "weddingGift": "Wedding Gift",
-    "giveGift": "Give a Gift",
-    "thankYou": "Jazakumullahu khairan, Barakallah fiikum",
-    "copy": "Copy"
   },
   "wishes": {
     "title": "Wishes",
@@ -66,11 +54,37 @@
     "notAttending": "No, I cannot attend",
     "maybe": "Maybe, I will confirm later"
   },
+  "table": {
+    "title": "Timetable",
+    "weddingSchedule": "Wedding Schedule",
+    "timetable": "Event Timeline",
+    "message": "We've planned a wonderful celebration and would like to share our schedule with you so you know what to expect on our special day.",
+    "thankYou": "We look forward to celebrating with you",
+    "timeHeader": "Time",
+    "eventHeader": "Activity",
+    "descriptionHeader": "Description",
+    "guestArrival": "Guest Arrival",
+    "arrivalDesc": "Welcome and seating of guests",
+    "entrance": "Bride & Groom Entrance",
+    "entranceDesc": "Grand entrance of the newlyweds",
+    "firstCourse": "First Course",
+    "firstCourseDesc": "Serving of appetizers and starters",
+    "mainCourse": "Main Course",
+    "mainCourseDesc": "Serving of the main dishes",
+    "dance": "Dance Floor Opens",
+    "danceDesc": "Dancing and celebration for all guests",
+    "games": "Wedding Games",
+    "gamesDesc": "Fun activities and games for everyone",
+    "waltz": "Couple's Waltz",
+    "waltzDesc": "Special dance performance by the newlyweds",
+    "celebration": "Celebration",
+    "celebrationDesc": "Dancing and festivities until the end of the evening"
+  },
   "bottomBar": {
     "home": "Home",
     "events": "Events",
     "location": "Location",
-    "table": "Table",
+    "table": "Timetable",
     "wishes": "Wishes"
   },
   "countdown": {
