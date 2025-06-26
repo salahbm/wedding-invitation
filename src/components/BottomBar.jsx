@@ -53,7 +53,7 @@ const BottomBar = () => {
               key={item.label}
               href={item.href}
               className={cn(
-                'flex flex-col items-center justify-center py-2 px-3 rounded-xl transition-all duration-200',
+                'flex flex-col items-center justify-center py-2 px-2 rounded-xl transition-all duration-200',
                 'hover:bg-gray-50/80',
                 active === item.id
                   ? 'text-primary bg-primary/5'

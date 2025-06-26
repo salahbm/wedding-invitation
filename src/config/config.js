@@ -15,6 +15,7 @@ const config = {
     address: 'Allama Muhammad Iqbal Street, 7, Bukhara, Uzbekistan',
     ogImage: '/images/og-image.jpg',
     favicon: '/images/favicon.ico',
+    siteUrl: 'https://muhammad-saodat.vercel.app',
     agenda: [
       {
         title: 'Nikah',

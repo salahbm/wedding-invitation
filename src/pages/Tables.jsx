@@ -14,11 +14,6 @@ export default function Table() {
   const { t } = useTranslation();
   const [hasAnimated, setHasAnimated] = useState(false);
 
-  // Set animation to run once on component mount
-  useEffect(() => {
-    setHasAnimated(true);
-  }, []);
-
   // Wedding timeline events
   const timelineEvents = useMemo(
     () => [
@@ -73,6 +68,11 @@ export default function Table() {
     ],
     [t]
   );
+
+  // Set animation to run once on component mount
+  useEffect(() => {
+    setHasAnimated(true);
+  }, []);
 
   return (
     <>
