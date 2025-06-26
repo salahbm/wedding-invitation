@@ -1,77 +1,87 @@
+const uzbekLatinMonths = [
+  'Yanvar',
+  'Fevral',
+  'Mart',
+  'Aprel',
+  'May',
+  'Iyun',
+  'Iyul',
+  'Avgust',
+  'Sentabr',
+  'Oktabr',
+  'Noyabr',
+  'Dekabr',
+];
+
+const uzbekLatinWeekdays = [
+  'Yakshanba',
+  'Dushanba',
+  'Seshanba',
+  'Chorshanba',
+  'Payshanba',
+  'Juma',
+  'Shanba',
+];
+
 /**
- * Formats a date string based on the current language
- * @param {string} isoString - The ISO date string to format
- * @param {('full'|'short'|'time')} [format='full'] - The format type to use
- * @param {string} [language='en'] - The language code (en, ru, uz)
- * @returns {string} The formatted date string in the specified language
- * 
- * @example
- * // returns "Monday, January 1, 2024" (in English)
- * // returns "Понедельник, 1 января 2024" (in Russian)
- * // returns "Dushanba, 1 yanvar 2024" (in Uzbek)
- * formatEventDate("2024-01-01T00:00:00.000Z", "full", "en|ru|uz")
- * 
- * // returns "January 1, 2024" (in English)
- * formatEventDate("2024-01-01T00:00:00.000Z", "short", "en")
- * 
- * // returns "00:00"
- * formatEventDate("2024-01-01T00:00:00.000Z", "time")
+ * Formats a date string in 'full', 'short' or 'time' format
+ * Fixes broken uz-UZ Intl by manually mapping to Uzbek Latin
  */
-export const formatEventDate = (isoString, format = 'full', language = 'en') => {
-    const date = new Date(isoString);
+export const formatEventDate = (
+  isoString,
+  format = 'full',
+  language = 'en'
+) => {
+  const date = new Date(isoString);
+  const timeZone = 'Asia/Samarkand';
 
-    const formats = {
-        full: {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            timeZone: 'Asia/Jakarta'
-        },
-        short: {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-            timeZone: 'Asia/Jakarta'
-        },
-        time: {
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: false,
-            timeZone: 'Asia/Jakarta'
-        }
-    };
-    
-    // Language mapping for locale strings
-    const localeMap = {
-        'en': 'en-US',
-        'ru': 'ru-RU',
-        'uz': 'uz-UZ'
-    };
+  const localeMap = {
+    en: 'en-US',
+    ru: 'ru-RU',
+    uz: 'uz-Cyrl-UZ', // fallback, but we override manually below
+  };
 
-    // We'll use the native locale formatting for each language
-    // This will automatically handle month and day names in the correct language
+  const options = {
+    full: {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      timeZone,
+    },
+    short: {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      timeZone,
+    },
+    time: {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+      timeZone,
+    },
+  };
 
-    // Get the appropriate locale based on language
-    const locale = localeMap[language] || 'en-US';
-    
-    // Handle time format separately
-    if (format === 'time') {
-        return date.toLocaleTimeString(locale, formats[format]);
-    }
-    
-    // Use the appropriate locale for date formatting
-    let formatted = date.toLocaleDateString(locale, formats[format]);
-    
-    // Format adjustment for full date if needed
-    if (format === 'full') {
-        // For some languages, we might need specific adjustments
-        // But the native locale formatting should handle most cases correctly
-        const parts = formatted.split(', ');
-        if (parts.length === 2) {
-            formatted = `${parts[0]}, ${parts[1]}`;
-        }
-    }
+  // Manual override for Uzbek Latin
+  if (language === 'uz') {
+    const day = date.getDate();
+    const month = uzbekLatinMonths[date.getMonth()];
+    const year = date.getFullYear();
+    const weekday = uzbekLatinWeekdays[date.getDay()];
+    const hour = String(date.getHours()).padStart(2, '0');
+    const minute = String(date.getMinutes()).padStart(2, '0');
 
-    return formatted;
+    if (format === 'full') return `${weekday}, ${day} ${month} ${year}`;
+    if (format === 'short') return `${day} ${month} ${year}`;
+    if (format === 'time') return `${hour}:${minute}`;
+  }
+
+  const locale = localeMap[language] || 'en-US';
+
+  if (format === 'time') {
+    return date.toLocaleTimeString(locale, options.time);
+  }
+
+  return date.toLocaleDateString(locale, options[format]);
 };

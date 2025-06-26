@@ -147,11 +147,11 @@ const Layout = ({ children, startInvitation }) => {
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+    <div className="relative w-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
       <motion.div
         className={cn(
           'mx-auto w-full bg-white relative overflow-hidden border border-gray-200 shadow-lg',
-          startInvitation && 'max-w-[430px] min-h-screen'
+          startInvitation && 'max-w-[430px] '
         )}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -193,7 +193,10 @@ const Layout = ({ children, startInvitation }) => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.3 }}
-              className="fixed bottom-24 left-1/2 transform -translate-x-1/2 z-50"
+              className={cn(
+                'fixed left-1/2 transform -translate-x-1/2 z-50',
+                startInvitation ? 'bottom-24' : 'bottom-10'
+              )}
             >
               <div className="bg-black/80 text-white transform -translate-x-1/2 px-4 py-2 rounded-full backdrop-blur-sm flex items-center space-x-2">
                 <Music className="w-4 h-4 animate-pulse" />

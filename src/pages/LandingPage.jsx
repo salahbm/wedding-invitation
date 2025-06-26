@@ -14,7 +14,7 @@ const LandingPage = ({ onOpenInvitation }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen relative overflow-hidden"
+      className="min-h-screen relative overflow-hidden flex flex-col justify-center"
     >
       {/* Decorative Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-white via-rose-50/30 to-white" />
@@ -22,7 +22,7 @@ const LandingPage = ({ onOpenInvitation }) => {
       <div className="absolute bottom-0 left-0 w-64 h-64 md:w-96 md:h-96 bg-pink-100/20 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2" />
 
       {/* Main Content */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4">
+      <div className="relative z-10  flex flex-col items-center justify-center px-4">
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -47,7 +47,7 @@ const LandingPage = ({ onOpenInvitation }) => {
             >
               <div className="inline-flex flex-col items-center space-y-1 bg-white/80 px-4 sm:px-6 py-2 sm:py-3 rounded-xl">
                 <Calendar className="w-5 h-5 text-rose-400" />
-                <p className="text-gray-700 font-medium">
+                <p className="text-gray-700 font-medium capitalize">
                   {formatEventDate(config.data.date, 'full', i18n.language)}
                 </p>
               </div>
@@ -74,6 +74,15 @@ const LandingPage = ({ onOpenInvitation }) => {
                   {config.data.brideName}
                 </h1>
               </div>
+            </motion.div>
+            {/* Couple Names */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="text-center py-4 font-thin"
+            >
+              <p>{config.data.description}</p>
             </motion.div>
 
             {/* Open Invitation Button */}
@@ -109,7 +118,7 @@ const LandingPage = ({ onOpenInvitation }) => {
 };
 
 LandingPage.propTypes = {
-  onOpenInvitation: PropTypes.func.isRequired
+  onOpenInvitation: PropTypes.func.isRequired,
 };
 
 export default LandingPage;
