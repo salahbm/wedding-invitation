@@ -10,7 +10,7 @@ import {
 import { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-export default function Table() {
+export default function Photos() {
   const { t } = useTranslation();
   const [hasAnimated, setHasAnimated] = useState(false);
 
@@ -76,7 +76,7 @@ export default function Table() {
 
   return (
     <>
-      <section id="table" className="min-h-screen relative overflow-hidden">
+      <section id="photos" className="min-h-screen relative overflow-hidden">
         <div className="container mx-auto px-4 py-20 relative z-10">
           {/* Section Header */}
           <motion.div

@@ -1,5 +1,5 @@
 // src/components/bottom-bar/BottomBar.jsx
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import {
@@ -7,7 +7,7 @@ import {
   CalendarHeart,
   MapPin,
   MessageCircleHeart,
-  Table,
+  Image,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -25,7 +25,7 @@ const getMenuItems = (t) => [
     href: '#location',
     id: 'location',
   },
-  { icon: Table, label: t('bottomBar.table'), href: '#table', id: 'table' },
+  { icon: Image, label: t('bottomBar.photos'), href: '#photos', id: 'photos' },
   {
     icon: MessageCircleHeart,
     label: t('bottomBar.wishes'),
@@ -37,7 +37,7 @@ const getMenuItems = (t) => [
 const BottomBar = () => {
   const { t } = useTranslation();
   const [active, setActive] = React.useState('home');
-  const menuItems = getMenuItems(t);
+  const menuItems = useMemo(() => getMenuItems(t), [t]);
 
   return (
     <motion.div

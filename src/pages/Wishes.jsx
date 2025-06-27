@@ -441,49 +441,49 @@ export default function Wishes() {
                 </div>
               </div>
             </form>
+
+            {/* Scrollable Wishes Section */}
+            <div className="mt-8">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-medium text-gray-700 flex items-center gap-2">
+                  <ScrollText className="w-5 h-5 text-rose-500" />
+                  {t('wishes.recentWishes')}
+                </h3>
+              </div>
+
+              <div
+                ref={wishesContainerRef}
+                className="max-h-[300px] overflow-y-auto pr-2 space-y-4 custom-scrollbar"
+                style={{
+                  scrollbarWidth: 'thin',
+                  scrollbarColor: '#f43f5e #fee2e2',
+                }}
+              >
+                {wishes.slice(0, 8).map((wish, index) => (
+                  <motion.div
+                    key={`scroll-${wish.id || index}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ delay: index * 0.05 }}
+                    className="bg-white/80 rounded-lg border border-rose-100 shadow-sm p-2"
+                  >
+                    <div className="flex items-center justify-start gap-x-2">
+                      <figure className="w-6 h-6 shrink-0 rounded-full bg-gradient-to-r from-rose-400 to-pink-400 flex items-center justify-center text-white text-sm font-medium">
+                        {wish.name && wish.name[0]
+                          ? wish.name[0].toUpperCase()
+                          : '?'}
+                      </figure>
+
+                      <figcaption className="text-gray-600 text-sm leading-relaxed line-clamp-5">
+                        {wish.message}
+                      </figcaption>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </motion.div>
-
-          {/* Scrollable Wishes Section */}
-          <div className="mt-8">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-medium text-gray-700 flex items-center gap-2">
-                <ScrollText className="w-5 h-5 text-rose-500" />
-                {t('wishes.recentWishes')}
-              </h3>
-            </div>
-
-            <div
-              ref={wishesContainerRef}
-              className="max-h-[300px] overflow-y-auto pr-2 space-y-4 custom-scrollbar"
-              style={{
-                scrollbarWidth: 'thin',
-                scrollbarColor: '#f43f5e #fee2e2',
-              }}
-            >
-              {wishes.slice(0, 8).map((wish, index) => (
-                <motion.div
-                  key={`scroll-${wish.id || index}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ delay: index * 0.05 }}
-                  className="bg-white/80 rounded-lg border border-rose-100 shadow-sm p-2"
-                >
-                  <div className="flex items-center justify-start gap-x-2">
-                    <figure className="w-6 h-6 shrink-0 rounded-full bg-gradient-to-r from-rose-400 to-pink-400 flex items-center justify-center text-white text-sm font-medium">
-                      {wish.name && wish.name[0]
-                        ? wish.name[0].toUpperCase()
-                        : '?'}
-                    </figure>
-
-                    <figcaption className="text-gray-600 text-sm leading-relaxed line-clamp-5">
-                      {wish.message}
-                    </figcaption>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
     </>

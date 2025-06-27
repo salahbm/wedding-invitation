@@ -7,6 +7,7 @@
     "invitation": "Wedding Invitation",
     "for": "For:",
     "openInvitation": "Open Invitation",
+    "personalInvitation": "We're honored to have you,<br/>{{guestName}} ❤️",
     "78": "And We created you in pairs 78:8"
   },
   "hero": {
@@ -19,7 +20,8 @@
     "venue": "Venue",
     "address": "Address",
     "saveTheDate": "Save the Date",
-    "withJoy": "With joy and blessings, we invite you to our wedding"
+    "withJoy": "With joy and blessings, we invite you to our wedding",
+    "downloadCard": "Download Card"
   },
   "events": {
     "title": "Events",
@@ -91,7 +93,7 @@
     "home": "Home",
     "events": "Events",
     "location": "Location",
-    "table": "Timetable",
+    "photos": "Photos",
     "wishes": "Wishes"
   },
   "countdown": {
