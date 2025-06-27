@@ -104,6 +104,40 @@
     "minutes": "Minutes",
     "seconds": "Seconds"
   },
+  "loveStory": {
+    "title": "Our Love Story",
+    "subtitle": "Our Journey",
+    "description": "Every love story is beautiful, but ours is our favorite. Here&rsquo;s how our journey unfolded through the years.",
+    "skipToGallery": "Skip to gallery",
+    "newChapter": "Our New Chapter Begins",
+    "lifetime": "Here&rsquo;s to a lifetime together 💖",
+    "memory": "Memory",
+    "babyGroom": {
+      "title": "Baby Groom",
+      "subtitle": "Too cool for diapers",
+      "year": "1995"
+    },
+    "babyBride": {
+      "title": "Baby Bride",
+      "subtitle": "Born to sparkle",
+      "year": "1996"
+    },
+    "grewUp": {
+      "title": "They Grew Up",
+      "subtitle": "Destined paths unknowingly aligned",
+      "year": "2009"
+    },
+    "met": {
+      "title": "They Met",
+      "subtitle": "Love sparked over coffee",
+      "year": "2022"
+    },
+    "engaged": {
+      "title": "Engaged!",
+      "subtitle": "Forever started here",
+      "year": "2024"
+    }
+  },
   "language": {
     "en": "English",
     "uz": "Uzbek",
@@ -111,5 +145,15 @@
     "kr": "Korean",
     "selectLanguage": "Select Language",
     "selectPreferred": "Please select your preferred language"
+  },
+  "parents": {
+    "title": "With Gratitude",
+    "subtitle": "Our Beloved Parents",
+    "description": "With heartfelt appreciation for their endless love, support, and guidance throughout our lives. We wouldn't be who we are today without them.",
+    "groom": "Groom's Parents",
+    "bride": "Bride's Parents",
+    "father": "Father",
+    "mother": "Mother",
+    "thankYou": "Thank you for everything"
   }
 }

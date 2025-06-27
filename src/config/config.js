@@ -3,8 +3,14 @@ const config = {
     title: 'Muhammad & Saodat',
     groomName: 'Muhammad',
     brideName: 'Saodat',
-    parentGroom: 'Salohiddin & Gulorom',
-    parentBride: 'Alisher & Nozima',
+    parentGroom: {
+      father: 'Salohiddin',
+      mother: 'Gulorom',
+    },
+    parentBride: {
+      father: 'Alisher',
+      mother: 'Nozima',
+    },
     date: '2025-08-14',
     maps_url:
       'https://yandex.com/maps/?ol=geo&text=Allama%20Muhammad%20Iqbal%20Street,%207&sll=64.426876,39.761720&sspn=0.006337,0.008211',
@@ -34,5 +40,4 @@ const config = {
     },
   },
 };
-``;
 export default config;

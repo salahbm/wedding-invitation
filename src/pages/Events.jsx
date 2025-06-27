@@ -86,7 +86,7 @@ export default function Events() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative z-10 container mx-auto px-4 pb-10"
+          className="relative container mx-auto px-4 pb-10"
         >
           {/* Section Header */}
           <motion.div
@@ -155,7 +155,7 @@ export default function Events() {
         </motion.div>
       </section>
       <section id="table" className="relative overflow-hidden">
-        <div className="container mx-auto px-4 py-10 relative z-10">
+        <div className="container mx-auto px-4 py-10 relative ">
           {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
