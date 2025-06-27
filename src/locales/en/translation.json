@@ -39,7 +39,17 @@
     "openMap": "Open in Google Maps",
     "getDirections": "Get Directions",
     "eventVenue": "Event Venue",
-    "viewMap": "View Map"
+    "viewMap": "View Map",
+    "howToReach": "How to Reach",
+    "directionVideo": "Directions to Venue",
+    "videoCaption": "Video guide to our wedding venue",
+    "videoDescription": "This video shows the easiest route to reach our wedding venue. Follow these directions for a hassle-free journey on our special day.",
+    "videoNotSupported": "Your browser does not support the video tag.",
+    "closeVideo": "Close video",
+    "watchDirections": "Watch Directions Video",
+    "clickToWatch": "Click to watch how to reach the venue",
+    "videoThumbnailAlt": "Wedding venue directions thumbnail",
+    "videoInstructions": "Click the X button to minimize the video after watching. You can reopen it anytime."
   },
   "wishes": {
     "title": "Wishes",
@@ -107,10 +117,10 @@
   "loveStory": {
     "title": "Our Love Story",
     "subtitle": "Our Journey",
-    "description": "Every love story is beautiful, but ours is our favorite. Here&rsquo;s how our journey unfolded through the years.",
+    "description": "Every love story is beautiful, but ours is our favorite. Here's how our journey unfolded through the years.",
     "skipToGallery": "Skip to gallery",
     "newChapter": "Our New Chapter Begins",
-    "lifetime": "Here&rsquo;s to a lifetime together 💖",
+    "lifetime": "Here's to a lifetime together 💖",
     "memory": "Memory",
     "babyGroom": {
       "title": "Baby Groom",
@@ -140,9 +150,9 @@
   },
   "language": {
     "en": "English",
-    "uz": "Uzbek",
-    "ru": "Russian",
-    "kr": "Korean",
+    "uz": "O'zbekcha",
+    "ru": "Русский",
+    "kr": "한국어",
     "selectLanguage": "Select Language",
     "selectPreferred": "Please select your preferred language"
   },

@@ -102,9 +102,10 @@
       "seconds": "초"
     },
     "language": {
-      "en": "영어",
-      "uz": "우즈베크어",
-      "ru": "러시아어"
+      "en": "English",
+      "uz": "O'zbekcha",
+      "ru": "Русский",
+      "kr": "한국어"
     }
   }
   
