@@ -2,12 +2,29 @@
 import config from '@/config/config';
 import { formatEventDate } from '@/lib/formatEventDate';
 import { motion } from 'framer-motion';
-import { Calendar, Clock } from 'lucide-react';
+import { Calendar, Clock, Globe } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { cn } from '@/lib/utils';
 
 const LandingPage = ({ onOpenInvitation }) => {
   const { t, i18n } = useTranslation();
+  const [showLanguageModal, setShowLanguageModal] = useState(true);
+
+  // Available languages
+  const languages = [
+    { code: 'en', name: t('language.en') },
+    { code: 'uz', name: t('language.uz') },
+    { code: 'ru', name: t('language.ru') },
+    { code: 'kr', name: t('language.kr') },
+  ];
+
+  // Change language handler
+  const changeLanguage = (languageCode) => {
+    i18n.changeLanguage(languageCode);
+    setShowLanguageModal(false);
+  };
 
   return (
     <motion.div
@@ -16,6 +33,49 @@ const LandingPage = ({ onOpenInvitation }) => {
       exit={{ opacity: 0 }}
       className="min-h-screen relative overflow-hidden flex flex-col justify-center"
     >
+      {/* Language Selection Modal */}
+      {showLanguageModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className="bg-white rounded-2xl p-6 sm:p-8 max-w-sm w-full shadow-xl"
+          >
+            <div className="text-center mb-6">
+              <div className="flex justify-center mb-4">
+                <Globe className="w-10 h-10 text-rose-500" />
+              </div>
+              <h2 className="text-2xl font-serif text-gray-800 mb-2">
+                {t('language.selectLanguage') || 'Select Language'}
+              </h2>
+              <p className="text-gray-600 text-sm">
+                {t('language.selectPreferred') ||
+                  'Please select your preferred language'}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              {languages.map((language) => (
+                <motion.button
+                  key={language.code}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => changeLanguage(language.code)}
+                  className={cn(
+                    'py-3 px-4 rounded-xl border text-center transition-all',
+                    i18n.language === language.code
+                      ? 'border-rose-400 bg-rose-50 text-rose-600 font-medium'
+                      : 'border-gray-200 hover:border-rose-200 hover:bg-rose-50/50'
+                  )}
+                >
+                  {language.name}
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      )}
       {/* Decorative Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-white via-rose-50/30 to-white" />
       <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-rose-100/20 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
@@ -98,7 +158,7 @@ const LandingPage = ({ onOpenInvitation }) => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={onOpenInvitation}
-                className="group relative w-full bg-rose-500 text-white px-6 py-3 sm:px-8 sm:py-3 rounded-xl font-medium shadow-lg hover:bg-rose-600 transition-all duration-200"
+                className="group  duration-3000 relative w-full bg-rose-500 text-white px-6 py-3 sm:px-8 sm:py-3 rounded-xl font-medium shadow-lg hover:bg-rose-600 transition-all "
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   <span>{t('landing.openInvitation')}</span>
@@ -112,6 +172,9 @@ const LandingPage = ({ onOpenInvitation }) => {
                 <div className="absolute inset-0 bg-gradient-to-r from-rose-600 to-rose-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
               </motion.button>
             </motion.div>
+            <p className="text-sm text-gray-500 mt-2 text-center">
+              {t('landing.clickForMore')}
+            </p>
           </div>
         </motion.div>
       </div>

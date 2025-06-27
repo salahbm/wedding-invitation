@@ -18,14 +18,6 @@ const config = {
     siteUrl: 'https://muhammad-saodat.vercel.app',
     agenda: [
       {
-        title: 'Nikah',
-        date: '2025-08-11',
-        startTime: '10:00',
-        endTime: '11:00',
-        location: 'Masjid',
-        address: 'Masjid, Bukhara, Uzbekistan',
-      },
-      {
         title: 'Wedding',
         date: '2025-08-14',
         startTime: '19:30',

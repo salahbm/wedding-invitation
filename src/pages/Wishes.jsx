@@ -222,13 +222,10 @@ export default function Wishes() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ delay: index * 0.1 }}
-                        className="group relative w-[300px] mx-2"
+                        className="group relative w-[250px] mx-2"
                       >
-                        {/* Background gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-rose-100/50 to-pink-100/50 rounded-xl transform transition-transform group-hover:scale-[1.02] duration-300" />
-
                         {/* Card content */}
-                        <div className="relative backdrop-blur-sm bg-white/80 p-4 rounded-xl border border-rose-100/50 shadow-md max-h-[140px] overflow-y-auto flex flex-col">
+                        <div className="relative backdrop-blur-sm bg-white/80 p-4 rounded-xl border border-rose-400/50 shadow-md max-h-36 overflow-y-auto flex flex-col custom-scrollbar">
                           {/* Header */}
                           <div className="flex items-start space-x-3 mb-2">
                             {/* Avatar */}
@@ -453,7 +450,7 @@ export default function Wishes() {
 
               <div
                 ref={wishesContainerRef}
-                className="max-h-[300px] overflow-y-auto pr-2 space-y-4 custom-scrollbar"
+                className="max-h-80 overflow-y-auto pr-2 space-y-4 custom-scrollbar"
                 style={{
                   scrollbarWidth: 'thin',
                   scrollbarColor: '#f43f5e #fee2e2',

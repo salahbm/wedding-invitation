@@ -8,7 +8,8 @@
     "for": "For:",
     "openInvitation": "Open Invitation",
     "personalInvitation": "We're honored to have you,<br/>{{guestName}} ❤️",
-    "78": "And We created you in pairs 78:8"
+    "78": "And We created you in pairs 78:8",
+    "clickForMore": "Click for more details"
   },
   "hero": {
     "bismillah": "In the name of Allah, the Most Gracious, the Most Merciful",
@@ -107,6 +108,8 @@
     "en": "English",
     "uz": "Uzbek",
     "ru": "Russian",
-    "kr": "Korean"
+    "kr": "Korean",
+    "selectLanguage": "Select Language",
+    "selectPreferred": "Please select your preferred language"
   }
 }
