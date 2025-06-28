@@ -342,7 +342,7 @@ export default function LoveStory() {
               {[...Array(12)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="relative flex-shrink-0"
+                  className="relative flex-shrink-0 max-w-screen-sm md:max-w-screen-md"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={mounted ? { opacity: 1, scale: 1 } : {}}
                   transition={{ delay: stories.length * 0.2 + 0.4 + i * 0.1 }}
