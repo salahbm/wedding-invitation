@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Music, PauseCircle, PlayCircle } from 'lucide-react';
 import BottomBar from '@/components/BottomBar';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
+import LanguageSwitcher from '@/components/shared/LanguageSwitcher';
 import PropTypes from 'prop-types';
 import { cn } from '@/lib/utils';
 import useMusic from '@/hooks/music/useMusic';

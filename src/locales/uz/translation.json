@@ -1,25 +1,28 @@
 {
   "meta": {
-    "title": "{{groomName}} va {{brideName}} toʻyi",
-    "description": "Biz turmush qurmoqchimiz va sizni shu quvonchli onamizga taklif qilamiz."
+    "title": "{{groomName}} va {{brideName}}ning toʻyi",
+    "description": "Biz turmush qurmoqdamiz va sizni ushbu maxsus onimizni biz bilan nishonlashga taklif qilamiz."
   },
   "landing": {
     "invitation": "To‘y Taklifi",
-    "for": "Kimga:",
+    "for": "Kim uchun:",
     "openInvitation": "Taklifnomani ochish",
-    "78": "Va Biz sizlarni juft qilib yaratdik. 78:8"
+    "personalInvitation": "Sizni mehmon qilishdan faxrlanamiz,<br/>{{guestName}} ❤️",
+    "78": "Va Biz sizlarni juft-juft qilib yaratdik 78:8",
+    "clickForMore": "Batafsil ma’lumot uchun bosing"
   },
   "hero": {
-    "bismillah": "Mehribon va Rahmli Alloh nomi bilan",
+    "bismillah": "Mehribon va rahmli Alloh nomi bilan",
     "weddingOf": "Toʻyi",
     "and": "va",
-    "childOf": "{{name}}, ota-onasi: {{parents}}",
+    "childOf": "{{parents}}ning farzandi {{name}}",
     "date": "Sana",
     "time": "Vaqt",
     "venue": "Joy",
     "address": "Manzil",
-    "saveTheDate": "Sanani belgilab qo‘ying",
-    "withJoy": "Quvonch ila sizni to‘yimizga taklif qilamiz"
+    "saveTheDate": "Sanani eslab qoling",
+    "withJoy": "Quvonch va duolar bilan sizni to‘yimizga taklif qilamiz",
+    "downloadCard": "Kartani yuklab olish"
   },
   "events": {
     "title": "Tadbirlar",
@@ -29,14 +32,24 @@
     "outlookCalendar": "Outlook Kalendar",
     "saveTheDate": "Muhim sanani saqlang",
     "weddingEvents": "To‘y Tadbirlari",
-    "invitation": "Sevgi yo‘limiz boshlanishida sizni biz bilan bayram qilishga taklif qilamiz"
+    "invitation": "Muhabbat yo‘lidagi sayohatimiz boshlanishiga guvoh bo‘lishingizni istaymiz"
   },
   "location": {
     "title": "Manzil",
-    "openMap": "Google xaritada ochish",
-    "getDirections": "Yo‘nalishni ko‘rish",
-    "eventVenue": "Tadbir o‘tkaziladigan joy",
-    "viewMap": "Xaritani ko‘rish"
+    "openMap": "Google Xaritada ochish",
+    "getDirections": "Yo‘nalishni olish",
+    "eventVenue": "Tadbir joyi",
+    "viewMap": "Xaritani ko‘rish",
+    "howToReach": "Qanday yetib borish",
+    "directionVideo": "Tadbir joyi yo‘nalishi",
+    "videoCaption": "To‘y joyi yo‘nalishi bo‘yicha video",
+    "videoDescription": "Bu video to‘y joyiga eng oson yo‘lni ko‘rsatadi. Ushbu yo‘nalishni kuzatib boring.",
+    "videoNotSupported": "Brauzeringiz video tegi bilan ishlamaydi.",
+    "closeVideo": "Videoni yopish",
+    "watchDirections": "Yo‘nalish videosini tomosha qilish",
+    "clickToWatch": "Tadbir joyiga qanday borishni ko‘rish uchun bosing",
+    "videoThumbnailAlt": "To‘y joyi yo‘nalishi rasmi",
+    "videoInstructions": "Tomosha tugagach, X tugmasini bosib videoni yopishingiz mumkin. Istalgan vaqtda qaytadan ochishingiz mumkin."
   },
   "wishes": {
     "title": "Tilaklar",
@@ -46,65 +59,111 @@
     "sending": "Yuborilmoqda...",
     "thankYou": "Tilagingiz uchun rahmat!",
     "recentWishes": "So‘nggi tilaklar",
-    "sendYourBestWishes": "Yaxshi tilak va duolaringizni yuboring",
+    "sendYourBestWishes": "Eng ezgu tilaklaringizni yuboring",
     "yourWish": "Tilagingiz",
-    "placeholder": "Kelinning-kuyovga tilak va duolaringizni yozing...",
+    "placeholder": "Yangi turmush qurgan juftlikka tilaklaringizni yozing...",
     "giveYourWish": "Tilak yozish",
-    "attending": "Ha, boraman",
-    "notAttending": "Yo‘q, bora olmayman",
-    "maybe": "Balki, keyin aytaman",
+    "attending": "Ha, qatnashaman",
+    "notAttending": "Yo‘q, qatnasha olmayman",
+    "maybe": "Balki, keyinroq aytaman",
     "namePlaceholder": "Ismingizni kiriting",
-    "attendance": "To‘yga borasizmi?",
-    "selectAttendance": "Ishtirokni tanlang",
-    "successMessage": "Rahmat! Tilagingiz muvaffaqiyatli yuborildi.",
-    "errorMessage": "Xatolik yuz berdi. Qayta urinib ko‘ring.",
-    "fetchError": "Tilaklar yuklab olinmadi. Sahifani yangilang.",
-    "noWishes": "Hali hech kim tilak yubormagan. Birinchi bo‘ling!"
+    "attendance": "Qatnashasizmi?",
+    "selectAttendance": "Qatnashish holatini tanlang",
+    "successMessage": "Rahmat! Tilakingiz muvaffaqiyatli yuborildi.",
+    "errorMessage": "Kechirasiz, tilak yuborishda xatolik yuz berdi. Iltimos, qaytadan urinib ko‘ring.",
+    "fetchError": "Tilaklar yuklanmadi. Sahifani yangilang.",
+    "noWishes": "Hali tilaklar yo‘q. Birinchi bo‘lib siz yuboring!"
   },
   "table": {
-    "title": "Dastur",
+    "title": "Taqvim",
     "weddingSchedule": "To‘y Dasturi",
-    "timetable": "Tadbir vaqtlari",
-    "message": "Biz siz uchun chiroyli tadbir tayyorladik. Quyidagi jadval bilan tanishing.",
+    "timetable": "Tadbirlar jadvali",
+    "message": "Biz siz uchun ajoyib bayram tayyorladik va sizni nimalar kutayotganini ko‘rishingiz uchun dastur bilan tanishtiramiz.",
     "thankYou": "Siz bilan bayram qilishni intiqlik bilan kutamiz",
-    "timeHeader": "Vaqt",
+    "timeHeader": "Vaqti",
     "eventHeader": "Tadbir",
     "descriptionHeader": "Tavsif",
     "guestArrival": "Mehmonlar kelishi",
-    "arrivalDesc": "Mehmonlarni kutib olish va o‘rindiqlarga joylashish",
-    "entrance": "Kelin-kuyov kirishi",
-    "entranceDesc": "Kelin-kuyovning tantanali kirishi",
+    "arrivalDesc": "Mehmonlarni kutib olish va joylashtirish",
+    "entrance": "Kuyov & Kelin kirishi",
+    "entranceDesc": "Yangi turmush qurganlarning tantanali kirishi",
     "firstCourse": "Birinchi taomlar",
-    "firstCourseDesc": "Yengil taomlar va salatlar tortilishi",
+    "firstCourseDesc": "Aperitivlar va yengil taomlar tortilishi",
     "mainCourse": "Asosiy taomlar",
     "mainCourseDesc": "Asosiy taomlar tortilishi",
-    "dance": "Raqs maydoni ochiladi",
-    "danceDesc": "Hamma mehmonlar uchun raqs va bayram",
+    "dance": "Raqsga tushish boshlanadi",
+    "danceDesc": "Barcha mehmonlar uchun raqs va bayram",
     "games": "To‘y o‘yinlari",
-    "gamesDesc": "Mehmonlar uchun qiziqarli o‘yinlar",
-    "waltz": "Kelin-kuyovning raqsi",
-    "waltzDesc": "Kelin-kuyovdan maxsus raqs",
-    "celebration": "Bayram davom etadi",
-    "celebrationDesc": "Kecha oxirigacha raqs va quvonch"
+    "gamesDesc": "Hamma uchun qiziqarli o‘yinlar",
+    "waltz": "Kelin-kuyov raqsi",
+    "waltzDesc": "Yangi juftlikdan maxsus raqs",
+    "celebration": "Bayram",
+    "celebrationDesc": "Tungi bayram va raqslar"
   },
   "bottomBar": {
     "home": "Bosh sahifa",
     "events": "Tadbirlar",
     "location": "Manzil",
-    "table": "Dastur",
+    "photos": "Rasmlar",
     "wishes": "Tilaklar"
   },
   "countdown": {
-    "title": "Qolgan vaqt",
+    "title": "Sanagich",
     "days": "Kun",
     "hours": "Soat",
     "minutes": "Daqiqa",
     "seconds": "Soniya"
   },
+  "loveStory": {
+    "title": "Sevgi Hikoyamiz",
+    "subtitle": "Bizning yo‘limiz",
+    "description": "Har bir sevgi hikoyasi go‘zal, ammo bizniki eng sevimlisi. Yillar davomida qanday o‘tganini ko‘ring.",
+    "skipToGallery": "Rasmlar galereyasiga o‘tish",
+    "newChapter": "Yangi bobimiz boshlanmoqda",
+    "lifetime": "Bir umr birga bo‘lishga! 💖",
+    "memory": "Xotira",
+    "babyGroom": {
+      "title": "Kichkintoy Kuyov",
+      "subtitle": "Katta orzularga ega kichkina bola",
+      "year": "2001"
+    },
+    "babyBride": {
+      "title": "Kichkintoy Kelin",
+      "subtitle": "Yorug‘lik sochuvchi qizaloq",
+      "year": "2004"
+    },
+    "grewUp": {
+      "title": "Ular ulg‘ayishdi",
+      "subtitle": "Taxtirlangan yo‘llar uyg‘unlashdi",
+      "year": "2023"
+    },
+    "met": {
+      "title": "Ular tanishishdi",
+      "subtitle": "Bir piyola qahva ustida muhabbat boshlangan",
+      "year": "2024"
+    },
+    "engaged": {
+      "title": "Ular unashtirishdi!",
+      "subtitle": "Abadiylik shu yerda boshlandi",
+      "year": "2025"
+    }
+  },
   "language": {
     "en": "English",
     "uz": "O'zbekcha",
     "ru": "Русский",
-    "kr": "한국어"
+    "kr": "한국어",
+    "selectLanguage": "Tilni tanlang",
+    "selectPreferred": "Iltimos, sizga qulay tilni tanlang"
+  },
+  "parents": {
+    "title": "Minnatdorchilik Bilan",
+    "subtitle": "Aziz Ota-onalarimiz",
+    "description": "Hayotimiz davomida bizni sevgi, qo‘llab-quvvatlash va yo‘l-yo‘riq bilan ta'minlagan ota-onalarimizga samimiy minnatdorchiligimizni bildiramiz. Biz bugun kim bo‘lsak, ular tufayli shundaymiz.",
+    "groom": "Kuyovning Ota-onasi",
+    "bride": "Kelinning Ota-onasi",
+    "father": "Ota",
+    "mother": "Ona",
+    "thankYou": "Hammasi uchun rahmat"
   }
 }

@@ -18,7 +18,7 @@ export default function LoveStory() {
         title: t('loveStory.babyGroom.title'),
         subtitle: t('loveStory.babyGroom.subtitle'),
         year: t('loveStory.babyGroom.year'),
-        image: '/images/couple-1.jpeg',
+        image: '/images/story/me-young.jpg',
         align: 'left',
         emoji: '👶🏻',
         type: 'single',
@@ -27,7 +27,7 @@ export default function LoveStory() {
         title: t('loveStory.babyBride.title'),
         subtitle: t('loveStory.babyBride.subtitle'),
         year: t('loveStory.babyBride.year'),
-        image: '/images/couple-1.jpeg',
+        image: '/images/story/her-young.jpg',
         align: 'right',
         emoji: '👼🏻',
         type: 'single',
@@ -36,8 +36,8 @@ export default function LoveStory() {
         title: t('loveStory.grewUp.title'),
         subtitle: t('loveStory.grewUp.subtitle'),
         year: t('loveStory.grewUp.year'),
-        image: '/images/couple-1.jpeg',
-        secondImage: '/images/couple-1.jpeg', // Add second image for grew up
+        image: '/images/story/me-adult.jpg',
+        secondImage: '/images/story/her-adult.jpg', // Add second image for grew up
         align: 'center',
         emoji: '🌱',
         type: 'double', // Two separate images for him and her
@@ -46,8 +46,8 @@ export default function LoveStory() {
         title: t('loveStory.met.title'),
         subtitle: t('loveStory.met.subtitle'),
         year: t('loveStory.met.year'),
-        image: '/images/couple-1.jpeg',
-        align: 'center', // Changed to center as requested
+        image: '/images/story/meet.jpg',
+        align: 'meet', // Changed to center as requested
         emoji: '☕️',
         type: 'single',
       },
@@ -55,7 +55,7 @@ export default function LoveStory() {
         title: t('loveStory.engaged.title'),
         subtitle: t('loveStory.engaged.subtitle'),
         year: t('loveStory.engaged.year'),
-        image: '/images/couple-1.jpeg',
+        image: '/images/story/engaged.jpg',
         align: 'center', // Changed to center as requested
         emoji: '💍',
         type: 'single',
@@ -92,13 +92,11 @@ export default function LoveStory() {
 
   return (
     <section id="photos" className="py-16 px-4 relative overflow-hidden">
-      <Parents />
-
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-5 pointer-events-none">
-        <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-rose-300"></div>
-        <div className="absolute top-1/4 -right-24 w-64 h-64 rounded-full bg-rose-200"></div>
-        <div className="absolute bottom-1/4 -left-32 w-80 h-80 rounded-full bg-rose-100"></div>
+        <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-rose-300" />
+        <div className="absolute top-1/4 -right-24 w-64 h-64 rounded-full bg-rose-200" />
+        <div className="absolute bottom-1/4 -left-32 w-80 h-80 rounded-full bg-rose-100" />
       </div>
 
       <div className="max-w-4xl mx-auto relative z-10">
@@ -133,9 +131,9 @@ export default function LoveStory() {
             transition={{ delay: 0.4 }}
             className="flex items-center justify-center gap-3 mb-6"
           >
-            <div className="h-px w-12 bg-rose-200"></div>
+            <div className="h-px w-12 bg-rose-200" />
             <Heart className="w-5 h-5 text-rose-400 fill-rose-400" />
-            <div className="h-px w-12 bg-rose-200"></div>
+            <div className="h-px w-12 bg-rose-200" />
           </motion.div>
 
           <motion.p
@@ -172,7 +170,7 @@ export default function LoveStory() {
             <div className="absolute bottom-20 right-10 w-40 h-40 bg-rose-100 rounded-full blur-2xl" />
           </div>
           {/* Timeline line - visible on all screens */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-rose-100 via-rose-300 to-rose-100 -z-10"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-rose-100 via-rose-300 to-rose-100 -z-10" />
 
           <motion.div
             variants={containerVariants}
@@ -217,7 +215,9 @@ export default function LoveStory() {
                   {item.type === 'single' ? (
                     <motion.div
                       className={cn(
-                        `relative ${item.align === 'center' ? 'md:mt-12' : ''} w-64 h-80 rounded-xl overflow-hidden shadow-lg border-4 border-white`
+                        `relative w-64 h-80 rounded-xl overflow-hidden shadow-lg border-4 border-white`,
+                        item.align === 'center' ? 'md:mt-12' : '',
+                        item.align === 'meet' ? 'md:mt-12 w-90' : ''
                       )}
                       whileHover="hover"
                       variants={imageVariants}
@@ -305,7 +305,7 @@ export default function LoveStory() {
                     </h3>
                     <p className="text-gray-600">{item.subtitle}</p>
 
-                    <div className="mt-4 h-0.5 w-12 bg-rose-200 mx-auto md:mx-0 md:ml-0 md:mr-0"></div>
+                    <div className="mt-4 h-0.5 w-12 bg-rose-200 mx-auto md:mx-0 md:ml-0 md:mr-0" />
                   </div>
                 </div>
               </motion.div>
@@ -335,11 +335,11 @@ export default function LoveStory() {
           {/* Photo gallery */}
           <div className="relative">
             {/* Gradient overlays to indicate scrolling */}
-            <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
             <div className="flex overflow-x-auto gap-4 pb-4 pt-2 px-4 custom-scrollbar">
-              {[...Array(6)].map((_, i) => (
+              {[...Array(12)].map((_, i) => (
                 <motion.div
                   key={i}
                   className="relative flex-shrink-0"
@@ -349,9 +349,9 @@ export default function LoveStory() {
                   whileHover={{ y: -5, scale: 1.02 }}
                 >
                   <img
-                    src="/images/couple-1.jpeg"
+                    src={`/images/story/${i + 1}.jpg`}
                     alt={`Memory ${i + 1}`}
-                    className="w-60 h-80 object-cover rounded-xl shadow-md border-2 border-white"
+                    className="w-full h-80 object-cover rounded-xl shadow-md border-2 border-white"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-xl flex items-end justify-center">
                     <div className="p-4 text-white text-center">
@@ -367,6 +367,9 @@ export default function LoveStory() {
           </div>
         </motion.div>
       </div>
+
+      {/* PARENTS */}
+      <Parents />
     </section>
   );
 }

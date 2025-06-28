@@ -1,4 +1,4 @@
-import EventCards from '@/components/EventsCard';
+import EventCards from '@/components/shared/EventsCard';
 import config from '@/config/config';
 import { motion } from 'framer-motion';
 import { Heart } from 'lucide-react';
