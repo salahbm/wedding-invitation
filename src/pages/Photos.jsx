@@ -8,6 +8,7 @@ import Parents from '@/components/shared/Parents';
 export default function LoveStory() {
   const { t } = useTranslation();
   const [mounted, setMounted] = useState(false);
+  const [imageOrientations, setImageOrientations] = useState([]);
   const timelineRef = useRef(null);
   const galleryRef = useRef(null);
 
@@ -338,22 +339,44 @@ export default function LoveStory() {
             <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-            <div className="flex overflow-x-auto gap-4 pb-4 pt-2 px-4 custom-scrollbar">
+            <div className="flex overflow-x-auto gap-4 pb-4 pt-2 px-4 custom-scrollbar items-center">
               {[...Array(12)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="relative flex-shrink-0 max-w-screen-sm md:max-w-screen-md"
+                  className="relative flex-shrink-0"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={mounted ? { opacity: 1, scale: 1 } : {}}
                   transition={{ delay: stories.length * 0.2 + 0.4 + i * 0.1 }}
                   whileHover={{ y: -5, scale: 1.02 }}
                 >
-                  <img
-                    src={`/images/story/${i + 1}.jpg`}
-                    alt={`Memory ${i + 1}`}
-                    className="w-full h-80 object-cover rounded-xl shadow-md border-2 border-white"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-xl flex items-end justify-center">
+                  <div
+                    className={cn(
+                      'w-[240px] md:w-[360px] max-h-[420px] overflow-hidden rounded-xl shadow-md border-2 border-white',
+                      imageOrientations[i] === 'portrait'
+                        ? 'h-[360px]'
+                        : 'h-[240px]'
+                    )}
+                  >
+                    <img
+                      src={`/images/story/${i + 1}.jpg`}
+                      alt={`Memory ${i + 1}`}
+                      onLoad={(e) => {
+                        const { naturalWidth, naturalHeight } = e.currentTarget;
+                        const orientation =
+                          naturalHeight > naturalWidth
+                            ? 'portrait'
+                            : 'landscape';
+                        setImageOrientations((prev) => {
+                          const updated = [...prev];
+                          updated[i] = orientation;
+                          return updated;
+                        });
+                      }}
+                      className="w-full h-full object-cover object-center"
+                    />
+                  </div>
+
+                  <div className="absolute inset-0 top-0 left-0 right-0 bottom-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-xl flex items-end justify-center">
                     <div className="p-4 text-white text-center">
                       <Heart className="w-6 h-6 mx-auto mb-2 fill-white" />
                       <p className="font-serif">
