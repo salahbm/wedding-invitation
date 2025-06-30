@@ -7,8 +7,8 @@ import PropTypes from 'prop-types';
 const images = {
   dad: '/images/dad.jpg',
   mom: '/images/mom.jpg',
-  dadInLaw: '/images/dad-in-law.jpg',
-  momInLaw: '/images/mom-in-law.jpg',
+  dadInLaw: '/images/dad-in-law.jpeg',
+  momInLaw: '/images/mom-in-law.jpeg',
 };
 
 const Card = ({
@@ -39,7 +39,7 @@ const Card = ({
               alt="Father"
               width={96}
               height={96}
-              className="object-cover"
+              className="object-cover object-center"
             />
           </div>
           <h4 className="text-sm uppercase tracking-widest text-rose-400 mt-3">
