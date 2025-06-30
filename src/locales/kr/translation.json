@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "{{groomName}} & {{brideName}}의 결혼식",
-    "description": "저희는 결혼합니다. 이 특별한 순간을 함께 축하해 주세요."
+    "description": "저희 결혼합니다. 이 특별한 순간을 함께 축하해 주세요."
   },
   "landing": {
     "invitation": "결혼식 초대장",
@@ -9,7 +9,7 @@
     "openInvitation": "초대장 열기",
     "personalInvitation": "{{guestName}}님, 함께해 주셔서 감사합니다 ❤️",
     "78": "그리고 우리는 너희를 짝지어 창조하였다 78:8",
-    "clickForMore": "자세히 보려면 클릭하세요"
+    "clickForMore": "자세히 보기를 원하시면 클릭하세요"
   },
   "hero": {
     "bismillah": "자비롭고 자애로우신 하나님의 이름으로",
@@ -30,26 +30,26 @@
     "googleCalendar": "구글 캘린더",
     "appleCalendar": "애플 캘린더",
     "outlookCalendar": "아웃룩 캘린더",
-    "saveTheDate": "중요한 날짜 저장",
+    "saveTheDate": "날짜 저장",
     "weddingEvents": "결혼식 일정",
     "invitation": "저희의 사랑 이야기가 시작되는 날을 함께 축하해 주세요"
   },
   "location": {
     "title": "오시는 길",
     "openMap": "구글 지도에서 열기",
-    "getDirections": "길찾기",
+    "getDirections": "길 찾기",
     "eventVenue": "행사 장소",
     "viewMap": "지도 보기",
     "howToReach": "찾아오는 방법",
     "directionVideo": "장소 안내 영상",
     "videoCaption": "결혼식 장소 안내 영상",
     "videoDescription": "이 영상은 결혼식 장소까지 가장 쉬운 길을 안내합니다. 길을 따라 편하게 오세요.",
-    "videoNotSupported": "이 브라우저는 동영상을 지원하지 않습니다.",
+    "videoNotSupported": "동영상을 지원하지 않습니다.",
     "closeVideo": "영상 닫기",
     "watchDirections": "길 안내 영상 보기",
     "clickToWatch": "장소까지의 경로 보기",
     "videoThumbnailAlt": "결혼식 장소 경로 썸네일",
-    "videoInstructions": "X 버튼을 눌러 영상을 닫을 수 있습니다. 언제든 다시 열 수 있습니다."
+    "videoInstructions": "X 버튼을 눌러 영상을 닫을 수 있습니다. 언제든 다시 확인 할 수 있습니다."
   },
   "wishes": {
     "title": "축하 메시지",
@@ -59,9 +59,9 @@
     "sending": "전송 중...",
     "thankYou": "축하 메시지 감사합니다!",
     "recentWishes": "최근 메시지",
-    "sendYourBestWishes": "축하와 기원을 전해 주세요",
+    "sendYourBestWishes": "축하의 기원을 전해 주세요",
     "yourWish": "당신의 메시지",
-    "placeholder": "신랑신부에게 축하의 말을 남겨주세요...",
+    "placeholder": "신랑 신부에게 축하의 말을 남겨주세요...",
     "giveYourWish": "메시지 남기기",
     "attending": "참석합니다",
     "notAttending": "참석하지 못합니다",
@@ -78,7 +78,7 @@
     "title": "일정표",
     "weddingSchedule": "결혼식 일정",
     "timetable": "타임라인",
-    "message": "소중한 분들과 함께할 멋진 시간을 계획했습니다. 어떤 일정이 있는지 확인해 보세요.",
+    "message": "소중한 분들과 함께할 멋진 시간을 계획하였습니다. 어떤 일정이 있는지 확인해 보세요.",
     "thankYou": "함께 축하해 주세요",
     "timeHeader": "시간",
     "eventHeader": "행사",

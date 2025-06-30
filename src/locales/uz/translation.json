@@ -7,22 +7,20 @@
     "invitation": "To‘y Taklifi",
     "for": "Kim uchun:",
     "openInvitation": "Taklifnomani ochish",
-    "personalInvitation": "Sizni mehmon qilishdan faxrlanamiz,<br/>{{guestName}} ❤️",
+    "personalInvitation": "Siz(lar)ni nikoh to‘yimizga taklif qilamiz,<br/>{{guestName}} ❤️",
     "78": "Va Biz sizlarni juft-juft qilib yaratdik 78:8",
     "clickForMore": "Batafsil ma’lumot uchun bosing"
   },
   "hero": {
     "bismillah": "Mehribon va rahmli Alloh nomi bilan",
     "weddingOf": "Toʻyi",
-    "and": "va",
-    "childOf": "{{parents}}ning farzandi {{name}}",
     "date": "Sana",
     "time": "Vaqt",
     "venue": "Joy",
     "address": "Manzil",
-    "saveTheDate": "Sanani eslab qoling",
+    "saveTheDate": "Sanani saqlang",
     "withJoy": "Quvonch va duolar bilan sizni to‘yimizga taklif qilamiz",
-    "downloadCard": "Kartani yuklab olish"
+    "downloadCard": "Taklifnomani yuklab olish"
   },
   "events": {
     "title": "Tadbirlar",
@@ -38,17 +36,17 @@
     "title": "Manzil",
     "openMap": "Google Xaritada ochish",
     "getDirections": "Yo‘nalishni olish",
-    "eventVenue": "Tadbir joyi",
+    "eventVenue": "To'yxona Manzili",
     "viewMap": "Xaritani ko‘rish",
     "howToReach": "Qanday yetib borish",
-    "directionVideo": "Tadbir joyi yo‘nalishi",
-    "videoCaption": "To‘y joyi yo‘nalishi bo‘yicha video",
-    "videoDescription": "Bu video to‘y joyiga eng oson yo‘lni ko‘rsatadi. Ushbu yo‘nalishni kuzatib boring.",
+    "directionVideo": "To'yxona yo‘nalishi",
+    "videoCaption": "To'yxona yo‘nalishi bo‘yicha video",
+    "videoDescription": "Bu video To'yxonaga eng oson yo‘lni ko‘rsatadi. Ushbu yo‘nalishni kuzatib boring.",
     "videoNotSupported": "Brauzeringiz video tegi bilan ishlamaydi.",
     "closeVideo": "Videoni yopish",
     "watchDirections": "Yo‘nalish videosini tomosha qilish",
-    "clickToWatch": "Tadbir joyiga qanday borishni ko‘rish uchun bosing",
-    "videoThumbnailAlt": "To‘y joyi yo‘nalishi rasmi",
+    "clickToWatch": "To'yxonaga qanday borishni ko‘rish uchun bosing",
+    "videoThumbnailAlt": "To'yxona yo‘nalishi rasmi",
     "videoInstructions": "Tomosha tugagach, X tugmasini bosib videoni yopishingiz mumkin. Istalgan vaqtda qaytadan ochishingiz mumkin."
   },
   "wishes": {
@@ -129,21 +127,21 @@
     },
     "babyBride": {
       "title": "Kichkintoy Kelin",
-      "subtitle": "Yorug‘lik sochuvchi qizaloq",
+      "subtitle": "Porlash uchun tug‘ilgan qiz",
       "year": "2004"
     },
     "grewUp": {
       "title": "Ular ulg‘ayishdi",
-      "subtitle": "Taxtirlangan yo‘llar uyg‘unlashdi",
+      "subtitle": "Taqdir yo‘llar uyg‘unlashdi",
       "year": "2023"
     },
     "met": {
       "title": "Ular tanishishdi",
-      "subtitle": "Bir piyola qahva ustida muhabbat boshlangan",
+      "subtitle": "Qahva ustida muhabbat boshlangan",
       "year": "2024"
     },
     "engaged": {
-      "title": "Ular unashtirishdi!",
+      "title": "Ular unashtirilishdi!",
       "subtitle": "Abadiylik shu yerda boshlandi",
       "year": "2025"
     }
