@@ -31,12 +31,41 @@ export default function Wishes() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const wishesContainerRef = useRef(null);
+  const [columns, setColumns] = useState(3);
+  const [visibleCount, setVisibleCount] = useState(10);
+  const [loadingMore, setLoadingMore] = useState(false);
 
   const options = [
     { value: 'attending', label: t('wishes.attending') },
     { value: 'not-attending', label: t('wishes.notAttending') },
     { value: 'maybe', label: t('wishes.maybe') },
   ];
+
+  // Update columns based on screen size
+  useEffect(() => {
+    const updateColumns = () => {
+      if (window.innerWidth < 640) {
+        setColumns(1);
+      } else if (window.innerWidth < 1024) {
+        setColumns(2);
+      } else {
+        setColumns(3);
+      }
+    };
+
+    updateColumns();
+    window.addEventListener('resize', updateColumns);
+    return () => window.removeEventListener('resize', updateColumns);
+  }, []);
+
+  // Function to load more wishes
+  const loadMoreWishes = () => {
+    setLoadingMore(true);
+    setTimeout(() => {
+      setVisibleCount((prev) => Math.min(prev + 10, wishes.length));
+      setLoadingMore(false);
+    }, 500);
+  };
 
   // Fetch wishes from SheetDB API
   useEffect(() => {
@@ -209,71 +238,27 @@ export default function Wishes() {
               <>
                 <AnimatePresence>
                   <Marquee
-                    speed={20}
+                    speed={100}
                     gradient={false}
                     pauseOnHover={true}
                     pauseOnClick={true}
                     className="[--duration:20s] py-2"
                   >
                     {wishes.map((wish, index) => (
-                      <motion.div
-                        key={wish.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ delay: index * 0.1 }}
-                        className="group relative w-[250px] mx-2"
+                      <div
+                        className="flex items-center justify-start gap-x-2 border border-rose-100 p-2 rounded-xl"
+                        key={index}
                       >
-                        {/* Card content */}
-                        <div className="relative backdrop-blur-sm bg-white/80 p-4 rounded-xl border border-rose-400/50 shadow-md max-h-36 overflow-y-auto flex flex-col custom-scrollbar">
-                          {/* Header */}
-                          <div className="flex items-start space-x-3 mb-2">
-                            {/* Avatar */}
-                            <div className="flex-shrink-0">
-                              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-rose-400 to-pink-400 flex items-center justify-center text-white text-sm font-medium">
-                                {wish.name[0].toUpperCase()}
-                              </div>
-                            </div>
+                        <figure className="w-6 h-6 shrink-0 rounded-full bg-gradient-to-r from-rose-400 to-pink-400 flex items-center justify-center text-white text-sm font-medium">
+                          {wish.name && wish.name[0]
+                            ? wish.name[0].toUpperCase()
+                            : '?'}
+                        </figure>
 
-                            {/* Name, Time, and Attendance */}
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center space-x-2">
-                                <h4 className="font-medium text-gray-800 text-sm truncate">
-                                  {wish.name}
-                                </h4>
-                                {getAttendanceIcon(
-                                  wish.attending || wish.attendance
-                                )}
-                              </div>
-                              <div className="flex items-center space-x-1 text-gray-500 text-xs">
-                                <Clock className="w-3 h-3" />
-                                <time className="truncate">
-                                  {formatEventDate(
-                                    wish.timestamp,
-                                    'short',
-                                    i18n.language
-                                  )}
-                                </time>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Message */}
-                          <p className="text-gray-600 text-sm leading-relaxed mb-2  flex-grow">
-                            {wish.message}
-                          </p>
-
-                          {/* Optional: Time indicator for recent messages */}
-                          {Date.now() - new Date(wish.timestamp).getTime() <
-                            3600000 && (
-                            <div className="absolute top-2 right-2">
-                              <span className="px-2 py-1 rounded-full bg-rose-100 text-rose-600 text-xs font-medium">
-                                New
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                      </motion.div>
+                        <figcaption className="text-gray-600 text-sm leading-relaxed line-clamp-5">
+                          {wish.message}
+                        </figcaption>
+                      </div>
                     ))}
                   </Marquee>
                 </AnimatePresence>
@@ -439,7 +424,7 @@ export default function Wishes() {
               </div>
             </form>
 
-            {/* Scrollable Wishes Section */}
+            {/* Collage-style Wishes Section */}
             <div className="mt-8">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-medium text-gray-700 flex items-center gap-2">
@@ -448,36 +433,122 @@ export default function Wishes() {
                 </h3>
               </div>
 
-              <div
-                ref={wishesContainerRef}
-                className="max-h-80 overflow-y-auto pr-2 space-y-4 custom-scrollbar"
-                style={{
-                  scrollbarWidth: 'thin',
-                  scrollbarColor: '#f43f5e #fee2e2',
-                }}
-              >
-                {wishes.slice(0, 8).map((wish, index) => (
-                  <motion.div
-                    key={`scroll-${wish.id || index}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ delay: index * 0.05 }}
-                    className="bg-white/80 rounded-lg border border-rose-100 shadow-sm p-2"
-                  >
-                    <div className="flex items-center justify-start gap-x-2">
-                      <figure className="w-6 h-6 shrink-0 rounded-full bg-gradient-to-r from-rose-400 to-pink-400 flex items-center justify-center text-white text-sm font-medium">
-                        {wish.name && wish.name[0]
-                          ? wish.name[0].toUpperCase()
-                          : '?'}
-                      </figure>
+              <div ref={wishesContainerRef} className="mt-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {Array.from({ length: columns }).map((_, colIndex) => (
+                    <div key={colIndex} className="flex flex-col gap-4">
+                      {wishes
+                        .slice(0, visibleCount)
+                        .filter((_, index) => index % columns === colIndex)
+                        .map((wish, index) => {
+                          // Create different shapes for cards
+                          const cardType = Math.floor(Math.random() * 4); // 0-3 different types
+                          const cardClasses = [
+                            'border-rose-400/50 shadow-md', // standard
+                            'border-pink-400/50 shadow-lg', // slightly elevated
+                            'border-rose-500/30 shadow-md', // darker border
+                            'border-pink-300/70 shadow-md', // lighter border
+                          ][cardType];
 
-                      <figcaption className="text-gray-600 text-sm leading-relaxed line-clamp-5">
-                        {wish.message}
-                      </figcaption>
+                          // Randomize width for some cards
+                          const isWide = Math.random() > 0.8;
+
+                          return (
+                            <motion.div
+                              key={`${colIndex}-${wish.id || index}`}
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -20 }}
+                              transition={{
+                                delay:
+                                  index < 3
+                                    ? 0.1 + index * 0.05
+                                    : 0.05 * (index % 3),
+                              }}
+                              className={isWide ? 'sm:col-span-2' : ''}
+                              whileHover={{ y: -5, scale: 1.02 }}
+                            >
+                              <div
+                                className={`relative backdrop-blur-sm bg-white/80 p-4 rounded-xl border ${cardClasses} flex flex-col h-full`}
+                                style={{
+                                  minHeight: `${100 + Math.random() * 60}px`,
+                                }}
+                              >
+                                {/* Header */}
+                                <div className="flex items-start space-x-3 mb-2">
+                                  {/* Avatar */}
+                                  <div className="flex-shrink-0">
+                                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-rose-400 to-pink-400 flex items-center justify-center text-white text-sm font-medium">
+                                      {wish.name && wish.name[0]
+                                        ? wish.name[0].toUpperCase()
+                                        : '?'}
+                                    </div>
+                                  </div>
+
+                                  {/* Name, Time, and Attendance */}
+                                  <div className="flex-1 min-w-0">
+                                    <div className="flex items-center space-x-2">
+                                      <h4 className="font-medium text-gray-800 text-sm truncate">
+                                        {wish.name}
+                                      </h4>
+                                      {getAttendanceIcon(
+                                        wish.attending || wish.attendance
+                                      )}
+                                    </div>
+                                    <div className="flex items-center space-x-1 text-gray-500 text-xs">
+                                      <Clock className="w-3 h-3" />
+                                      <time className="truncate">
+                                        {formatEventDate(
+                                          wish.timestamp,
+                                          'short',
+                                          i18n.language
+                                        )}
+                                      </time>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {/* Message */}
+                                <p className="text-gray-600 text-sm leading-relaxed mb-2 flex-grow">
+                                  {wish.message}
+                                </p>
+
+                                {/* Optional: Time indicator for recent messages */}
+                                {Date.now() -
+                                  new Date(wish.timestamp).getTime() <
+                                  3600000 && (
+                                  <div className="absolute top-2 right-2">
+                                    <span className="px-2 py-1 rounded-full bg-rose-100 text-rose-600 text-xs font-medium">
+                                      New
+                                    </span>
+                                  </div>
+                                )}
+                              </div>
+                            </motion.div>
+                          );
+                        })}
                     </div>
-                  </motion.div>
-                ))}
+                  ))}
+                </div>
+
+                {/* Load More Button */}
+                {visibleCount < wishes.length && (
+                  <div className="mt-8 flex justify-center">
+                    <motion.button
+                      onClick={loadMoreWishes}
+                      disabled={loadingMore}
+                      className={`flex items-center gap-2 px-6 py-3 rounded-xl text-white font-medium transition-all duration-200 ${loadingMore ? 'bg-gray-400' : 'bg-rose-500 hover:bg-rose-600'}`}
+                      whileHover={{ scale: loadingMore ? 1 : 1.05 }}
+                      whileTap={{ scale: loadingMore ? 1 : 0.95 }}
+                    >
+                      {loadingMore ? (
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      ) : (
+                        <ChevronDown className="w-4 h-4 animate-bounce" />
+                      )}
+                    </motion.button>
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>

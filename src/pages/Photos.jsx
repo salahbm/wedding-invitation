@@ -1,16 +1,19 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState, useRef, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Heart, ChevronDown } from 'lucide-react';
+import { Heart, ChevronDown, X, ArrowDown } from 'lucide-react';
 import { cn } from '../lib/utils';
 import Parents from '@/components/shared/Parents';
 
 export default function LoveStory() {
   const { t } = useTranslation();
   const [mounted, setMounted] = useState(false);
-  const [imageOrientations, setImageOrientations] = useState([]);
   const timelineRef = useRef(null);
   const galleryRef = useRef(null);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [columns, setColumns] = useState(4);
+  const [visibleCount, setVisibleCount] = useState(4);
+  const [loading, setLoading] = useState(false);
 
   // Define stories with translations
   const stories = useMemo(
@@ -66,6 +69,23 @@ export default function LoveStory() {
   );
 
   useEffect(() => setMounted(true), []);
+
+  // Update columns based on screen size
+  useEffect(() => {
+    const updateColumns = () => {
+      if (window.innerWidth < 640) {
+        setColumns(2);
+      } else if (window.innerWidth < 1024) {
+        setColumns(3);
+      } else {
+        setColumns(4);
+      }
+    };
+
+    updateColumns();
+    window.addEventListener('resize', updateColumns);
+    return () => window.removeEventListener('resize', updateColumns);
+  }, []);
 
   const scrollToGallery = () => {
     galleryRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -319,13 +339,13 @@ export default function LoveStory() {
           ref={galleryRef}
           initial={{ opacity: 0 }}
           animate={mounted ? { opacity: 1 } : {}}
-          transition={{ delay: stories.length * 0.2 }}
+          transition={{ delay: stories.length * 0.1 }}
           className="mt-32 text-center"
         >
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={mounted ? { y: 0, opacity: 1 } : {}}
-            transition={{ delay: stories.length * 0.2 + 0.2 }}
+            transition={{ delay: stories.length * 0.1 + 0.2 }}
           >
             <h2 className="text-3xl md:text-4xl font-serif mb-2">
               {t('loveStory.newChapter')}
@@ -333,61 +353,143 @@ export default function LoveStory() {
             <p className="text-gray-600 mb-8">{t('loveStory.lifetime')}</p>
           </motion.div>
 
-          {/* Photo gallery */}
-          <div className="relative">
-            {/* Gradient overlays to indicate scrolling */}
-            <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          {/* College-style photo gallery */}
+          <div className="mt-12">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+              {Array.from({ length: columns }).map((_, colIndex) => (
+                <div key={colIndex} className="flex flex-col gap-3 md:gap-4">
+                  {[...Array(visibleCount)]
+                    .filter((_, index) => index % columns === colIndex)
+                    .map((_, index) => {
+                      // Calculate the actual image index
+                      const imageIndex = colIndex + index * columns;
+                      if (imageIndex >= visibleCount) return null; // Don't render if we've exceeded our images
 
-            <div className="flex overflow-x-auto gap-4 pb-4 pt-2 px-4 custom-scrollbar items-center">
-              {[...Array(11)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="relative flex-shrink-0"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={mounted ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: stories.length * 0.2 + 0.4 + i * 0.1 }}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                >
-                  <div
-                    className={cn(
-                      'w-[240px] md:w-[360px] max-h-[420px] overflow-hidden rounded-xl shadow-md border-2 border-white',
-                      imageOrientations[i] === 'portrait'
-                        ? 'h-[360px]'
-                        : 'h-[240px]'
-                    )}
-                  >
-                    <img
-                      src={`/images/story/${i + 1}.jpg`}
-                      alt={`Memory ${i + 1}`}
-                      onLoad={(e) => {
-                        const { naturalWidth, naturalHeight } = e.currentTarget;
-                        const orientation =
-                          naturalHeight > naturalWidth
-                            ? 'portrait'
-                            : 'landscape';
-                        setImageOrientations((prev) => {
-                          const updated = [...prev];
-                          updated[i] = orientation;
-                          return updated;
-                        });
-                      }}
-                      className="w-full h-full object-cover object-center"
-                    />
-                  </div>
+                      // Randomize sizes for more dynamic college-style layout
+                      const isLarge = Math.random() > 0.7;
+                      const aspectRatio =
+                        Math.random() > 0.5 ? 'aspect-square' : 'aspect-[3/4]';
 
-                  <div className="absolute inset-0 top-0 left-0 right-0 bottom-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-xl flex items-end justify-center">
-                    <div className="p-4 text-white text-center">
-                      <Heart className="w-6 h-6 mx-auto mb-2 fill-white" />
-                      <p className="font-serif">
-                        {t('loveStory.memory')} {i + 1}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
+                      return (
+                        <motion.div
+                          key={`${colIndex}-${index}`}
+                          className={`relative ${isLarge ? 'row-span-2' : ''} ${aspectRatio} overflow-hidden group rounded-xl shadow-md border-2 border-white`}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={mounted ? { opacity: 1, y: 0 } : {}}
+                          transition={{
+                            delay:
+                              imageIndex < 4
+                                ? stories.length * 0.1 + imageIndex * 0.1
+                                : 0.1 * (imageIndex % 4),
+                          }}
+                          whileHover={{ y: -5, scale: 1.02 }}
+                          onClick={() => {
+                            setSelectedImage(
+                              `/images/story/${imageIndex + 1}.jpg`
+                            );
+                            document.body.style.overflow = 'hidden';
+                          }}
+                        >
+                          <img
+                            src={`/images/story/${imageIndex + 1}.jpg`}
+                            alt={`Memory ${imageIndex + 1}`}
+                            className="w-full h-full object-cover object-center"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center">
+                            <div className="p-4 text-white text-center">
+                              <Heart className="w-6 h-6 mx-auto mb-2 fill-white" />
+                              <p className="font-serif">
+                                {t('loveStory.memory')} {imageIndex + 1}
+                              </p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+                </div>
               ))}
             </div>
+
+            {/* Show More Button */}
+            {visibleCount < 11 && (
+              <div className="flex justify-center mt-8">
+                <button
+                  onClick={() => {
+                    setLoading(true);
+                    setVisibleCount((prev) => Math.min(prev + 4, 11));
+                    setLoading(false);
+                  }}
+                  disabled={loading}
+                  className={`px-6 py-3 bg-rose-500 text-white rounded-md shadow hover:bg-rose-600 transition-all duration-300 flex items-center gap-2 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                >
+                  {loading ? (
+                    <>
+                      <svg
+                        className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                      Loading...
+                    </>
+                  ) : (
+                    <ArrowDown className="w-4 h-4 animate-bounce" />
+                  )}
+                </button>
+              </div>
+            )}
           </div>
+
+          {/* Enlarged image view */}
+          {selectedImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4"
+              onClick={() => {
+                setSelectedImage(null);
+                document.body.style.overflow = 'auto';
+              }}
+            >
+              <motion.div
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                className="relative max-w-4xl max-h-[90vh] w-full"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  className="absolute -top-12 right-0 text-white text-xl p-2 z-10"
+                  onClick={() => {
+                    setSelectedImage(null);
+                    document.body.style.overflow = 'auto';
+                  }}
+                >
+                  <X className="w-6 h-6" />
+                </button>
+                <div className="relative w-full h-[80vh]">
+                  <img
+                    src={selectedImage}
+                    alt="Enlarged view"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
         </motion.div>
       </div>
 
