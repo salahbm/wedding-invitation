@@ -459,7 +459,7 @@ export default function LoveStory() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4"
+              className="fixed inset-0 z-[9999999] bg-black bg-opacity-90 flex items-center justify-center p-4"
               onClick={() => {
                 setSelectedImage(null);
                 document.body.style.overflow = 'auto';
@@ -472,7 +472,7 @@ export default function LoveStory() {
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
-                  className="absolute -top-12 right-0 text-white text-xl p-2 z-10"
+                  className="absolute top-0 right-0 text-white text-xl p-2 z-10"
                   onClick={() => {
                     setSelectedImage(null);
                     document.body.style.overflow = 'auto';

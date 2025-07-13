@@ -32,7 +32,7 @@ export default function Wishes() {
   const [error, setError] = useState(null);
   const wishesContainerRef = useRef(null);
   const [columns, setColumns] = useState(3);
-  const [visibleCount, setVisibleCount] = useState(10);
+  const [visibleCount, setVisibleCount] = useState(6);
   const [loadingMore, setLoadingMore] = useState(false);
 
   const options = [
