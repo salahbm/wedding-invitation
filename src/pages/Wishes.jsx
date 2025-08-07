@@ -14,7 +14,7 @@ import {
   HelpCircle,
   ScrollText,
 } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { formatEventDate } from '@/lib/formatEventDate';
 import { useTranslation } from 'react-i18next';
 
@@ -35,129 +35,128 @@ export default function Wishes() {
   const [visibleCount, setVisibleCount] = useState(6);
   const [loadingMore, setLoadingMore] = useState(false);
 
-  const options = [
-    { value: 'attending', label: t('wishes.attending') },
-    { value: 'not-attending', label: t('wishes.notAttending') },
-    { value: 'maybe', label: t('wishes.maybe') },
-  ];
+  const options = useMemo(
+    () => [
+      { value: 'attending', label: t('wishes.attending') },
+      { value: 'not-attending', label: t('wishes.notAttending') },
+      { value: 'maybe', label: t('wishes.maybe') },
+    ],
+    [t]
+  );
 
   // Update columns based on screen size
+  const updateColumns = useCallback(() => {
+    const width = window.innerWidth;
+    setColumns(width < 640 ? 1 : width < 1024 ? 2 : 3);
+  }, []);
   useEffect(() => {
-    const updateColumns = () => {
-      if (window.innerWidth < 640) {
-        setColumns(1);
-      } else if (window.innerWidth < 1024) {
-        setColumns(2);
-      } else {
-        setColumns(3);
-      }
-    };
-
     updateColumns();
     window.addEventListener('resize', updateColumns);
     return () => window.removeEventListener('resize', updateColumns);
-  }, []);
+  }, [updateColumns]);
 
   // Function to load more wishes
-  const loadMoreWishes = () => {
+  const loadMoreWishes = useCallback(() => {
     setLoadingMore(true);
     setTimeout(() => {
       setVisibleCount((prev) => Math.min(prev + 10, wishes.length));
       setLoadingMore(false);
     }, 500);
-  };
+  }, [wishes.length]);
 
-  // Fetch wishes from SheetDB API
-  // GET: Fetch from opensheet
-  useEffect(() => {
-    const fetchWishes = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(
-          'https://opensheet.vercel.app/1sTHtWNaox3xbiGAxDjCNak3SGwoBRIEb8eS0gs1Gcjo/Sheet1'
-        );
-        if (!response.ok) throw new Error('Fetch error');
+  const fetchWishes = useCallback(async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        'https://opensheet.vercel.app/1sTHtWNaox3xbiGAxDjCNak3SGwoBRIEb8eS0gs1Gcjo/Sheet1'
+      );
+      if (!response.ok) throw new Error('Fetch error');
 
-        const data = await response.json();
-        const sorted = data.sort(
-          (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
-        );
-        setWishes(sorted);
-        setError(null);
-      } catch (err) {
-        console.error(err);
-        setError(t('wishes.fetchError'));
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchWishes();
+      const data = await response.json();
+      const sorted = data.sort(
+        (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+      );
+      setWishes(sorted);
+      sessionStorage.setItem('wishesCache', JSON.stringify(sorted));
+      setError(null);
+    } catch (err) {
+      console.error(err);
+      setError(t('wishes.fetchError'));
+    } finally {
+      setLoading(false);
+    }
   }, [t]);
 
-  // Reset form after successful submission
   useEffect(() => {
-    if (submitStatus === 'success') {
-      const timer = setTimeout(() => {
-        setSubmitStatus(null);
-      }, 5000);
-      return () => clearTimeout(timer);
+    const cached = sessionStorage.getItem('wishesCache');
+    if (cached) {
+      setWishes(JSON.parse(cached));
+      setLoading(false);
+      return;
     }
-  }, [submitStatus]);
+    fetchWishes();
+  }, [fetchWishes]);
 
-  const handleSubmitWish = async (e) => {
-    e.preventDefault();
+  const handleSubmitWish = useCallback(
+    async (e) => {
+      e.preventDefault();
+      if (!guestName.trim() || !newWish.trim() || !attendance) return;
 
-    if (!guestName.trim() || !newWish.trim() || !attendance) return;
-
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-
-    const formUrl = 'https://docs.google.com/forms/d/e/FORM_ID/formResponse';
-    const formData = new URLSearchParams();
-
-    // Replace entry.XXX with real field IDs
-    formData.append('entry.1111111111', guestName.trim()); // Name
-    formData.append('entry.2222222222', newWish.trim()); // Message
-    formData.append('entry.3333333333', attendance); // Attendance
-
-    try {
-      await fetch(formUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: formData.toString(),
-      });
+      setIsSubmitting(true);
+      setSubmitStatus(null);
 
       const timestamp = new Date().toISOString();
-      const newWishObj = {
-        id: `temp-${Date.now()}`,
-        name: guestName,
-        message: newWish,
-        attendance: attendance,
-        timestamp: timestamp,
+      const wishData = {
+        name: guestName.trim(),
+        message: newWish.trim(),
+        attendance,
+        timestamp,
       };
 
-      setWishes((prev) => [newWishObj, ...prev]);
-      if (wishesContainerRef.current) wishesContainerRef.current.scrollTop = 0;
+      try {
+        const response = await fetch(
+          'https://sheetdb.io/api/v1/ocm9qns4o5z5k',
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(wishData),
+          }
+        );
 
-      setGuestName('');
-      setNewWish('');
-      setAttendance('');
-      setSubmitStatus('success');
-      setShowConfetti(true);
-      setTimeout(() => setShowConfetti(false), 3000);
-    } catch (error) {
-      console.error('Error submitting wish:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+        if (!response.ok)
+          throw new Error(`HTTP error! Status: ${response.status}`);
 
-  const getAttendanceIcon = (status) => {
+        const newWishObj = {
+          id: `temp-${Date.now()}`,
+          name: guestName,
+          message: newWish,
+          attendance: attendance,
+          timestamp,
+        };
+
+        setWishes((prev) => [newWishObj, ...prev]);
+        sessionStorage.removeItem('wishesCache'); // clear cache to refetch updated data if needed
+
+        if (wishesContainerRef.current)
+          wishesContainerRef.current.scrollTop = 0;
+
+        setGuestName('');
+        setNewWish('');
+        setAttendance('');
+        setSubmitStatus('success');
+        setShowConfetti(true);
+        setTimeout(() => setShowConfetti(false), 3000);
+      } catch (error) {
+        console.error('Error submitting wish:', error);
+        setSubmitStatus('error');
+      } finally {
+        setIsSubmitting(false);
+      }
+    },
+    [guestName, newWish, attendance]
+  );
+
+  const getAttendanceIcon = useCallback((status) => {
     switch (status) {
       case 'attending':
         return <CheckCircle className="w-4 h-4 text-emerald-500" />;
@@ -168,7 +167,7 @@ export default function Wishes() {
       default:
         return null;
     }
-  };
+  }, []);
   return (
     <>
       <section id="wishes" className="min-h-screen relative overflow-hidden">
@@ -231,19 +230,13 @@ export default function Wishes() {
                     gradient={false}
                     pauseOnHover={true}
                     pauseOnClick={true}
-                    className="[--duration:20s] py-2"
+                    className="[--duration:500s] py-2"
                   >
                     {wishes.map((wish, index) => (
                       <div
                         className="flex items-center justify-start gap-x-2 border border-rose-100 p-2 rounded-xl"
                         key={index}
                       >
-                        <figure className="w-6 h-6 shrink-0 rounded-full bg-gradient-to-r from-rose-400 to-pink-400 flex items-center justify-center text-white text-sm font-medium">
-                          {wish.name && wish.name[0]
-                            ? wish.name[0].toUpperCase()
-                            : '?'}
-                        </figure>
-
                         <figcaption className="text-gray-600 text-sm leading-relaxed line-clamp-5">
                           {wish.message}
                         </figcaption>
@@ -254,7 +247,7 @@ export default function Wishes() {
               </>
             )}
           </div>
-          {showConfetti && <Confetti recycle={false} numberOfPieces={350} />}
+
           {/* Wishes Form */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -414,13 +407,16 @@ export default function Wishes() {
             </form>
 
             {/* Collage-style Wishes Section */}
-            <div className="mt-8">
+            <div className="mt-8 relative">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-medium text-gray-700 flex items-center gap-2">
                   <ScrollText className="w-5 h-5 text-rose-500" />
                   {t('wishes.recentWishes')}
                 </h3>
               </div>
+              {showConfetti && (
+                <Confetti recycle={false} numberOfPieces={550} />
+              )}
 
               <div ref={wishesContainerRef} className="mt-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
