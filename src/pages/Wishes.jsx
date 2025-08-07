@@ -68,23 +68,24 @@ export default function Wishes() {
   };
 
   // Fetch wishes from SheetDB API
+  // GET: Fetch from opensheet
   useEffect(() => {
     const fetchWishes = async () => {
       setLoading(true);
       try {
-        const response = await fetch('https://sheetdb.io/api/v1/f36xx8efcnu8x');
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+        const response = await fetch(
+          'https://opensheet.vercel.app/1sTHtWNaox3xbiGAxDjCNak3SGwoBRIEb8eS0gs1Gcjo/Sheet1'
+        );
+        if (!response.ok) throw new Error('Fetch error');
+
         const data = await response.json();
-        // Sort wishes by timestamp, newest first
-        const sortedWishes = data.sort((a, b) => {
-          return new Date(b.timestamp) - new Date(a.timestamp);
-        });
-        setWishes(sortedWishes);
+        const sorted = data.sort(
+          (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+        );
+        setWishes(sorted);
         setError(null);
       } catch (err) {
-        console.error('Error fetching wishes:', err);
+        console.error(err);
         setError(t('wishes.fetchError'));
       } finally {
         setLoading(false);
@@ -107,54 +108,41 @@ export default function Wishes() {
   const handleSubmitWish = async (e) => {
     e.preventDefault();
 
-    // Form validation
-    if (!guestName.trim() || !newWish.trim() || !attendance) {
-      return;
-    }
+    if (!guestName.trim() || !newWish.trim() || !attendance) return;
 
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    // Prepare data for SheetDB
-    const timestamp = new Date().toISOString();
-    const wishData = {
-      name: guestName.trim(),
-      message: newWish.trim(),
-      attendance: attendance,
-      timestamp: timestamp,
-    };
+    const formUrl = 'https://docs.google.com/forms/d/e/FORM_ID/formResponse';
+    const formData = new URLSearchParams();
+
+    // Replace entry.XXX with real field IDs
+    formData.append('entry.1111111111', guestName.trim()); // Name
+    formData.append('entry.2222222222', newWish.trim()); // Message
+    formData.append('entry.3333333333', attendance); // Attendance
 
     try {
-      // Send data to SheetDB API
-      const response = await fetch('https://sheetdb.io/api/v1/f36xx8efcnu8x', {
+      await fetch(formUrl, {
         method: 'POST',
+        mode: 'no-cors',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify(wishData),
+        body: formData.toString(),
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      // Add to local state for immediate display
+      const timestamp = new Date().toISOString();
       const newWishObj = {
         id: `temp-${Date.now()}`,
         name: guestName,
         message: newWish,
-        attending: attendance, // Note: this is 'attending' for display but 'attendance' for API
+        attendance: attendance,
         timestamp: timestamp,
       };
 
       setWishes((prev) => [newWishObj, ...prev]);
+      if (wishesContainerRef.current) wishesContainerRef.current.scrollTop = 0;
 
-      // Scroll to top of wishes container to show new wish
-      if (wishesContainerRef.current) {
-        wishesContainerRef.current.scrollTop = 0;
-      }
-
-      // Reset form
       setGuestName('');
       setNewWish('');
       setAttendance('');
@@ -168,6 +156,7 @@ export default function Wishes() {
       setIsSubmitting(false);
     }
   };
+
   const getAttendanceIcon = (status) => {
     switch (status) {
       case 'attending':
