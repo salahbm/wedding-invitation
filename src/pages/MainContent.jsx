@@ -4,6 +4,7 @@ import Location from '@/pages/Location';
 import Wishes from '@/pages/Wishes';
 import Photos from '@/pages/Photos';
 import { Fragment } from 'react';
+import TableNumber from './Table';
 
 // Main Invitation Content
 export default function MainContent() {
@@ -14,6 +15,7 @@ export default function MainContent() {
       <Location />
       <Photos />
       <Wishes />
+      <TableNumber />
     </Fragment>
   );
 }
