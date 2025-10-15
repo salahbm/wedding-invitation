@@ -165,5 +165,12 @@
     "father": "Отец",
     "mother": "Мать",
     "thankYou": "Спасибо за всё"
+  },
+  "countup": {
+    "days": "Дней",
+    "hours": "Часов",
+    "minutes": "Минут",
+    "seconds": "Секунд",
+    "sinceWedding": "После свадьбы"
   }
 }

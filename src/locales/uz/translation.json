@@ -163,5 +163,12 @@
     "father": "Ota",
     "mother": "Ona",
     "thankYou": "Hammasi uchun rahmat"
+  },
+  "countup": {
+    "days": "Kun",
+    "hours": "Soat",
+    "minutes": "Daqiqa",
+    "seconds": "Soniya",
+    "sinceWedding": "To'ydan o'tgan kun"
   }
 }

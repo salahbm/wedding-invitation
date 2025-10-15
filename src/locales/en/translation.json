@@ -108,7 +108,7 @@
     "wishes": "Wishes"
   },
   "countdown": {
-    "title": "Countdown",
+    "title": "Until the wedding",
     "days": "Days",
     "hours": "Hours",
     "minutes": "Minutes",
@@ -165,5 +165,12 @@
     "father": "Father",
     "mother": "Mother",
     "thankYou": "Thank you for everything"
+  },
+  "countup": {
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "sinceWedding": "Since the wedding"
   }
 }
