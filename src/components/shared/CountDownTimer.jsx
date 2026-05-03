@@ -53,7 +53,7 @@ export const CountdownTimer = ({ targetDate }) => {
 
   return (
     <div className="mt-8">
-      <h3 className="text-center text-rose-600 font-semibold mb-4">
+      <h3 className="text-center text-primary-600 font-semibold mb-4">
         {timeLeft.label}
       </h3>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -63,9 +63,9 @@ export const CountdownTimer = ({ targetDate }) => {
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className="flex flex-col items-center p-3 bg-white/80 backdrop-blur-sm rounded-xl border border-rose-100 shadow-sm"
+            className="flex flex-col items-center p-3 bg-white/80 backdrop-blur-sm rounded-xl border border-primary-100 shadow-sm"
           >
-            <span className="text-xl sm:text-2xl font-bold text-rose-600">
+            <span className="text-xl sm:text-2xl font-bold text-primary-600">
               {timeLeft.values[interval]}
             </span>
             <span className="text-xs text-gray-500 capitalize">{interval}</span>

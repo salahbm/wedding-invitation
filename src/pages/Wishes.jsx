@@ -161,7 +161,7 @@ export default function Wishes() {
       case 'attending':
         return <CheckCircle className="w-4 h-4 text-emerald-500" />;
       case 'not-attending':
-        return <XCircle className="w-4 h-4 text-rose-500" />;
+        return <XCircle className="w-4 h-4 text-primary-500" />;
       case 'maybe':
         return <HelpCircle className="w-4 h-4 text-amber-500" />;
       default:
@@ -183,7 +183,7 @@ export default function Wishes() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-block text-rose-500 font-medium"
+              className="inline-block text-primary-500 font-medium"
             >
               {t('wishes.sendYourBestWishes')}
             </motion.span>
@@ -204,9 +204,9 @@ export default function Wishes() {
               transition={{ delay: 0.4 }}
               className="flex items-center justify-center gap-4 pt-4"
             >
-              <div className="h-[1px] w-12 bg-rose-200" />
-              <MessageCircle className="w-5 h-5 text-rose-400" />
-              <div className="h-[1px] w-12 bg-rose-200" />
+              <div className="h-[1px] w-12 bg-primary-200" />
+              <MessageCircle className="w-5 h-5 text-primary-400" />
+              <div className="h-[1px] w-12 bg-primary-200" />
             </motion.div>
           </motion.div>
 
@@ -214,10 +214,10 @@ export default function Wishes() {
           <div className="max-w-2xl mx-auto space-y-6">
             {loading ? (
               <div className="flex justify-center py-8">
-                <div className="w-8 h-8 border-4 border-rose-200 border-t-rose-500 rounded-full animate-spin"></div>
+                <div className="w-8 h-8 border-4 border-primary-200 border-t-primary-500 rounded-full animate-spin"></div>
               </div>
             ) : error ? (
-              <div className="text-center py-4 text-rose-600">{error}</div>
+              <div className="text-center py-4 text-primary-600">{error}</div>
             ) : wishes.length === 0 ? (
               <div className="text-center py-4 text-gray-500">
                 {t('wishes.noWishes')}
@@ -234,7 +234,7 @@ export default function Wishes() {
                   >
                     {wishes.map((wish, index) => (
                       <div
-                        className="flex items-center justify-start gap-x-2 border border-rose-100 p-2 rounded-xl"
+                        className="flex items-center justify-start gap-x-2 border border-primary-100 p-2 rounded-xl"
                         key={index}
                       >
                         <figcaption className="text-gray-600 text-sm leading-relaxed line-clamp-5">
@@ -256,7 +256,7 @@ export default function Wishes() {
             className="max-w-2xl mx-auto mt-12"
           >
             <form onSubmit={handleSubmitWish} className="relative">
-              <div className="backdrop-blur-sm bg-white/80 p-6 rounded-2xl border border-rose-100/50 shadow-lg">
+              <div className="backdrop-blur-sm bg-white/80 p-6 rounded-2xl border border-primary-100/50 shadow-lg">
                 <div className="space-y-5">
                   {/* Name Input */}
                   <div className="space-y-2">
@@ -269,7 +269,7 @@ export default function Wishes() {
                       value={guestName}
                       onChange={(e) => setGuestName(e.target.value)}
                       placeholder={t('wishes.namePlaceholder')}
-                      className="w-full px-4 py-2.5 rounded-xl bg-white/50 border border-rose-100 focus:border-rose-300 focus:ring focus:ring-rose-200 focus:ring-opacity-50 transition-all duration-200 text-gray-700 placeholder-gray-400"
+                      className="w-full px-4 py-2.5 rounded-xl bg-white/50 border border-primary-100 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 transition-all duration-200 text-gray-700 placeholder-gray-400"
                       required
                       maxLength={75}
                     />
@@ -289,7 +289,7 @@ export default function Wishes() {
                     <button
                       type="button"
                       onClick={() => setIsOpen(!isOpen)}
-                      className="w-full px-4 py-2.5 rounded-xl bg-white/50 border border-rose-100 focus:border-rose-300 focus:ring focus:ring-rose-200 focus:ring-opacity-50 transition-all duration-200 text-left flex items-center justify-between"
+                      className="w-full px-4 py-2.5 rounded-xl bg-white/50 border border-primary-100 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 transition-all duration-200 text-left flex items-center justify-between"
                     >
                       <span
                         className={
@@ -315,7 +315,7 @@ export default function Wishes() {
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
-                          className="absolute z-10 w-full mt-1 bg-white rounded-xl shadow-lg border border-rose-100 overflow-hidden"
+                          className="absolute z-10 w-full mt-1 bg-white rounded-xl shadow-lg border border-primary-100 overflow-hidden"
                         >
                           {options.map((option) => (
                             <motion.button
@@ -326,13 +326,13 @@ export default function Wishes() {
                                 setIsOpen(false);
                               }}
                               whileHover={{
-                                backgroundColor: 'rgb(255, 241, 242)',
+                                backgroundColor: 'hsl(var(--primary-50))',
                               }}
                               className={`w-full px-4 py-2.5 text-left transition-colors
                                         ${
                                           attendance === option.value
-                                            ? 'bg-rose-50 text-rose-600'
-                                            : 'text-gray-700 hover:bg-rose-50'
+                                            ? 'bg-primary-50 text-primary-600'
+                                            : 'text-gray-700 hover:bg-primary-50'
                                         }`}
                             >
                               {option.label}
@@ -352,7 +352,7 @@ export default function Wishes() {
                       value={newWish}
                       onChange={(e) => setNewWish(e.target.value)}
                       placeholder={t('wishes.placeholder')}
-                      className="w-full h-32 p-4 rounded-xl bg-white/50 border border-rose-100 focus:border-rose-300 focus:ring focus:ring-rose-200 focus:ring-opacity-50 resize-none transition-all duration-200"
+                      className="w-full h-32 p-4 rounded-xl bg-white/50 border border-primary-100 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 resize-none transition-all duration-200"
                       required
                       maxLength={300}
                     />
@@ -367,7 +367,7 @@ export default function Wishes() {
                 )}
 
                 {submitStatus === 'error' && (
-                  <div className="mt-4 p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-sm flex items-center">
+                  <div className="mt-4 p-3 bg-primary-50 border border-primary-200 rounded-xl text-primary-700 text-sm flex items-center">
                     <XCircle className="w-5 h-5 mr-2" />
                     {t('wishes.errorMessage')}
                   </div>
@@ -387,7 +387,7 @@ export default function Wishes() {
                     ${
                       isSubmitting
                         ? 'bg-gray-300 cursor-not-allowed'
-                        : 'bg-rose-500 hover:bg-rose-600'
+                        : 'bg-primary-500 hover:bg-primary-600'
                     }`}
                   >
                     {isSubmitting ? (
@@ -410,7 +410,7 @@ export default function Wishes() {
             <div className="mt-8 relative">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-medium text-gray-700 flex items-center gap-2">
-                  <ScrollText className="w-5 h-5 text-rose-500" />
+                  <ScrollText className="w-5 h-5 text-primary-500" />
                   {t('wishes.recentWishes')}
                 </h3>
               </div>
@@ -429,10 +429,10 @@ export default function Wishes() {
                           // Create different shapes for cards
                           const cardType = Math.floor(Math.random() * 4); // 0-3 different types
                           const cardClasses = [
-                            'border-rose-400/50 shadow-md', // standard
-                            'border-pink-400/50 shadow-lg', // slightly elevated
-                            'border-rose-500/30 shadow-md', // darker border
-                            'border-pink-300/70 shadow-md', // lighter border
+                            'border-primary-400/50 shadow-md', // standard
+                            'border-primary-400/50 shadow-lg', // slightly elevated
+                            'border-primary-500/30 shadow-md', // darker border
+                            'border-primary-300/70 shadow-md', // lighter border
                           ][cardType];
 
                           // Randomize width for some cards
@@ -463,7 +463,7 @@ export default function Wishes() {
                                 <div className="flex items-start space-x-3 mb-2">
                                   {/* Avatar */}
                                   <div className="flex-shrink-0">
-                                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-rose-400 to-pink-400 flex items-center justify-center text-white text-sm font-medium">
+                                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary-400 to-primary-400 flex items-center justify-center text-white text-sm font-medium">
                                       {wish.name && wish.name[0]
                                         ? wish.name[0].toUpperCase()
                                         : '?'}
@@ -503,7 +503,7 @@ export default function Wishes() {
                                   new Date(wish.timestamp).getTime() <
                                   3600000 && (
                                   <div className="absolute top-2 right-2">
-                                    <span className="px-2 py-1 rounded-full bg-rose-100 text-rose-600 text-xs font-medium">
+                                    <span className="px-2 py-1 rounded-full bg-primary-100 text-primary-600 text-xs font-medium">
                                       New
                                     </span>
                                   </div>
@@ -522,7 +522,7 @@ export default function Wishes() {
                     <motion.button
                       onClick={loadMoreWishes}
                       disabled={loadingMore}
-                      className={`flex items-center gap-2 px-6 py-3 rounded-xl text-white font-medium transition-all duration-200 ${loadingMore ? 'bg-gray-400' : 'bg-rose-500 hover:bg-rose-600'}`}
+                      className={`flex items-center gap-2 px-6 py-3 rounded-xl text-white font-medium transition-all duration-200 ${loadingMore ? 'bg-gray-400' : 'bg-primary-500 hover:bg-primary-600'}`}
                       whileHover={{ scale: loadingMore ? 1 : 1.05 }}
                       whileTap={{ scale: loadingMore ? 1 : 0.95 }}
                     >

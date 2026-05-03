@@ -46,7 +46,7 @@ const BottomBar = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, type: 'spring', stiffness: 100 }}
     >
-      <div className="backdrop-blur-md bg-white/90 border border-gray-200/80 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.07)] px-4 py-2">
+      <div className="backdrop-blur-md bg-white/90 border border-gray-200/80 rounded-xl shadow-[0_8px_30px_hsl(var(--black)_/_0.07)] px-4 py-2">
         <nav className="flex justify-between items-center">
           {menuItems.map((item) => (
             <motion.a
@@ -66,13 +66,13 @@ const BottomBar = () => {
               <item.icon
                 className={cn(
                   'h-[18px] w-[18px] sm:h-5 sm:w-5 mb-0.5 sm:mb-1 transition-colors duration-200',
-                  active === item.id ? 'stroke-rose-500' : 'stroke-gray-600'
+                  active === item.id ? 'stroke-primary-500' : 'stroke-gray-600'
                 )}
               />
               <span
                 className={cn(
                   'text-[10px] sm:text-xs font-medium transition-all duration-200 line-clamp-1',
-                  active === item.id ? 'scale-105 text-rose-500' : 'scale-100'
+                  active === item.id ? 'scale-105 text-primary-500' : 'scale-100'
                 )}
               >
                 {item.label}

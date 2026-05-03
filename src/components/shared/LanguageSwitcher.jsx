@@ -30,10 +30,10 @@ const LanguageSwitcher = () => {
     <div className="relative z-50">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center p-2 rounded-full bg-white/90 backdrop-blur-sm shadow-md hover:bg-rose-50 transition-colors"
+        className="flex items-center justify-center p-2 rounded-full bg-white/90 backdrop-blur-sm shadow-md hover:bg-primary-50 transition-colors"
         aria-label="Change language"
       >
-        <Globe className="w-5 h-5 text-rose-500" />
+        <Globe className="w-5 h-5 text-primary-500" />
       </button>
 
       {isOpen && (
@@ -50,9 +50,9 @@ const LanguageSwitcher = () => {
                 key={language.code}
                 onClick={() => changeLanguage(language.code)}
                 className={cn(
-                  'w-full text-left px-4 py-2 text-sm hover:bg-rose-50 transition-colors',
+                  'w-full text-left px-4 py-2 text-sm hover:bg-primary-50 transition-colors',
                   i18n.language === language.code
-                    ? 'text-rose-500 font-medium'
+                    ? 'text-primary-500 font-medium'
                     : 'text-gray-700'
                 )}
               >

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import Layout from '@/components/Layout';
 import MainContent from '@/pages/MainContent';
@@ -9,7 +9,19 @@ import config from '@/config/config';
 
 function App() {
   const [isInvitationOpen, setIsInvitationOpen] = useState(false);
+  const [themeColor, setThemeColor] = useState('');
   const { t } = useTranslation();
+
+  useEffect(() => {
+    const primary = getComputedStyle(document.documentElement)
+      .getPropertyValue('--primary')
+      .trim();
+
+    if (primary) {
+      setThemeColor(`hsl(${primary})`);
+    }
+  }, []);
+
   return (
     <HelmetProvider>
       <Helmet>
@@ -69,7 +81,7 @@ function App() {
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
-        <meta name="theme-color" content="#FDA4AF" /> {/* Rose-300 color */}
+        {themeColor ? <meta name="theme-color" content={themeColor} /> : null}
       </Helmet>
 
       <AnimatePresence mode="wait">

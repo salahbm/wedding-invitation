@@ -115,9 +115,9 @@ export default function LoveStory() {
     <section id="photos" className="py-16 px-4 relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-5 pointer-events-none">
-        <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-rose-300" />
-        <div className="absolute top-1/4 -right-24 w-64 h-64 rounded-full bg-rose-200" />
-        <div className="absolute bottom-1/4 -left-32 w-80 h-80 rounded-full bg-rose-100" />
+        <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-primary-300" />
+        <div className="absolute top-1/4 -right-24 w-64 h-64 rounded-full bg-primary-200" />
+        <div className="absolute bottom-1/4 -left-32 w-80 h-80 rounded-full bg-primary-100" />
       </div>
 
       <div className="max-w-4xl mx-auto relative z-10">
@@ -132,7 +132,7 @@ export default function LoveStory() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-rose-500 font-medium inline-block mb-2"
+            className="text-primary-500 font-medium inline-block mb-2"
           >
             {t('loveStory.subtitle')}
           </motion.span>
@@ -152,9 +152,9 @@ export default function LoveStory() {
             transition={{ delay: 0.4 }}
             className="flex items-center justify-center gap-3 mb-6"
           >
-            <div className="h-px w-12 bg-rose-200" />
-            <Heart className="w-5 h-5 text-rose-400 fill-rose-400" />
-            <div className="h-px w-12 bg-rose-200" />
+            <div className="h-px w-12 bg-primary-200" />
+            <Heart className="w-5 h-5 text-primary-400 fill-primary-400" />
+            <div className="h-px w-12 bg-primary-200" />
           </motion.div>
 
           <motion.p
@@ -172,7 +172,7 @@ export default function LoveStory() {
             className="mt-8"
             onClick={scrollToGallery}
           >
-            <button className="text-rose-500 flex items-end mx-auto group cursor-pointer">
+            <button className="text-primary-500 flex items-end mx-auto group cursor-pointer">
               <span className="mr-2 group-hover:underline">
                 {t('loveStory.skipToGallery')}
               </span>
@@ -185,13 +185,13 @@ export default function LoveStory() {
         <div className="relative" ref={timelineRef}>
           {/* Background deco */}
           <div className="absolute top-0 left-0 w-full h-full opacity-50 pointer-events-none z-0">
-            <div className="absolute top-10 left-10 w-60 h-60 bg-rose-200 rounded-full blur-3xl" />
-            <div className="absolute top-10 left-10 w-60 h-60 bg-rose-100 rounded-full blur-3xl" />
-            <div className="absolute bottom-20 right-10 w-40 h-40 bg-rose-100 rounded-full blur-2xl" />
-            <div className="absolute bottom-20 right-10 w-40 h-40 bg-rose-100 rounded-full blur-2xl" />
+            <div className="absolute top-10 left-10 w-60 h-60 bg-primary-200 rounded-full blur-3xl" />
+            <div className="absolute top-10 left-10 w-60 h-60 bg-primary-100 rounded-full blur-3xl" />
+            <div className="absolute bottom-20 right-10 w-40 h-40 bg-primary-100 rounded-full blur-2xl" />
+            <div className="absolute bottom-20 right-10 w-40 h-40 bg-primary-100 rounded-full blur-2xl" />
           </div>
           {/* Timeline line - visible on all screens */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-rose-100 via-rose-300 to-rose-100 -z-10" />
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-primary-100 via-primary-300 to-primary-100 -z-10" />
 
           <motion.div
             variants={containerVariants}
@@ -208,7 +208,7 @@ export default function LoveStory() {
                 )}
               >
                 {/* Timeline dot - visible on all screens */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 aspect-square rounded-full bg-white border-2 border-rose-400 flex items-center justify-center shadow-md">
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 aspect-square rounded-full bg-white border-2 border-primary-400 flex items-center justify-center shadow-md">
                   <span>{item.emoji}</span>
                 </div>
 
@@ -228,7 +228,7 @@ export default function LoveStory() {
                   )}
                 >
                   {/* Year badge - visible only on mobile */}
-                  <div className="md:hidden bg-rose-100 text-rose-600 mt-10 px-3 py-1 rounded-full text-sm font-medium mb-4">
+                  <div className="md:hidden bg-primary-100 text-primary-600 mt-10 px-3 py-1 rounded-full text-sm font-medium mb-4">
                     {item.year}
                   </div>
 
@@ -317,7 +317,7 @@ export default function LoveStory() {
                     )}
                   >
                     {/* Year badge - visible only on desktop */}
-                    <div className="hidden md:inline-block bg-rose-100 text-rose-600 px-3 py-1 rounded-full text-sm font-medium mb-3">
+                    <div className="hidden md:inline-block bg-primary-100 text-primary-600 px-3 py-1 rounded-full text-sm font-medium mb-3">
                       {item.year}
                     </div>
 
@@ -326,7 +326,7 @@ export default function LoveStory() {
                     </h3>
                     <p className="text-gray-600">{item.subtitle}</p>
 
-                    <div className="mt-4 h-0.5 w-12 bg-rose-200 mx-auto md:mx-0 md:ml-0 md:mr-0" />
+                    <div className="mt-4 h-0.5 w-12 bg-primary-200 mx-auto md:mx-0 md:ml-0 md:mr-0" />
                   </div>
                 </div>
               </motion.div>
@@ -420,7 +420,7 @@ export default function LoveStory() {
                     setLoading(false);
                   }}
                   disabled={loading}
-                  className={`px-6 py-3 bg-rose-500 text-white rounded-md shadow hover:bg-rose-600 transition-all duration-300 flex items-center gap-2 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                  className={`px-6 py-3 bg-primary-500 text-white rounded-md shadow hover:bg-primary-600 transition-all duration-300 flex items-center gap-2 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
                 >
                   {loading ? (
                     <>

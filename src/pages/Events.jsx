@@ -24,49 +24,49 @@ export default function Events() {
         time: '19:30',
         event: t('table.guestArrival'),
         description: t('table.arrivalDesc'),
-        icon: <GlassWater className="w-full h-full text-rose-500" />,
+        icon: <GlassWater className="w-full h-full text-primary-500" />,
       },
       {
         time: '19:45',
         event: t('table.entrance'),
         description: t('table.entranceDesc'),
-        icon: <HeartHandshake className="w-full h-full text-rose-500" />,
+        icon: <HeartHandshake className="w-full h-full text-primary-500" />,
       },
       {
         time: '20:00',
         event: t('table.firstCourse'),
         description: t('table.firstCourseDesc'),
-        icon: <Utensils className="w-full h-full text-rose-500" />,
+        icon: <Utensils className="w-full h-full text-primary-500" />,
       },
       {
         time: '20:45',
         event: t('table.mainCourse'),
         description: t('table.mainCourseDesc'),
-        icon: <Utensils className="w-full h-full text-rose-500" />,
+        icon: <Utensils className="w-full h-full text-primary-500" />,
       },
       {
         time: '21:30',
         event: t('table.dance'),
         description: t('table.danceDesc'),
-        icon: <Music className="w-full h-full text-rose-500" />,
+        icon: <Music className="w-full h-full text-primary-500" />,
       },
       {
         time: '22:15',
         event: t('table.games'),
         description: t('table.gamesDesc'),
-        icon: <PartyPopper className="w-full h-full text-rose-500" />,
+        icon: <PartyPopper className="w-full h-full text-primary-500" />,
       },
       {
         time: '23:00',
         event: t('table.waltz'),
         description: t('table.waltzDesc'),
-        icon: <Music className="w-full h-full text-rose-500" />,
+        icon: <Music className="w-full h-full text-primary-500" />,
       },
       {
         time: '23:30',
         event: t('table.celebration'),
         description: t('table.celebrationDesc'),
-        icon: <PartyPopper className="w-full h-full text-rose-500" />,
+        icon: <PartyPopper className="w-full h-full text-primary-500" />,
       },
     ],
     [t]
@@ -101,7 +101,7 @@ export default function Events() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="inline-block text-rose-500 font-medium mb-2"
+              className="inline-block text-primary-500 font-medium mb-2"
             >
               {t('events.saveTheDate')}
             </motion.span>
@@ -134,11 +134,11 @@ export default function Events() {
               transition={{ delay: 0.5 }}
               className="flex items-center justify-center gap-4 mt-6"
             >
-              <div className="h-[1px] w-12 bg-rose-200" />
-              <div className="text-rose-400">
+              <div className="h-[1px] w-12 bg-primary-200" />
+              <div className="text-primary-400">
                 <Heart className="w-4 h-4" fill="currentColor" />
               </div>
-              <div className="h-[1px] w-12 bg-rose-200" />
+              <div className="h-[1px] w-12 bg-primary-200" />
             </motion.div>
           </motion.div>
 
@@ -167,7 +167,7 @@ export default function Events() {
               initial={{ opacity: 0, y: 10 }}
               animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2 }}
-              className="inline-block text-rose-500 font-medium"
+              className="inline-block text-primary-500 font-medium"
             >
               {t('table.weddingSchedule')}
             </motion.span>
@@ -188,9 +188,9 @@ export default function Events() {
               transition={{ delay: 0.4 }}
               className="flex items-center justify-center gap-4 pt-4"
             >
-              <div className="h-[1px] w-12 bg-rose-200" />
-              <Clock className="w-5 h-5 text-rose-400" />
-              <div className="h-[1px] w-12 bg-rose-200" />
+              <div className="h-[1px] w-12 bg-primary-200" />
+              <Clock className="w-5 h-5 text-primary-400" />
+              <div className="h-[1px] w-12 bg-primary-200" />
             </motion.div>
 
             {/* Message Container */}
@@ -217,9 +217,9 @@ export default function Events() {
               transition={{ delay: 0.6 }}
               className="flex items-center justify-center gap-3 pt-4"
             >
-              <div className="h-px w-8 bg-rose-200/50" />
-              <div className="w-1.5 h-1.5 rounded-full bg-rose-300" />
-              <div className="h-px w-8 bg-rose-200/50" />
+              <div className="h-px w-8 bg-primary-200/50" />
+              <div className="w-1.5 h-1.5 rounded-full bg-primary-300" />
+              <div className="h-px w-8 bg-primary-200/50" />
             </motion.div>
           </motion.div>
 
@@ -242,8 +242,8 @@ export default function Events() {
                 transition={{ delay: 0.2 * index + 0.7 }}
                 className="relative group"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-rose-100/50 to-pink-100/50 rounded-2xl transform transition-transform group-hover:scale-105 duration-300" />
-                <div className="relative backdrop-blur-sm bg-white/80 p-6 rounded-2xl border border-rose-100/50 shadow-lg">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary-100/50 to-primary-100/50 rounded-2xl transform transition-transform group-hover:scale-105 duration-300" />
+                <div className="relative backdrop-blur-sm bg-white/80 p-6 rounded-2xl border border-primary-100/50 shadow-lg">
                   {/* Desktop layout (md and up) */}
                   <div className="hidden md:grid md:grid-cols-12 md:gap-4 md:items-center">
                     <div className="col-span-3 flex items-center space-x-3">

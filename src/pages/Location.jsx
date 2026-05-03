@@ -89,7 +89,7 @@ export default function Location() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
               viewport={{ once: true }}
-              className="inline-block text-rose-500 font-medium"
+              className="inline-block text-primary-500 font-medium"
             >
               {t('location.eventVenue')}
             </motion.span>
@@ -112,9 +112,9 @@ export default function Location() {
               viewport={{ once: true }}
               className="flex items-center justify-center gap-4 pt-4"
             >
-              <div className="h-[1px] w-12 bg-rose-200" />
-              <MapPin className="w-5 h-5 text-rose-400" />
-              <div className="h-[1px] w-12 bg-rose-200" />
+              <div className="h-[1px] w-12 bg-primary-200" />
+              <MapPin className="w-5 h-5 text-primary-400" />
+              <div className="h-[1px] w-12 bg-primary-200" />
             </motion.div>
           </motion.div>
 
@@ -157,21 +157,21 @@ export default function Location() {
 
                 <div className="space-y-4">
                   <div className="flex items-start space-x-4">
-                    <MapPin className="w-5 h-5 text-rose-500 mt-1" />
+                    <MapPin className="w-5 h-5 text-primary-500 mt-1" />
                     <p className="text-gray-600 flex-1">
                       {config.data.address}
                     </p>
                   </div>
 
                   <div className="flex items-center space-x-4">
-                    <CalendarCheck className="w-5 h-5 text-rose-500" />
+                    <CalendarCheck className="w-5 h-5 text-primary-500" />
                     <p className="text-gray-600">
                       {formatEventDate(config.data.date, 'full', i18n.language)}
                     </p>
                   </div>
 
                   <div className="flex items-center space-x-4">
-                    <Clock className="w-5 h-5 text-rose-500" />
+                    <Clock className="w-5 h-5 text-primary-500" />
                     <p className="text-gray-600">{config.data.time}</p>
                   </div>
 
@@ -211,7 +211,7 @@ export default function Location() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
                 viewport={{ once: true }}
-                className="inline-block text-rose-500 font-medium"
+                className="inline-block text-primary-500 font-medium"
               >
                 {t('location.howToReach')}
               </motion.span>
@@ -234,9 +234,9 @@ export default function Location() {
                 viewport={{ once: true }}
                 className="flex items-center justify-center gap-4 pt-2"
               >
-                <div className="h-[1px] w-12 bg-rose-200" />
-                <Navigation className="w-5 h-5 text-rose-400" />
-                <div className="h-[1px] w-12 bg-rose-200" />
+                <div className="h-[1px] w-12 bg-primary-200" />
+                <Navigation className="w-5 h-5 text-primary-400" />
+                <div className="h-[1px] w-12 bg-primary-200" />
               </motion.div>
             </div>
 
@@ -281,7 +281,7 @@ export default function Location() {
                     {isPlaying ? (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-10 w-10 text-rose-500"
+                        className="h-10 w-10 text-primary-500"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -296,7 +296,7 @@ export default function Location() {
                     ) : (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-10 w-10 text-rose-500"
+                        className="h-10 w-10 text-primary-500"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -342,7 +342,7 @@ export default function Location() {
                     <div className="bg-white bg-opacity-80 p-4 rounded-full">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-10 w-10 text-rose-500"
+                        className="h-10 w-10 text-primary-500"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"

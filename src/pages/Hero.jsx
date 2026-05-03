@@ -17,7 +17,7 @@ export default function Hero() {
     if (!cardRef.current) return;
     const canvas = await html2canvas(cardRef.current, {
       useCORS: true,
-      backgroundColor: '#ffffff',
+      backgroundColor: 'hsl(var(--background))',
       scale: 2,
     });
 
@@ -111,7 +111,7 @@ export default function Hero() {
             transition={{ delay: 0.2 }}
             className="inline-block mx-auto"
           >
-            <span className="px-4 py-1 text-sm bg-rose-50 text-rose-600 rounded-full border border-rose-200">
+            <span className="px-4 py-1 text-sm bg-primary-50 text-primary-600 rounded-full border border-primary-200">
               {t('hero.saveTheDate')}
             </span>
           </motion.div>
@@ -129,7 +129,7 @@ export default function Hero() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="text-2xl sm:text-4xl md:text-5xl font-serif bg-clip-text text-transparent bg-gradient-to-r from-rose-600 to-pink-600"
+              className="text-2xl sm:text-4xl md:text-5xl font-serif bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-600"
             >
               {config.data.groomName} & {config.data.brideName}
             </motion.h2>
@@ -141,7 +141,7 @@ export default function Hero() {
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 1, duration: 1.5 }}
-            className="relative max-w-[420px] max-h-[640px] w-full mx-auto rounded-2xl overflow-hidden bg-white border border-rose-100 shadow-lg"
+            className="relative max-w-[420px] max-h-[640px] w-full mx-auto rounded-2xl overflow-hidden bg-white border border-primary-100 shadow-lg"
           >
             {/* 👰🏻 Background image */}
             <picture className="absolute inset-0 z-0">
@@ -151,19 +151,19 @@ export default function Hero() {
                 className="w-full h-full object-cover opacity-20"
               />
             </picture>
-            <div className="absolute inset-0 bg-gradient-to-b from-rose-100/20 to-white/40" />
+            <div className="absolute inset-0 bg-gradient-to-b from-primary-100/20 to-white/40" />
 
             {/* 📝 Card content */}
             <div className="relative px-6 sm:px-10 py-10 sm:py-12 z-10">
               {/* top line */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-px">
-                <div className="w-24 sm:w-36 h-0.5 bg-gradient-to-r from-transparent via-rose-200 to-transparent" />
+                <div className="w-24 sm:w-36 h-0.5 bg-gradient-to-r from-transparent via-primary-200 to-transparent" />
               </div>
 
               <div className="space-y-8 text-center">
                 <div className="space-y-6">
                   <h1 className="font-serif text-gray-800">
-                    <div className="text-sm sm:text-base text-rose-500 mb-2 font-sans">
+                    <div className="text-sm sm:text-base text-primary-500 mb-2 font-sans">
                       {t('hero.bismillah')}
                     </div>
                     <div className="text-md mt-2 sm:text-lg mb-1">
@@ -173,7 +173,7 @@ export default function Hero() {
                       {config.data.groomName}
                     </div>
                     <div className="text-3xl sm:text-4xl md:text-5xl mb-2">
-                      <span className="text-rose-400 mx-2 text-md font-thin">
+                      <span className="text-primary-400 mx-2 text-md font-thin">
                         &
                       </span>
                       {config.data.brideName}
@@ -181,14 +181,14 @@ export default function Hero() {
                   </h1>
 
                   <div className="flex items-center justify-center space-x-2">
-                    <Calendar className="w-4 h-4 text-rose-400" />
+                    <Calendar className="w-4 h-4 text-primary-400" />
                     <p className="text-gray-700 font-medium">
                       {formatEventDate(config.data.date, 'full', i18n.language)}
                     </p>
                   </div>
 
                   <div className="flex items-center justify-center space-x-2">
-                    <Clock className="w-4 h-4 text-rose-400" />
+                    <Clock className="w-4 h-4 text-primary-400" />
                     <span className="text-gray-700 font-medium text-sm sm:text-base">
                       {config.data.time}
                     </span>
@@ -197,16 +197,16 @@ export default function Hero() {
 
                 {/* Separator */}
                 <div className="flex items-center justify-center gap-3">
-                  <div className="h-px w-8 sm:w-12 bg-rose-200/70" />
-                  <div className="w-2 h-2 rounded-full bg-rose-200" />
-                  <div className="h-px w-8 sm:w-12 bg-rose-200/70" />
+                  <div className="h-px w-8 sm:w-12 bg-primary-200/70" />
+                  <div className="w-2 h-2 rounded-full bg-primary-200" />
+                  <div className="h-px w-8 sm:w-12 bg-primary-200/70" />
                 </div>
 
                 <div className="space-y-2">
                   <p className="text-gray-500 font-serif italic text-sm">
                     {t('landing.for')}
                   </p>
-                  <p className="text-rose-500 font-semibold text-md">
+                  <p className="text-primary-500 font-semibold text-md">
                     {guestName ? (
                       <span
                         dangerouslySetInnerHTML={{
@@ -224,7 +224,7 @@ export default function Hero() {
 
               {/* bottom line */}
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-px">
-                <div className="w-24 sm:w-36 h-0.5 bg-gradient-to-r from-transparent via-rose-200 to-transparent" />
+                <div className="w-24 sm:w-36 h-0.5 bg-gradient-to-r from-transparent via-primary-200 to-transparent" />
               </div>
             </div>
           </motion.div>
@@ -233,7 +233,7 @@ export default function Hero() {
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
             onClick={handleDownload}
-            className="mt-6 flex mx-auto animate-bounce duration-700 items-center gap-2 bg-rose-500 hover:bg-rose-600 text-white px-6 py-2.5 rounded-full font-medium shadow-lg transition-all"
+            className="mt-6 flex mx-auto animate-bounce duration-700 items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white px-6 py-2.5 rounded-full font-medium shadow-lg transition-all"
           >
             <Download className="w-4 h-4" />
             {t('hero.downloadCard') || 'Download Card'}
@@ -257,7 +257,7 @@ export default function Hero() {
               }}
             >
               <Heart
-                className="w-20 sm:w-22 h-20 sm:h-22 text-rose-500 mx-auto"
+                className="w-20 sm:w-22 h-20 sm:h-22 text-primary-500 mx-auto"
                 fill="currentColor"
               />
             </motion.div>

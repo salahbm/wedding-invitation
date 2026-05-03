@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Heart } from 'lucide-react';
 
-const COLORS = ['text-rose-400', 'text-pink-400', 'text-red-400'];
+const COLORS = ['text-primary-400', 'text-primary-400', 'text-red-400'];
 const HEART_COUNT = 25;
 
 const getRandom = (min, max) => Math.random() * (max - min) + min;

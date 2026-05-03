@@ -22,18 +22,18 @@ const Card = ({
 }) => (
   <motion.div
     variants={itemVariants}
-    className="relative group bg-white rounded-3xl p-10 shadow-xl border border-rose-100 hover:shadow-2xl transition-all duration-500"
+    className="relative group bg-white rounded-3xl p-10 shadow-xl border border-primary-100 hover:shadow-2xl transition-all duration-500"
   >
-    <div className="absolute -top-5 -left-5 w-16 h-16 bg-rose-100 rounded-full blur-2xl z-0" />
+    <div className="absolute -top-5 -left-5 w-16 h-16 bg-primary-100 rounded-full blur-2xl z-0" />
     <div className="relative z-10 text-center space-y-8">
       <div>
         <h3 className="text-3xl font-serif text-gray-800 mb-2">{title}</h3>
-        <div className="h-px w-20 bg-rose-300 mx-auto" />
+        <div className="h-px w-20 bg-primary-300 mx-auto" />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
         <div className="flex flex-col items-center">
-          <div className="w-24 h-24 rounded-full border-2 border-rose-50 opacity-85 flex items-center justify-center shadow-md relative overflow-hidden">
+          <div className="w-24 h-24 rounded-full border-2 border-primary-50 opacity-85 flex items-center justify-center shadow-md relative overflow-hidden">
             <img
               src={fatherImage}
               alt="Father"
@@ -42,14 +42,14 @@ const Card = ({
               className="object-cover object-center"
             />
           </div>
-          <h4 className="text-sm uppercase tracking-widest text-rose-400 mt-3">
+          <h4 className="text-sm uppercase tracking-widest text-primary-400 mt-3">
             {t('parents.father')}
           </h4>
           <p className="text-xl font-serif text-gray-700 mt-1">{father}</p>
         </div>
 
         <div className="flex flex-col items-center">
-          <div className="w-24 h-24 rounded-full border-2 border-rose-50 opacity-85 flex items-center justify-center shadow-md relative overflow-hidden">
+          <div className="w-24 h-24 rounded-full border-2 border-primary-50 opacity-85 flex items-center justify-center shadow-md relative overflow-hidden">
             <img
               src={motherImage}
               alt="Mother"
@@ -58,7 +58,7 @@ const Card = ({
               className="object-cover"
             />
           </div>
-          <h4 className="text-sm uppercase tracking-widest text-rose-400 mt-3">
+          <h4 className="text-sm uppercase tracking-widest text-primary-400 mt-3">
             {t('parents.mother')}
           </h4>
           <p className="text-xl font-serif text-gray-700 mt-1">{mother}</p>
@@ -104,7 +104,7 @@ const Parents = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="text-rose-500 font-medium mb-2 inline-block">
+          <span className="text-primary-500 font-medium mb-2 inline-block">
             {t('parents.subtitle')}
           </span>
 
@@ -113,9 +113,9 @@ const Parents = () => {
           </h2>
 
           <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="h-px w-12 bg-rose-200" />
-            <Heart className="w-5 h-5 text-rose-400 fill-rose-400" />
-            <div className="h-px w-12 bg-rose-200" />
+            <div className="h-px w-12 bg-primary-200" />
+            <Heart className="w-5 h-5 text-primary-400 fill-primary-400" />
+            <div className="h-px w-12 bg-primary-200" />
           </div>
 
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -149,7 +149,7 @@ const Parents = () => {
             itemVariants={itemVariants}
           />
         </motion.div>
-        <p className="italic text-rose-500 mt-6 text-md text-center">
+        <p className="italic text-primary-500 mt-6 text-md text-center">
           {t('parents.thankYou')} ❤️
         </p>
       </div>

@@ -37,15 +37,15 @@ const Layout = ({ children, startInvitation }) => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={toggleMusic}
-          className="fixed top-4 right-4 z-50 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg border border-rose-100/50"
+          className="fixed top-4 right-4 z-50 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg border border-primary-100/50"
         >
           {isPlaying ? (
             <div className="relative">
-              <PauseCircle className="w-5 h-5 text-rose-500" />
+              <PauseCircle className="w-5 h-5 text-primary-500" />
               <span className="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full animate-pulse" />
             </div>
           ) : (
-            <PlayCircle className="w-5 h-5 text-rose-500" />
+            <PlayCircle className="w-5 h-5 text-primary-500" />
           )}
         </motion.button>
 

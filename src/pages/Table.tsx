@@ -245,7 +245,7 @@ const TableNumber = () => {
 
       <div
         ref={cardRef}
-        className="relative w-[90mm] h-[130mm] overflow-hidden bg-white shadow-lg border-1 border-rose-200/20"
+        className="relative w-[90mm] h-[130mm] overflow-hidden bg-white shadow-lg border-1 border-primary-200/20"
       >
         {/* Background image with soft overlay */}
         {/* 👰🏻 Background image */}
@@ -257,12 +257,12 @@ const TableNumber = () => {
           />
         </picture>
 
-        <div className="absolute inset-0 bg-gradient-to-b from-rose-100/40 to-white/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary-100/40 to-white/20" />
 
         <div className="relative px-6 flex flex-col items-center justify-between h-full pb-10 z-10">
           {/* top line */}
           <div className="absolute top-0 -translate-y-px left-1/2 -translate-x-1/2">
-            <div className="w-24 sm:w-36 h-0.5 bg-gradient-to-r from-transparent via-rose-200 to-transparent" />
+            <div className="w-24 sm:w-36 h-0.5 bg-gradient-to-r from-transparent via-primary-200 to-transparent" />
           </div>
 
           <main className="text-center flex flex-1 flex-col items-center justify-center -mt-24">
@@ -273,17 +273,17 @@ const TableNumber = () => {
           {/* bottom line */}
           <footer className="mt-auto">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="h-px w-8 sm:w-12 bg-rose-200/70" />
-              <div className="w-2 h-2 rounded-full bg-rose-200" />
-              <div className="h-px w-8 sm:w-12 bg-rose-200/70" />
+              <div className="h-px w-8 sm:w-12 bg-primary-200/70" />
+              <div className="w-2 h-2 rounded-full bg-primary-200" />
+              <div className="h-px w-8 sm:w-12 bg-primary-200/70" />
             </div>
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-px">
-              <div className="w-24 sm:w-36 h-0.5 bg-gradient-to-r from-transparent via-rose-200 to-transparent" />
+              <div className="w-24 sm:w-36 h-0.5 bg-gradient-to-r from-transparent via-primary-200 to-transparent" />
             </div>
             <h1 className="font-serif text-gray-800 flex items-center justify-center">
               <div className="text-lg mb-2">Muhammad</div>
               <div className="text-lg mb-2">
-                <span className="text-rose-400 mx-2 text-md font-thin">&</span>
+                <span className="text-primary-400 mx-2 text-md font-thin">&</span>
                 Saodat
               </div>
             </h1>
@@ -309,7 +309,7 @@ const TableNumber = () => {
           <button
             onClick={handleDownloadBatch}
             disabled={isGenerating}
-            className="px-6 py-3 text-lg font-medium text-white bg-rose-500 rounded hover:bg-rose-600 transition-colors flex items-center disabled:opacity-70 disabled:cursor-not-allowed"
+            className="px-6 py-3 text-lg font-medium text-white bg-primary-500 rounded hover:bg-primary-600 transition-colors flex items-center disabled:opacity-70 disabled:cursor-not-allowed"
           >
             <FileText className="w-5 h-5 mr-2" />
             {isGenerating
@@ -332,7 +332,7 @@ const TableNumber = () => {
         {isGenerating && (
           <div className="w-full max-w-md bg-gray-200 rounded-full h-2.5">
             <div
-              className="bg-rose-500 h-2.5 rounded-full transition-all duration-300"
+              className="bg-primary-500 h-2.5 rounded-full transition-all duration-300"
               style={{ width: `${progress}%` }}
             ></div>
           </div>
