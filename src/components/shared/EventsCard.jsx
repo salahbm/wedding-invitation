@@ -158,7 +158,7 @@ END:VCALENDAR`;
         <div className="space-y-3 text-gray-600">
           <div className="flex items-center space-x-3">
             <Calendar className="w-5 h-5 text-primary-500" />
-            <span>
+            <span className="capitalize">
               {formatEventDate(eventData.date, 'full', i18n.language)}
             </span>
           </div>

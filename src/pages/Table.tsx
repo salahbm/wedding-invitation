@@ -19,6 +19,7 @@ import {
   Download,
   FileText,
 } from 'lucide-react';
+import config from '@/config/config';
 
 const TableNumber = () => {
   const [tableNumber, setTableNumber] = useState(1);
@@ -281,15 +282,15 @@ const TableNumber = () => {
               <div className="w-24 sm:w-36 h-0.5 bg-gradient-to-r from-transparent via-primary-200 to-transparent" />
             </div>
             <h1 className="font-serif text-gray-800 flex items-center justify-center">
-              <div className="text-lg mb-2">Muhammad</div>
+              <div className="text-lg mb-2">{config.data.groomName}</div>
               <div className="text-lg mb-2">
                 <span className="text-primary-400 mx-2 text-md font-thin">&</span>
-                Saodat
+                {config.data.brideName}
               </div>
             </h1>
             <div className="flex items-center justify-center">
               <span className="text-gray-700 font-medium mx-auto text-xs">
-                14.08.2025
+                14.06.2026
               </span>
             </div>
           </footer>

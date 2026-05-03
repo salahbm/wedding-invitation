@@ -5,7 +5,7 @@
     <link
       rel="icon"
       type="image/x-icon"
-      href="https://muhammad-saodat.vercel.app/images/favicon.ico"
+      href="/images/favicon.ico"
     />
     <meta
       name="viewport"
@@ -16,42 +16,67 @@
     </style>
 
     <!-- Primary Meta Tags -->
-    <title>Wedding of Muhammad & Saodat</title>
-    <meta name="title" content="Wedding of Muhammad & Saodat" />
-    <meta
-      name="description"
-      content="Join us in celebrating our special day."
-    />
-    <meta name="theme-color" content="#FDA4AF" />
+    <title>Wedding Invitation</title>
+    <meta name="title" content="Wedding Invitation" />
+    <meta name="description" content="Wedding invitation" />
+    <meta name="theme-color" content="hsl(349 89% 60%)" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://muhammad-saodat.vercel.app/" />
-    <meta property="og:title" content="Wedding of Muhammad & Saodat" />
-    <meta
-      property="og:description"
-      content="Join us in celebrating our special day."
-    />
-    <meta
-      property="og:image"
-      content="https://muhammad-saodat.vercel.app/images/og-image.jpg"
-    />
+    <meta property="og:url" content="/" />
+    <meta property="og:title" content="Wedding Invitation" />
+    <meta property="og:description" content="Wedding invitation" />
+    <meta property="og:image" content="/images/og-image.jpg" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta
-      property="twitter:url"
-      content="https://muhammad-saodat.vercel.app/"
-    />
-    <meta property="twitter:title" content="Wedding of Muhammad & Saodat" />
-    <meta
-      property="twitter:description"
-      content="Join us in celebrating our special day."
-    />
-    <meta
-      property="twitter:image"
-      content="https://muhammad-saodat.vercel.app/images/og-image.jpg"
-    />
+    <meta property="twitter:url" content="/" />
+    <meta property="twitter:title" content="Wedding Invitation" />
+    <meta property="twitter:description" content="Wedding invitation" />
+    <meta property="twitter:image" content="/images/og-image.jpg" />
+    <script type="module">
+      import config from '/src/config/config.js';
+
+      const {
+        title,
+        metaTitle,
+        metaDescription,
+        siteUrl,
+        ogImage,
+        favicon,
+        themeColor,
+      } = config.data;
+
+      const pageTitle = metaTitle || title;
+      const baseUrl = siteUrl || window.location.origin;
+      const imageUrl = ogImage ? `${baseUrl}${ogImage}` : '';
+
+      document.title = pageTitle;
+
+      const setMeta = (selector, value) => {
+        const element = document.querySelector(selector);
+        if (element && value) {
+          element.setAttribute('content', value);
+        }
+      };
+
+      setMeta('meta[name="title"]', pageTitle);
+      setMeta('meta[name="description"]', metaDescription);
+      setMeta('meta[name="theme-color"]', themeColor);
+      setMeta('meta[property="og:url"]', window.location.href);
+      setMeta('meta[property="og:title"]', pageTitle);
+      setMeta('meta[property="og:description"]', metaDescription);
+      setMeta('meta[property="og:image"]', imageUrl);
+      setMeta('meta[property="twitter:url"]', window.location.href);
+      setMeta('meta[property="twitter:title"]', pageTitle);
+      setMeta('meta[property="twitter:description"]', metaDescription);
+      setMeta('meta[property="twitter:image"]', imageUrl);
+
+      const faviconLink = document.querySelector('link[rel="icon"]');
+      if (faviconLink && favicon) {
+        faviconLink.setAttribute('href', `${baseUrl}${favicon}`);
+      }
+    </script>
   </head>
 
   <body>

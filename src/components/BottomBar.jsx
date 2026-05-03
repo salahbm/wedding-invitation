@@ -2,6 +2,7 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import config from '@/config/config';
 import {
   Home,
   CalendarHeart,
@@ -25,19 +26,39 @@ const getMenuItems = (t) => [
     href: '#location',
     id: 'location',
   },
-  { icon: Image, label: t('bottomBar.photos'), href: '#photos', id: 'photos' },
-  {
-    icon: MessageCircleHeart,
-    label: t('bottomBar.wishes'),
-    href: '#wishes',
-    id: 'wishes',
-  },
 ];
+
+const getOptionalMenuItems = (t) => {
+  const items = [];
+
+  if (config.data.showPhotos) {
+    items.push({
+      icon: Image,
+      label: t('bottomBar.photos'),
+      href: '#photos',
+      id: 'photos',
+    });
+  }
+
+  if (config.data.showWishes) {
+    items.push({
+      icon: MessageCircleHeart,
+      label: t('bottomBar.wishes'),
+      href: '#wishes',
+      id: 'wishes',
+    });
+  }
+
+  return items;
+};
 
 const BottomBar = () => {
   const { t } = useTranslation();
   const [active, setActive] = React.useState('home');
-  const menuItems = useMemo(() => getMenuItems(t), [t]);
+  const menuItems = useMemo(
+    () => [...getMenuItems(t), ...getOptionalMenuItems(t)],
+    [t]
+  );
 
   return (
     <motion.div

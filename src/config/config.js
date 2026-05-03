@@ -1,8 +1,15 @@
 const config = {
   data: {
-    title: 'Muhammad & Saodat',
-    groomName: 'Muhammad',
-    brideName: 'Saodat',
+    title: 'Islombek & Umida',
+    metaTitle: 'Wedding of Islombek & Umida',
+    metaDescription:
+      'Join us on June 13 for our Fotiha ceremony and on June 14 for our wedding celebration.',
+    familyTitle: 'Семья Алимжановых и Исламовых',
+    groomName: 'Islombek',
+    brideName: 'Umida',
+    themeColor: 'hsl(349 89% 60%)',
+    showPhotos: false,
+    showWishes: false,
     parentGroom: {
       father: 'Salohiddin',
       mother: 'Gulorom',
@@ -11,7 +18,11 @@ const config = {
       father: 'Alisher',
       mother: 'Nozima',
     },
-    date: '2025-08-14',
+    date: '2026-06-14',
+    preWeddingDate: '2026-06-13',
+    weddingDate: '2026-06-14',
+    weddingTime: '19:30 ~ 01:30',
+    preWeddingTime: '19:00 ~ 22:00',
     maps_url:
       'https://yandex.com/maps/?ol=geo&text=Allama%20Muhammad%20Iqbal%20Street,%207&sll=64.426876,39.761720&sspn=0.006337,0.008211',
     maps_embed:
@@ -24,8 +35,16 @@ const config = {
     siteUrl: 'https://muhammad-saodat.vercel.app',
     agenda: [
       {
+        title: 'Fotiha To\'yi',
+        date: '2026-06-13',
+        startTime: '19:00',
+        endTime: '22:00',
+        location: 'Zahid Zarafshon Wedding Hall',
+        address: 'Allama Muhammad Iqbal Street, 7, Bukhara, Uzbekistan',
+      },
+      {
         title: 'Wedding',
-        date: '2025-08-14',
+        date: '2026-06-14',
         startTime: '19:30',
         endTime: '01:30',
         location: 'Zahid Zarafshon Wedding Hall',
