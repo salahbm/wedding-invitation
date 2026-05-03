@@ -109,6 +109,7 @@
   },
   "countdown": {
     "title": "Обратный отсчёт",
+    "untilWedding": "До свадьбы",
     "days": "Дней",
     "hours": "Часов",
     "minutes": "Минут",

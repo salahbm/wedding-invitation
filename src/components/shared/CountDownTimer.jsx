@@ -20,7 +20,7 @@ export const CountdownTimer = ({ targetDate }) => {
     if (difference > 0) {
       // Future event → countdown
       return {
-        label: t('countdown.untilWedding', 'Until the wedding'),
+        label: t('countdown.untilWedding'),
         values: {
           [t('countdown.days')]: days,
           [t('countdown.hours')]: hours,
@@ -31,7 +31,7 @@ export const CountdownTimer = ({ targetDate }) => {
     } else {
       // Past event → count up
       return {
-        label: t('countdown.sinceWedding', 'Since the wedding'),
+        label: t('countdown.sinceWedding'),
         values: {
           [t('countup.days')]: days,
           [t('countup.hours')]: hours,

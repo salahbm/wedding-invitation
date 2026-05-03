@@ -36,6 +36,7 @@ const config = {
     agenda: [
       {
         title: 'Fotiha To\'yi',
+        description: 'A warm family gathering and blessing ceremony before the wedding.',
         date: '2026-06-13',
         startTime: '19:00',
         endTime: '22:00',
@@ -44,6 +45,7 @@ const config = {
       },
       {
         title: 'Wedding',
+        description: 'Our main wedding celebration with loved ones and guests.',
         date: '2026-06-14',
         startTime: '19:30',
         endTime: '01:30',

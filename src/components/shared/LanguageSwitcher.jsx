@@ -17,7 +17,6 @@ const LanguageSwitcher = () => {
     { code: 'en', name: t('language.en') },
     { code: 'uz', name: t('language.uz') },
     { code: 'ru', name: t('language.ru') },
-    { code: 'kr', name: t('language.kr') },
   ];
 
   // Change language handler

@@ -32,7 +32,17 @@
     "outlookCalendar": "Outlook Calendar",
     "saveTheDate": "Save This Important Date",
     "weddingEvents": "Wedding Events",
-    "invitation": "We Invite You to Celebrate Our Special Day as the Beginning of Our Love Journey"
+    "invitation": "We invite you to celebrate our special day as the beginning of our love journey.",
+    "agenda": {
+      "fotiha": "Fotiha Wedding",
+      "fotihaBadge": "Pre-wedding",
+      "fotihaDesc": "A warm family gathering and blessing ceremony before the wedding.",
+      "wedding": "Wedding Celebration",
+      "weddingBadge": "Wedding Day",
+      "weddingDesc": "Our main wedding celebration with loved ones and guests.",
+      "preWeddingLabel": "Pre-wedding",
+      "weddingLabel": "Wedding Day"
+    }
   },
   "location": {
     "title": "Location",
@@ -80,6 +90,9 @@
     "timetable": "Event Timeline",
     "message": "We've planned a wonderful celebration and would like to share our schedule with you so you know what to expect on our special day.",
     "thankYou": "We look forward to celebrating with you",
+    "dateLabel": "Date",
+    "timeLabel": "Time",
+    "locationLabel": "Location",
     "timeHeader": "Time",
     "eventHeader": "Activity",
     "descriptionHeader": "Description",
@@ -109,6 +122,7 @@
   },
   "countdown": {
     "title": "Until the wedding",
+    "untilWedding": "Until the wedding",
     "days": "Days",
     "hours": "Hours",
     "minutes": "Minutes",

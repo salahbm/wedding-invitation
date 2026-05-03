@@ -12,6 +12,35 @@ export default function Hero() {
   const { t, i18n } = useTranslation();
   const [guestName, setGuestName] = useState('');
   const cardRef = useRef(null);
+  const heroVariants = {
+    hidden: { opacity: 0, y: 18, scale: 0.96, rotate: -2 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotate: 0,
+      transition: { type: 'spring', stiffness: 130, damping: 16, mass: 0.7 },
+    },
+  };
+
+  const contentVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.08,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 14 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.45, ease: 'easeOut' },
+    },
+  };
 
   const handleDownload = async () => {
     if (!cardRef.current) return;
@@ -102,9 +131,9 @@ export default function Hero() {
         {/* 💌 Card with solid background */}
         <motion.div
           ref={cardRef}
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 1, duration: 1.5 }}
+          variants={heroVariants}
+          initial="hidden"
+          animate="show"
           className="relative max-w-[420px] max-h-[640px] w-full mx-auto rounded-2xl overflow-hidden bg-white border border-primary-100 shadow-lg"
         >
           {/* 👰🏻 Background image */}
@@ -124,9 +153,14 @@ export default function Hero() {
               <div className="w-24 sm:w-36 h-0.5 bg-gradient-to-r from-transparent via-primary-200 to-transparent" />
             </div>
 
-            <div className="space-y-8 text-center">
+            <motion.div
+              className="space-y-8 text-center"
+              variants={contentVariants}
+              initial="hidden"
+              animate="show"
+            >
               <div className="space-y-6">
-                <h1 className="font-serif text-gray-800">
+                <motion.h1 className="font-serif text-gray-800" variants={itemVariants}>
                   <div className="text-sm sm:text-base text-primary-500 mb-2 font-sans">
                     {t('hero.bismillah')}
                   </div>
@@ -138,35 +172,35 @@ export default function Hero() {
                   </div>
                   <div className="text-3xl sm:text-4xl md:text-5xl mb-2">
                     <span className="text-primary-400 mx-2 text-md font-thin">
-                      &
+                      {t('hero.and')}
                     </span>
                     {config.data.brideName}
                   </div>
-                </h1>
+                </motion.h1>
 
-                <div className="flex items-center justify-center space-x-2">
+                <motion.div className="flex items-center justify-center space-x-2" variants={itemVariants}>
                   <Calendar className="w-4 h-4 text-primary-400" />
                   <p className="text-gray-700 font-medium capitalize">
                     {formatEventDate(config.data.date, 'full', i18n.language)}
                   </p>
-                </div>
+                </motion.div>
 
-                <div className="flex items-center justify-center space-x-2">
+                <motion.div className="flex items-center justify-center space-x-2" variants={itemVariants}>
                   <Clock className="w-4 h-4 text-primary-400" />
                   <span className="text-gray-700 capitalize font-medium text-sm sm:text-base">
                     {config.data.time}
                   </span>
-                </div>
+                </motion.div>
               </div>
 
               {/* Separator */}
-              <div className="flex items-center justify-center gap-3">
+              <motion.div className="flex items-center justify-center gap-3" variants={itemVariants}>
                 <div className="h-px w-8 sm:w-12 bg-primary-200/70" />
                 <div className="w-2 h-2 rounded-full bg-primary-200" />
                 <div className="h-px w-8 sm:w-12 bg-primary-200/70" />
-              </div>
+              </motion.div>
 
-              <div className="space-y-2">
+              <motion.div className="space-y-2" variants={itemVariants}>
                 <p className="text-gray-500 font-serif italic text-sm">
                   {t('landing.for')}
                 </p>
@@ -183,8 +217,8 @@ export default function Hero() {
                     t('landing.invitation')
                   )}
                 </p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* bottom line */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-px">
@@ -201,18 +235,18 @@ export default function Hero() {
           className="my-6 flex mx-auto duration-700 items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white px-6 py-2.5 rounded-full font-medium shadow-lg transition-all"
         >
           <Download className="w-4 h-4" />
-          {t('hero.downloadCard') || 'Download Card'}
+          {t('hero.downloadCard')}
         </motion.button>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.8, delay: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
           className="space-y-10 relative z-10 w-full"
         >
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.05, type: 'spring', stiffness: 200, damping: 18 }}
             className="inline-block mx-auto"
           >
             <span className="px-4 py-1 text-sm bg-primary-50 text-primary-600 rounded-full border border-primary-200">
@@ -224,7 +258,7 @@ export default function Hero() {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
+              transition={{ delay: 0.12, duration: 0.5 }}
               className="text-gray-500 font-light italic text-base sm:text-lg"
             >
               {t('hero.withJoy')}
@@ -232,7 +266,7 @@ export default function Hero() {
             <motion.h2
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.6 }}
+              transition={{ delay: 0.18, type: 'spring', stiffness: 150, damping: 14 }}
               className="text-2xl sm:text-4xl md:text-5xl font-serif bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-600"
             >
               {config.data.groomName} & {config.data.brideName}
