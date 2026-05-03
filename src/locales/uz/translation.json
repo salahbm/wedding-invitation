@@ -7,7 +7,8 @@
     "invitation": "To‘y Taklifi",
     "for": "Kim uchun:",
     "openInvitation": "Taklifnomani ochish",
-    "personalInvitation": "Siz(lar)ni nikoh to‘yimizga taklif qilamiz,<br/>{{guestName}} ❤️",
+    "personalInvitation": "{{guestName}}, sizni to‘yimizga chin yurakdan taklif qilamiz ❤️",
+    "generalInvitation": "Sizni to‘yimizga chin yurakdan taklif qilamiz ❤️",
     "78": "Va Biz sizlarni juft-juft qilib yaratdik 78:8",
     "clickForMore": "Batafsil ma’lumot uchun bosing"
   },

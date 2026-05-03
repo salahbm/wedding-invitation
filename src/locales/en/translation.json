@@ -7,7 +7,8 @@
     "invitation": "Wedding Invitation",
     "for": "For:",
     "openInvitation": "Open Invitation",
-    "personalInvitation": "We're honored to have you,<br/>{{guestName}} ❤️",
+    "personalInvitation": "We warmly invite you to our wedding, {{guestName}} ❤️",
+    "generalInvitation": "We warmly invite you to our wedding ❤️",
     "78": "And We created you in pairs 78:8",
     "clickForMore": "Click for more details"
   },

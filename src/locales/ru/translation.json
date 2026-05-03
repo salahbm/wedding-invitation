@@ -7,7 +7,8 @@
     "invitation": "Свадебное приглашение",
     "for": "Для:",
     "openInvitation": "Открыть приглашение",
-    "personalInvitation": "Мы рады видеть вас,<br/>{{guestName}} ❤️",
+    "personalInvitation": "{{guestName}}, с радостью приглашаем вас на нашу свадьбу ❤️",
+    "generalInvitation": "С радостью приглашаем вас на нашу свадьбу ❤️",
     "78": "И Мы создали вас парами 78:8",
     "clickForMore": "Нажмите для подробностей"
   },

@@ -139,7 +139,7 @@ export default function Hero() {
           {/* 👰🏻 Background image */}
           <picture className="absolute inset-0 z-0">
             <img
-              src="/images/couple-1.jpeg"
+              src="/images/hero.jpg"
               alt="Background"
               className="w-full h-full object-cover opacity-20"
             />
@@ -207,6 +207,7 @@ export default function Hero() {
                 <p className="text-primary-500 font-semibold text-md">
                   {guestName ? (
                     <span
+                      className='block'
                       dangerouslySetInnerHTML={{
                         __html: t('landing.personalInvitation', {
                           guestName,
@@ -214,7 +215,7 @@ export default function Hero() {
                       }}
                     />
                   ) : (
-                    t('landing.invitation')
+                    t('landing.generalInvitation')
                   )}
                 </p>
               </motion.div>

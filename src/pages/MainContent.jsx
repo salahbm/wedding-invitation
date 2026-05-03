@@ -47,7 +47,6 @@ export default function MainContent() {
       </motion.section>
       {/* <Photos /> */}
       {/* <Wishes /> */}
-      {/* <TableNumber /> */}
     </motion.div>
   );
 }
