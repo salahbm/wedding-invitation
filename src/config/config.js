@@ -35,7 +35,7 @@ const config = {
     siteUrl: 'https://muhammad-saodat.vercel.app',
     agenda: [
       {
-        title: 'Fotiha To\'yi',
+        title: 'Fotiha',
         description: 'A warm family gathering and blessing ceremony before the wedding.',
         date: '2026-06-13',
         startTime: '19:00',
@@ -54,8 +54,8 @@ const config = {
       },
     ],
     audio: {
-      src: '/audio/wedding-nasheed.mp3',
-      title: 'Wedding Nasheed',
+      src: '/audio/MeniSev.mp3',
+      title: 'Meni Sev - Sevara Nazarxon',
       autoplay: true,
       loop: true,
     },
