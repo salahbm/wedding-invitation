@@ -139,9 +139,9 @@ export default function Hero() {
           {/* 👰🏻 Background image */}
           <picture className="absolute inset-0 z-0">
             <img
-              src="/images/hero.jpg"
+              src="/images/hero.png"
               alt="Background"
-              className="w-full h-full object-cover opacity-20"
+              className="w-full h-full object-cover opacity-80"
             />
           </picture>
           <div className="absolute inset-0 bg-gradient-to-b from-primary-100/20 to-white/40" />
@@ -161,9 +161,9 @@ export default function Hero() {
             >
               <div className="space-y-6">
                 <motion.h1 className="font-serif text-gray-800" variants={itemVariants}>
-                  <div className="text-sm sm:text-base text-primary-500 mb-2 font-sans">
+                  {/* <div className="text-sm sm:text-base text-primary-500 mb-2 font-sans">
                     {t('hero.bismillah')}
-                  </div>
+                  </div> */}
                   <div className="text-md mt-2 sm:text-lg mb-1">
                     {t('hero.weddingOf')}
                   </div>
