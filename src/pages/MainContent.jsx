@@ -1,6 +1,6 @@
 import config from '@/config/config';
 import { motion } from 'framer-motion';
-import { CalendarDays, Heart } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -52,6 +52,14 @@ export default function MainContent() {
   const { t, i18n } = useTranslation();
 
   const eventDate = useMemo(() => new Date(config.data.date), []);
+  const startTime = useMemo(() => {
+    const startTimeParam = Number(
+      new URLSearchParams(window.location.search).get('startTime')
+    );
+
+    const startHour = startTimeParam === 11 ? 11 : 10;
+    return `${String(startHour).padStart(2, '0')}:00`;
+  }, []);
   const locale = toLocaleId(i18n.language);
   const monthYear = useMemo(() => {
     const formatted = new Intl.DateTimeFormat(locale, {
@@ -77,11 +85,11 @@ export default function MainContent() {
       <div className="absolute -left-24 top-28 h-56 w-56 rounded-full bg-primary-200/20 blur-3xl" />
       <div className="absolute -right-24 top-[32rem] h-64 w-64 rounded-full bg-primary-200/20 blur-3xl" />
 
-      <div className="relative mx-auto flex min-h-screen w-full max-w-[640px] flex-col px-4 pb-10 sm:px-6">
+      <div className="relative mx-auto flex min-h-screen w-full max-w-[640px] flex-col px-4 pb-10 sm:px-6 pt-5">
         <header>
           <motion.img
-            src="/images/ornoment.png"
-            alt="Ornoments"
+            src="/images/karnay.png"
+            alt="Karnay"
             aria-hidden="true"
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -195,11 +203,8 @@ export default function MainContent() {
             <p className="mt-2 font-serif text-2xl italic text-primary-700 sm:text-3xl">
               {t('simpleTemplate.eventVenue')}
             </p>
-            <p className="mt-3 text-sm leading-7 text-gray-500">
-              {t('simpleTemplate.singerGuestsTitle')}: {t('simpleTemplate.singerGuestNames')}
-            </p>
             <p className="mt-2 text-sm leading-7 text-gray-500">
-              {t('simpleTemplate.brideEntry')}
+              {t('simpleTemplate.startsAt')}: {startTime}
             </p>
           </div>
 
@@ -220,13 +225,6 @@ export default function MainContent() {
             >
               {t('simpleTemplate.directionButton')}
             </a>
-          </div>
-
-          <div className="flex items-center justify-center gap-2 text-primary-500">
-            <CalendarDays className="h-4 w-4" />
-            <span className="text-[0.68rem] font-semibold uppercase tracking-[0.35em] text-primary-300">
-              {t('simpleTemplate.eventTimeLabel')}: {t('simpleTemplate.eventTime')}
-            </span>
           </div>
         </motion.section>
       </div>

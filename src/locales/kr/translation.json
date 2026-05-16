@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "{{groomName}} & {{brideName}}의 피티하 결혼식",
-    "description": "2026년 6월 13일 피티하 결혼식에 여러분을 초대합니다."
+    "title": "{{groomName}} & {{brideName}}의 오쉬 마로심이",
+    "description": "2026년 6월 14일 오쉬 마로심이에 여러분을 초대합니다."
   },
   "landing": {
     "invitation": "결혼식 초대장",
@@ -12,7 +12,7 @@
     "clickForMore": "자세히 보기를 원하시면 클릭하세요"
   },
   "simpleTemplate": {
-    "eventTitle": "Fotiha 결혼식",
+    "eventTitle": "Osh Marosimi",
     "greeting": "기쁜 날에 여러분을 따뜻하게 기다리고 있습니다",
     "and": "그리고",
     "saveTheDate": "날짜 저장",
@@ -25,10 +25,8 @@
     "eventDateLabel": "날짜",
     "eventTimeLabel": "시작 시간",
     "eventVenueLabel": "장소",
-    "singerGuestsTitle": "가수 손님",
-    "singerGuestNames": "Iroda Dilfuz 그리고 Yulduz Turdiyeva",
-    "brideEntry": "신부 입장은 14:00",
-    "eventDate": "13.06.26",
+    "startsAt": "시작 시간",
+    "eventDate": "14.06.26",
     "eventTime": "14:00",
     "eventVenue": "Sahid Zarafshon",
     "weekdays": ["일", "월", "화", "수", "목", "금", "토"]

@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "{{groomName}} va {{brideName}}ning Fotiha toʻyi",
-    "description": "2026-yil 13-iyunda boʻlib oʻtadigan Fotiha toʻyimizga sizni taklif qilamiz."
+    "title": "{{groomName}} va {{brideName}}ning Osh Marosimi",
+    "description": "2026-yil 14-iyunda boʻlib oʻtadigan Osh marosimimizga sizni taklif qilamiz."
   },
   "landing": {
     "invitation": "To‘y Taklifi",
@@ -13,7 +13,7 @@
     "clickForMore": "Batafsil ma’lumot uchun bosing"
   },
   "simpleTemplate": {
-    "eventTitle": "Fotiha toʻyi",
+    "eventTitle": "Osh Marosimi",
     "greeting": "Quvonchli kunimizda aziz mehmonimiz bo‘lishingizni intiqlik bilan kutamiz",
     "and": "va",
     "saveTheDate": "Sanani saqlang",
@@ -26,10 +26,8 @@
     "eventDateLabel": "Sana",
     "eventTimeLabel": "Boshlanish vaqti",
     "eventVenueLabel": "Manzil",
-    "singerGuestsTitle": "Xonanda mehmonlar",
-    "singerGuestNames": "Iroda Dilfuz va Yulduz Turdiyeva",
-    "brideEntry": "Kelin soat 14:00 da kiradi",
-    "eventDate": "13.06.26",
+    "startsAt": "Boshlanish vaqti",
+    "eventDate": "14.06.26",
     "eventTime": "14:00",
     "eventVenue": "Sahid Zarafshon",
     "weekdays": ["DU", "SE", "CHOR", "PAY", "JU", "SHA", "YA"]

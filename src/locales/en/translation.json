@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Fotiha Wedding of {{groomName}} & {{brideName}}",
-    "description": "Join us on June 13, 2026, for our Fotiha wedding celebration."
+    "title": "Osh Marosimi of {{groomName}} & {{brideName}}",
+    "description": "Join us on June 14, 2026, for our Osh Marosimi celebration."
   },
   "landing": {
     "invitation": "Wedding Invitation",
@@ -13,7 +13,7 @@
     "clickForMore": "Click for more details"
   },
   "simpleTemplate": {
-    "eventTitle": "Fotiha Wedding",
+    "eventTitle": "Osh Marosimi",
     "greeting": "We warmly await your presence on our joyful day",
     "and": "and",
     "saveTheDate": "Save the date",
@@ -26,10 +26,8 @@
     "eventDateLabel": "Date",
     "eventTimeLabel": "Starts at",
     "eventVenueLabel": "Venue",
-    "singerGuestsTitle": "Singer guests",
-    "singerGuestNames": "Iroda Dilfuz and Yulduz Turdiyeva",
-    "brideEntry": "Bride enters at 14:00",
-    "eventDate": "13.06.26",
+    "startsAt": "Starts at",
+    "eventDate": "14.06.26",
     "eventTime": "14:00",
     "eventVenue": "Sahid Zarafshon",
     "weekdays": ["SU", "MO", "TU", "WE", "TH", "FR", "SA"]

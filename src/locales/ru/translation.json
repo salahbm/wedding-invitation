@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Фотиҳа-свадьба {{groomName}} и {{brideName}}",
-    "description": "Приглашаем вас на нашу Фотиҳа-свадьбу 13 июня 2026 года."
+    "title": "Ош-маросими {{groomName}} и {{brideName}}",
+    "description": "Приглашаем вас на наш ош-маросими 14 июня 2026 года."
   },
   "landing": {
     "invitation": "Свадебное приглашение",
@@ -13,7 +13,7 @@
     "clickForMore": "Нажмите для подробностей"
   },
   "simpleTemplate": {
-    "eventTitle": "Фотиҳа свадьба",
+    "eventTitle": "Ош-маросими",
     "greeting": "Мы с радостью ждём вас в наш счастливый день",
     "and": "и",
     "saveTheDate": "Сохраните дату",
@@ -26,10 +26,8 @@
     "eventDateLabel": "Дата",
     "eventTimeLabel": "Начало в",
     "eventVenueLabel": "Место",
-    "singerGuestsTitle": "Певцы-гости",
-    "singerGuestNames": "Ирода Дилфуз и Юлдуз Турдиева",
-    "brideEntry": "Невеста входит в 14:00",
-    "eventDate": "13.06.26",
+    "startsAt": "Начало в",
+    "eventDate": "14.06.26",
     "eventTime": "14:00",
     "eventVenue": "Sahid Zarafshon",
     "weekdays": ["ВС", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"]
