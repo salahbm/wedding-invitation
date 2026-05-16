@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "{{groomName}} & {{brideName}}의 결혼식",
-    "description": "저희 결혼합니다. 이 특별한 순간을 함께 축하해 주세요."
+    "title": "{{groomName}} & {{brideName}}의 피티하 결혼식",
+    "description": "2026년 6월 13일 피티하 결혼식에 여러분을 초대합니다."
   },
   "landing": {
     "invitation": "결혼식 초대장",
@@ -12,6 +12,7 @@
     "clickForMore": "자세히 보기를 원하시면 클릭하세요"
   },
   "simpleTemplate": {
+    "eventTitle": "Fotiha 결혼식",
     "greeting": "기쁜 날에 여러분을 따뜻하게 기다리고 있습니다",
     "and": "그리고",
     "saveTheDate": "날짜 저장",
@@ -19,6 +20,17 @@
     "mapButton": "얀덱스 지도",
     "directionButton": "길 안내",
     "timeLabel": "시간",
+    "toggleMusic": "음악 전환",
+    "changeLanguage": "언어 변경",
+    "eventDateLabel": "날짜",
+    "eventTimeLabel": "시작 시간",
+    "eventVenueLabel": "장소",
+    "singerGuestsTitle": "가수 손님",
+    "singerGuestNames": "Iroda Dilfuz 그리고 Yulduz Turdiyeva",
+    "brideEntry": "신부 입장은 14:00",
+    "eventDate": "13.06.26",
+    "eventTime": "14:00",
+    "eventVenue": "Sahid Zarafshon",
     "weekdays": ["일", "월", "화", "수", "목", "금", "토"]
   },
   "hero": {

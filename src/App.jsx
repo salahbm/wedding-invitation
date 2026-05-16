@@ -9,11 +9,11 @@ function App() {
   const [themeColor, setThemeColor] = useState('');
   const { t } = useTranslation();
 
-  const pageTitle = config.data.metaTitle || t('meta.title', {
+  const pageTitle = t('meta.title', {
     groomName: config.data.groomName,
     brideName: config.data.brideName,
   });
-  const pageDescription = config.data.metaDescription || t('meta.description');
+  const pageDescription = t('meta.description');
 
   useEffect(() => {
     const primary = getComputedStyle(document.documentElement)

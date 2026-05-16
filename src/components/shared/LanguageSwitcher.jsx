@@ -27,7 +27,7 @@ const LanguageSwitcher = () => {
         className="flex items-center justify-center rounded-full border border-primary-200 bg-white/90 p-2 shadow-[0_10px_30px_rgba(112,55,28,0.14)] backdrop-blur-sm transition-colors hover:bg-primary-50"
         aria-label={t('simpleTemplate.changeLanguage')}
       >
-        <Globe className="h-5 w-5 text-primary-500" />
+        <Globe className="h-4 w-4 text-primary-500" />
       </button>
 
       {isOpen ? (

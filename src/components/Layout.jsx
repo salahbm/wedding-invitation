@@ -12,23 +12,20 @@ const Layout = ({ children, startInvitation }) => {
   return (
     <div
       className={cn(
-        'relative w-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center',
+        'relative w-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-start justify-center',
         startInvitation ? 'min-h-screen' : 'h-screen'
       )}
     >
       <motion.div
         className={cn(
-          'mx-auto w-full bg-white relative overflow-hidden border border-gray-200 shadow-lg',
+          'mx-auto w-full bg-white relative overflow-hidden border border-gray-200 shadow-lg min-h-screen',
           startInvitation && 'max-w-screen-md'
         )}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        {/* Language Switcher - positioned relative to container instead of fixed */}
-        <div className="fixed top-4 left-4 z-50">
-          <LanguageSwitcher />
-        </div>
+
 
         {/* Music Control Button with Status Indicator - matched size with language switcher */}
         <motion.button
@@ -37,7 +34,7 @@ const Layout = ({ children, startInvitation }) => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={toggleMusic}
-          className="fixed top-3 right-4 z-50 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg border border-primary-100/50"
+          className="fixed top-4 left-4 z-50 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg border border-primary-100/50"
         >
           {isPlaying ? (
             <div className="relative">
@@ -48,10 +45,13 @@ const Layout = ({ children, startInvitation }) => {
             <PlayCircle className="w-5 h-5 text-primary-500" />
           )}
         </motion.button>
-
+        {/* Language Switcher - positioned relative to container instead of fixed */}
+        <div className="fixed top-4 right-4 z-50">
+          <LanguageSwitcher />
+        </div>
         <main
           className={cn(
-            'relative h-full w-full ',
+            'relative min-h-screen w-full',
             startInvitation && 'pb-[100px]'
           )}
         >

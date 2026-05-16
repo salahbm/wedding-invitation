@@ -1,5 +1,4 @@
 import config from '@/config/config';
-import { formatEventDate } from '@/lib/formatEventDate';
 import { motion } from 'framer-motion';
 import { CalendarDays, Heart } from 'lucide-react';
 import { useMemo } from 'react';
@@ -78,7 +77,7 @@ export default function MainContent() {
       <div className="absolute -left-24 top-28 h-56 w-56 rounded-full bg-primary-200/20 blur-3xl" />
       <div className="absolute -right-24 top-[32rem] h-64 w-64 rounded-full bg-primary-200/20 blur-3xl" />
 
-      <div className="relative mx-auto flex min-h-screen w-full max-w-[640px] flex-col px-4 pb-10 pt-10 sm:px-6 sm:pt-12">
+      <div className="relative mx-auto flex min-h-screen w-full max-w-[640px] flex-col px-4 pb-10 sm:px-6">
         <header>
           <motion.img
             src="/images/ornoment.png"
@@ -87,27 +86,18 @@ export default function MainContent() {
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="w-full select-none object-contain"
+            className="w-full object-center select-none"
           />
-
-          <div className="px-1 sm:px-2">
-            <motion.img
-              src="/images/karnay.png"
-              alt="Karnay"
-              aria-hidden="true"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="w-full object-contain drop-shadow-[0_12px_22px_rgba(255,193,7,0.18)]"
-            />
-          </div>
 
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.15 }}
-            className="px-2 text-center"
+            className="px-2 text-center -mt-16"
           >
+            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.45em] text-primary-300">
+              {t('simpleTemplate.eventTitle')}
+            </p>
             <p className="mx-auto max-w-[420px] text-sm leading-6 text-primary-500/90 sm:text-base">
               {t('simpleTemplate.greeting')}
             </p>
@@ -146,7 +136,7 @@ export default function MainContent() {
               {monthYear}
             </p>
             <p className="mt-2 text-sm leading-6 text-gray-500">
-              {formatEventDate(config.data.date, 'full', i18n.language)}
+              {t('simpleTemplate.eventDate')}
             </p>
           </div>
 
@@ -200,10 +190,16 @@ export default function MainContent() {
 
           <div className="text-center">
             <p className="font-serif text-3xl italic text-primary-700 sm:text-4xl">
-              {config.data.location}
+              {t('simpleTemplate.venueTitle')}
+            </p>
+            <p className="mt-2 font-serif text-2xl italic text-primary-700 sm:text-3xl">
+              {t('simpleTemplate.eventVenue')}
             </p>
             <p className="mt-3 text-sm leading-7 text-gray-500">
-              {config.data.address}
+              {t('simpleTemplate.singerGuestsTitle')}: {t('simpleTemplate.singerGuestNames')}
+            </p>
+            <p className="mt-2 text-sm leading-7 text-gray-500">
+              {t('simpleTemplate.brideEntry')}
             </p>
           </div>
 
@@ -229,13 +225,9 @@ export default function MainContent() {
           <div className="flex items-center justify-center gap-2 text-primary-500">
             <CalendarDays className="h-4 w-4" />
             <span className="text-[0.68rem] font-semibold uppercase tracking-[0.35em] text-primary-300">
-              {t('simpleTemplate.timeLabel')}
+              {t('simpleTemplate.eventTimeLabel')}: {t('simpleTemplate.eventTime')}
             </span>
           </div>
-
-          <p className="text-center text-sm leading-6 text-gray-500">
-            {config.data.time}
-          </p>
         </motion.section>
       </div>
     </motion.div>
