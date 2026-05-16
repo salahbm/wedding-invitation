@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "{{groomName}} va {{brideName}}ning toʻyi",
-    "description": "Biz turmush qurmoqdamiz va sizni ushbu maxsus onimizni biz bilan nishonlashga taklif qilamiz."
+    "title": "{{groomName}} va {{brideName}}ning osh marosimi",
+    "description": "Biz sizni ushbu quvonchli osh marosimimizni biz bilan birga nishonlashga taklif qilamiz."
   },
   "landing": {
     "invitation": "To‘y Taklifi",
@@ -31,8 +31,8 @@
     "appleCalendar": "Apple Kalendar",
     "outlookCalendar": "Outlook Kalendar",
     "saveTheDate": "Muhim sanani saqlang",
-    "weddingEvents": "To‘y Tadbirlari",
-    "invitation": "Muhabbat yo‘lidagi sayohatimiz boshlanishiga guvoh bo‘lishingizni istaymiz"
+    "weddingEvents": "Osh Marosimi Dasturi",
+    "invitation": "Siz bilan birga bayram qilishni intiqlik bilan kutamiz"
   },
   "location": {
     "title": "Manzil",
@@ -76,29 +76,39 @@
   },
   "table": {
     "title": "Taqvim",
-    "weddingSchedule": "To‘y Dasturi",
+    "weddingSchedule": "Osh Marosimi Dasturi",
     "timetable": "Tadbirlar jadvali",
-    "message": "Biz siz uchun ajoyib bayram tayyorladik va sizni nimalar kutayotganini ko‘rishingiz uchun dastur bilan tanishtiramiz.",
-    "thankYou": "Siz bilan bayram qilishni intiqlik bilan kutamiz",
+    "message": "Siz bilan birga bayram qilishni intiqlik bilan kutamiz",
+    "thankYou": "Siz bilan birga bayram qilishdan mamnunmiz",
     "timeHeader": "Vaqti",
-    "eventHeader": "Tadbir",
+    "eventHeader": "Faoliyat",
     "descriptionHeader": "Tavsif",
     "guestArrival": "Mehmonlar kelishi",
     "arrivalDesc": "Mehmonlarni kutib olish va joylashtirish",
-    "entrance": "Kuyov & Kelin kirishi",
-    "entranceDesc": "Yangi turmush qurganlarning tantanali kirishi",
-    "firstCourse": "Birinchi taomlar",
-    "firstCourseDesc": "Aperitivlar va yengil taomlar tortilishi",
-    "mainCourse": "Asosiy taomlar",
-    "mainCourseDesc": "Asosiy taomlar tortilishi",
-    "dance": "Raqsga tushish boshlanadi",
-    "danceDesc": "Barcha mehmonlar uchun raqs va bayram",
-    "games": "To‘y o‘yinlari",
-    "gamesDesc": "Hamma uchun qiziqarli o‘yinlar",
-    "waltz": "Kelin-kuyov raqsi",
-    "waltzDesc": "Yangi juftlikdan maxsus raqs",
-    "celebration": "Bayram",
-    "celebrationDesc": "Tungi bayram va raqslar"
+    "rustamEntrance": "Kuyov va kelin kirishi",
+    "rustamEntranceDesc": "Rustam Fayziev qo‘shig‘i ostida tantanali kirish",
+    "ziyadaEntrance": "Ziyoda qo‘shig‘i bilan kirish",
+    "ziyadaEntranceDesc": "Ziyoda qo‘shig‘i ostida tantanali kirish",
+    "danceShow": "Parizoda raqs tomoshasi",
+    "danceShowDesc": "Parizoda raqs guruhining birinchi chiqishi",
+    "zohirshodSong": "Zohirshod chiqishi",
+    "zohirshodSongDesc": "Zohirshod mehmonlar uchun kuylaydi",
+    "foodServingOne": "Taom tarqatish 1",
+    "foodServingOneDesc": "Taomlarning birinchi marotaba tortilishi",
+    "danceShowAgain": "Parizoda raqs tomoshasi",
+    "danceShowAgainDesc": "Parizoda raqs guruhining ikkinchi chiqishi",
+    "farzonaiXurshid": "Farzonai Xurshid chiqishi",
+    "farzonaiXurshidDesc": "Farzonai Xurshid mehmonlar uchun kuylaydi",
+    "foodServingTwo": "Taom tarqatish 2",
+    "foodServingTwoDesc": "Taomlarning ikkinchi marotaba tortilishi",
+    "danceShowFinal": "Parizoda raqs tomoshasi",
+    "danceShowFinalDesc": "Parizoda raqs guruhining yakuniy chiqishi",
+    "coupleDance": "Kelin-kuyov raqsi",
+    "coupleDanceDesc": "Kelin va kuyovning maxsus raqsi",
+    "cakeCutting": "Tort kesish",
+    "cakeCuttingDesc": "Kelin va kuyov tort kesish marosimi",
+    "guestDances": "Mehmonlar raqsi",
+    "guestDancesDesc": "Mehmonlar uchun ochiq raqs maydoni"
   },
   "bottomBar": {
     "home": "Bosh sahifa",

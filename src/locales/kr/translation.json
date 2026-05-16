@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "{{groomName}} & {{brideName}}의 결혼식",
-    "description": "저희 결혼합니다. 이 특별한 순간을 함께 축하해 주세요."
+    "title": "{{groomName}} & {{brideName}}의 오시 마로시미",
+    "description": "즐거운 오시 마로시미를 함께 축하해 주세요."
   },
   "landing": {
     "invitation": "결혼식 초대장",
@@ -31,8 +31,8 @@
     "appleCalendar": "애플 캘린더",
     "outlookCalendar": "아웃룩 캘린더",
     "saveTheDate": "날짜 저장",
-    "weddingEvents": "결혼식 일정",
-    "invitation": "저희의 사랑 이야기가 시작되는 날을 함께 축하해 주세요"
+    "weddingEvents": "오시 마로시미 프로그램",
+    "invitation": "함께 축하할 날을 기대하고 있습니다"
   },
   "location": {
     "title": "오시는 길",
@@ -76,29 +76,39 @@
   },
   "table": {
     "title": "일정표",
-    "weddingSchedule": "결혼식 일정",
+    "weddingSchedule": "오시 마로시미 프로그램",
     "timetable": "타임라인",
-    "message": "소중한 분들과 함께할 멋진 시간을 계획하였습니다. 어떤 일정이 있는지 확인해 보세요.",
-    "thankYou": "함께 축하해 주세요",
+    "message": "함께 축하할 날을 기대하고 있습니다",
+    "thankYou": "행사에서 뵙게 되어 기쁩니다",
     "timeHeader": "시간",
-    "eventHeader": "행사",
+    "eventHeader": "활동",
     "descriptionHeader": "설명",
     "guestArrival": "하객 도착",
     "arrivalDesc": "하객 입장 및 안내",
-    "entrance": "신랑신부 입장",
-    "entranceDesc": "신랑신부의 화려한 입장",
-    "firstCourse": "에피타이저",
-    "firstCourseDesc": "전채 요리 제공",
-    "mainCourse": "메인 요리",
-    "mainCourseDesc": "메인 요리 제공",
-    "dance": "댄스 시작",
-    "danceDesc": "모두 함께 즐기는 댄스타임",
-    "games": "게임",
-    "gamesDesc": "모두가 함께 즐기는 게임",
-    "waltz": "커플 왈츠",
-    "waltzDesc": "신랑신부의 특별한 댄스",
-    "celebration": "축하 파티",
-    "celebrationDesc": "밤 늦게까지 이어지는 축하"
+    "rustamEntrance": "신랑신부 입장",
+    "rustamEntranceDesc": "Rustam Fayziev 노래에 맞춘 화려한 입장",
+    "ziyadaEntrance": "Ziyoda 노래 입장",
+    "ziyadaEntranceDesc": "Ziyoda 노래에 맞춘 화려한 입장",
+    "danceShow": "Parizoda 댄스 쇼",
+    "danceShowDesc": "Parizoda 팀의 첫 번째 무대",
+    "zohirshodSong": "Zohirshod 공연",
+    "zohirshodSongDesc": "Zohirshod가 하객들을 위해 노래합니다",
+    "foodServingOne": "식사 제공 1",
+    "foodServingOneDesc": "첫 번째 식사 제공",
+    "danceShowAgain": "Parizoda 댄스 쇼",
+    "danceShowAgainDesc": "Parizoda 팀의 두 번째 무대",
+    "farzonaiXurshid": "Farzonai Xurshid 공연",
+    "farzonaiXurshidDesc": "Farzonai Xurshid가 하객들을 위해 노래합니다",
+    "foodServingTwo": "식사 제공 2",
+    "foodServingTwoDesc": "두 번째 식사 제공",
+    "danceShowFinal": "Parizoda 댄스 쇼",
+    "danceShowFinalDesc": "Parizoda 팀의 마지막 무대",
+    "coupleDance": "신랑신부 댄스",
+    "coupleDanceDesc": "신랑과 신부의 특별한 춤",
+    "cakeCutting": "케이크 커팅",
+    "cakeCuttingDesc": "신랑신부의 케이크 커팅",
+    "guestDances": "하객 댄스",
+    "guestDancesDesc": "하객들을 위한 오픈 댄스 플로어"
   },
   "bottomBar": {
     "home": "홈",

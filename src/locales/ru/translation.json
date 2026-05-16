@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Свадьба {{groomName}} и {{brideName}}",
-    "description": "Мы женимся и приглашаем вас отпраздновать этот особенный момент вместе с нами."
+    "title": "Ош-маросим {{groomName}} и {{brideName}}",
+    "description": "Мы приглашаем вас вместе с нами отпраздновать этот радостный ош-маросим."
   },
   "landing": {
     "invitation": "Свадебное приглашение",
@@ -32,8 +32,8 @@
     "appleCalendar": "Apple Календарь",
     "outlookCalendar": "Outlook Календарь",
     "saveTheDate": "Сохраните важную дату",
-    "weddingEvents": "Свадебные мероприятия",
-    "invitation": "Приглашаем вас отпраздновать с нами начало нашего любовного пути"
+    "weddingEvents": "Программа ош-маросима",
+    "invitation": "С нетерпением ждём праздника вместе с вами"
   },
   "location": {
     "title": "Локация",
@@ -77,29 +77,39 @@
   },
   "table": {
     "title": "Расписание",
-    "weddingSchedule": "Свадебное расписание",
+    "weddingSchedule": "Программа ош-маросима",
     "timetable": "График мероприятий",
-    "message": "Мы подготовили замечательный праздник и хотим поделиться планом, чтобы вы знали, чего ожидать.",
-    "thankYou": "Ждём встречи с вами на празднике",
+    "message": "С нетерпением ждём праздника вместе с вами",
+    "thankYou": "Рады будем видеть вас на нашем празднике",
     "timeHeader": "Время",
-    "eventHeader": "Мероприятие",
+    "eventHeader": "Активность",
     "descriptionHeader": "Описание",
     "guestArrival": "Прибытие гостей",
     "arrivalDesc": "Приветствие и размещение гостей",
-    "entrance": "Вход жениха и невесты",
-    "entranceDesc": "Торжественный вход молодожёнов",
-    "firstCourse": "Закуски",
-    "firstCourseDesc": "Подача закусок",
-    "mainCourse": "Основное блюдо",
-    "mainCourseDesc": "Подача основных блюд",
-    "dance": "Открытие танцпола",
-    "danceDesc": "Танцы и веселье для всех гостей",
-    "games": "Свадебные игры",
-    "gamesDesc": "Интерактивные игры для гостей",
-    "waltz": "Первый танец",
-    "waltzDesc": "Специальный танец от пары",
-    "celebration": "Празднование",
-    "celebrationDesc": "Веселье до конца вечера"
+    "rustamEntrance": "Вход жениха и невесты",
+    "rustamEntranceDesc": "Торжественный вход под песню Rustam Fayziev",
+    "ziyadaEntrance": "Вход под песню Ziyoda",
+    "ziyadaEntranceDesc": "Торжественный вход под песню Ziyoda",
+    "danceShow": "Танцевальное шоу Parizoda",
+    "danceShowDesc": "Первое танцевальное выступление Parizoda",
+    "zohirshodSong": "Выступление Zohirshod",
+    "zohirshodSongDesc": "Zohirshod исполнит песню для гостей",
+    "foodServingOne": "Подача еды 1",
+    "foodServingOneDesc": "Первая подача еды",
+    "danceShowAgain": "Танцевальное шоу Parizoda",
+    "danceShowAgainDesc": "Второе танцевальное выступление Parizoda",
+    "farzonaiXurshid": "Выступление Farzonai Xurshid",
+    "farzonaiXurshidDesc": "Farzonai Xurshid исполнит песню для гостей",
+    "foodServingTwo": "Подача еды 2",
+    "foodServingTwoDesc": "Вторая подача еды",
+    "danceShowFinal": "Танцевальное шоу Parizoda",
+    "danceShowFinalDesc": "Финальное танцевальное выступление Parizoda",
+    "coupleDance": "Танец молодожёнов",
+    "coupleDanceDesc": "Особый танец жениха и невесты",
+    "cakeCutting": "Разрезание торта",
+    "cakeCuttingDesc": "Торжественное разрезание торта молодожёнами",
+    "guestDances": "Танцы гостей",
+    "guestDancesDesc": "Открытый танцпол для гостей"
   },
   "bottomBar": {
     "home": "Главная",
