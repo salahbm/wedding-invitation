@@ -11,12 +11,12 @@ const config = {
     showPhotos: false,
     showWishes: false,
     parentGroom: {
-      father: 'Salohiddin',
-      mother: 'Gulorom',
+      father: '',
+      mother: '',
     },
     parentBride: {
-      father: 'Alisher',
-      mother: 'Nozima',
+      father: '',
+      mother: '',
     },
     date: '2026-06-13',
     preWeddingDate: '2026-06-13',
@@ -32,20 +32,11 @@ const config = {
     address: 'Sahid Zarafshon',
     ogImage: '/images/og-image.jpg',
     favicon: '/images/favicon.ico',
-    siteUrl: 'https://muhammad-saodat.vercel.app',
+    siteUrl: 'https://islombek-umida-fotiha.vercel.app',
     agenda: [
       {
         title: 'Fotiha Wedding',
         description: 'A warm family gathering and blessing ceremony.',
-        date: '2026-06-13',
-        startTime: '14:00',
-        endTime: '14:00',
-        location: 'Sahid Zarafshon',
-        address: 'Sahid Zarafshon',
-      },
-      {
-        title: 'Wedding',
-        description: 'Our main wedding celebration with loved ones and guests.',
         date: '2026-06-13',
         startTime: '14:00',
         endTime: '14:00',
