@@ -11,6 +11,16 @@
     "78": "그리고 우리는 너희를 짝지어 창조하였다 78:8",
     "clickForMore": "자세히 보기를 원하시면 클릭하세요"
   },
+  "simpleTemplate": {
+    "greeting": "기쁜 날에 여러분을 따뜻하게 기다리고 있습니다",
+    "and": "그리고",
+    "saveTheDate": "날짜 저장",
+    "venueTitle": "장소",
+    "mapButton": "얀덱스 지도",
+    "directionButton": "길 안내",
+    "timeLabel": "시간",
+    "weekdays": ["일", "월", "화", "수", "목", "금", "토"]
+  },
   "hero": {
     "bismillah": "자비롭고 자애로우신 하나님의 이름으로",
     "weddingOf": "결혼식",

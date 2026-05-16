@@ -12,6 +12,16 @@
     "78": "Va Biz sizlarni juft-juft qilib yaratdik 78:8",
     "clickForMore": "Batafsil ma’lumot uchun bosing"
   },
+  "simpleTemplate": {
+    "greeting": "Quvonchli kunimizda aziz mehmonimiz bo‘lishingizni intiqlik bilan kutamiz",
+    "and": "va",
+    "saveTheDate": "Sanani saqlang",
+    "venueTitle": "Toy manzili",
+    "mapButton": "Yandex xaritasi",
+    "directionButton": "Yo‘nalish",
+    "timeLabel": "Vaqt",
+    "weekdays": ["DU", "SE", "CHOR", "PAY", "JU", "SHA", "YA"]
+  },
   "hero": {
     "bismillah": "Mehribon va rahmli Alloh nomi bilan",
     "weddingOf": "Toʻyi",

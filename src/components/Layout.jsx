@@ -37,7 +37,7 @@ const Layout = ({ children, startInvitation }) => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={toggleMusic}
-          className="fixed top-4 right-4 z-50 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg border border-primary-100/50"
+          className="fixed top-3 right-4 z-50 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg border border-primary-100/50"
         >
           {isPlaying ? (
             <div className="relative">
