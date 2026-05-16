@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { createPortal } from 'react-dom';
 import { useEffect, useState, useRef, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Heart, ChevronDown, X, ArrowDown } from 'lucide-react';
@@ -411,12 +412,12 @@ export default function LoveStory() {
             </div>
 
             {/* Show More Button */}
-            {visibleCount < 11 && (
+            {visibleCount < 17 && (
               <div className="flex justify-center mt-8">
                 <button
                   onClick={() => {
                     setLoading(true);
-                    setVisibleCount((prev) => Math.min(prev + 4, 11));
+                    setVisibleCount((prev) => Math.min(prev + 4, 17));
                     setLoading(false);
                   }}
                   disabled={loading}
@@ -455,11 +456,11 @@ export default function LoveStory() {
           </div>
 
           {/* Enlarged image view */}
-          {selectedImage && (
+          {selectedImage && createPortal(
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="fixed inset-0 z-[9999999] bg-black bg-opacity-90 flex items-center justify-center p-4"
+              className="fixed inset-0 z-[9999] bg-black bg-opacity-90 flex items-center justify-center p-4"
               onClick={() => {
                 setSelectedImage(null);
                 document.body.style.overflow = 'auto';
@@ -468,11 +469,11 @@ export default function LoveStory() {
               <motion.div
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
-                className="relative max-w-4xl max-h-[90vh] w-full"
+                className="relative max-w-4xl max-h-[80vh] w-full"
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
-                  className="absolute top-0 right-0 text-white text-xl p-2 z-10"
+                  className="absolute left-1/2 -translate-x-1/2 bottom-10 h-fit w-fit bg-black bg-opacity-50 rounded-full text-white text-xl p-2 z-10"
                   onClick={() => {
                     setSelectedImage(null);
                     document.body.style.overflow = 'auto';
@@ -484,11 +485,12 @@ export default function LoveStory() {
                   <img
                     src={selectedImage}
                     alt="Enlarged view"
-                    className="w-full h-full object-contain"
+                    className="w-full h-[80vh] object-contain"
                   />
                 </div>
               </motion.div>
-            </motion.div>
+            </motion.div>,
+            document.body
           )}
         </motion.div>
       </div>

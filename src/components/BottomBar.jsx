@@ -41,7 +41,7 @@ const BottomBar = () => {
 
   return (
     <motion.div
-      className="fixed bottom-2 transform -translate-x-1/2 z-50 w-full px-2 max-w-screen-md"
+      className="fixed bottom-2 transform -translate-x-1/2 z-30 w-full px-2 max-w-screen-md"
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, type: 'spring', stiffness: 100 }}

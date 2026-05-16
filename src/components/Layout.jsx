@@ -51,7 +51,7 @@ const Layout = ({ children, startInvitation }) => {
 
         <main
           className={cn(
-            'relative h-full w-full ',
+            'relative h-full w-full',
             startInvitation && 'pb-[100px]'
           )}
         >
