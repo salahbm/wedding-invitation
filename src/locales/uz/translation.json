@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "{{groomName}} va {{brideName}}ning osh marosimi",
-    "description": "Biz sizni ushbu quvonchli osh marosimimizni biz bilan birga nishonlashga taklif qilamiz."
+    "title": "{{groomName}} va {{brideName}}ning Nikoh Oqshomi",
+    "description": "Biz sizni ushbu quvonchli nikoh oqshomi marosimimizni biz bilan birga nishonlashga taklif qilamiz."
   },
   "landing": {
     "invitation": "To‘y Taklifi",
@@ -31,7 +31,7 @@
     "appleCalendar": "Apple Kalendar",
     "outlookCalendar": "Outlook Kalendar",
     "saveTheDate": "Muhim sanani saqlang",
-    "weddingEvents": "Osh Marosimi Dasturi",
+    "weddingEvents": "Nikoh Oqshomi Dasturi",
     "invitation": "Siz bilan birga bayram qilishni intiqlik bilan kutamiz"
   },
   "location": {
@@ -76,7 +76,7 @@
   },
   "table": {
     "title": "Taqvim",
-    "weddingSchedule": "Osh Marosimi Dasturi",
+    "weddingSchedule": "Nikoh Oqshomi Dasturi",
     "timetable": "Tadbirlar jadvali",
     "message": "Siz bilan birga bayram qilishni intiqlik bilan kutamiz",
     "thankYou": "Siz bilan birga bayram qilishdan mamnunmiz",

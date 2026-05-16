@@ -1,9 +1,9 @@
 const config = {
   data: {
     title: 'Islombek & Umida',
-    metaTitle: 'Osh Marosimi of Islombek & Umida',
+    metaTitle: "Islombek & Umida's Wedding Ceremony",
     metaDescription:
-      'Join us on June 14, 2026, for our Osh Marosimi celebration.',
+      'Join us on June 14, 2026, for our wedding ceremony.',
     familyTitle: 'Семья Алимжановых и Исламовых',
     groomName: 'Islombek',
     brideName: 'Umida',
