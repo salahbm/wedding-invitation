@@ -45,8 +45,8 @@ const config = {
       },
     ],
     audio: {
-      src: '/audio/MeniSev.mp3',
-      title: 'Meni Sev - Sevara Nazarxon',
+      src: '/audio/SatoRano.mp3',
+      title: 'Sato - Ra\'no',
       autoplay: true,
       loop: true,
     },

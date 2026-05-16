@@ -188,17 +188,23 @@ export default function MainContent() {
 
           <SectionLabel>{t('simpleTemplate.venueTitle')}</SectionLabel>
 
-          <div className="text-center">
-            <p className="font-serif text-3xl italic text-primary-700 sm:text-4xl">
+          <div className="px-2 text-center">
+            <p className="text-[0.66rem] font-semibold uppercase tracking-[0.5em] text-primary-300">
               {t('simpleTemplate.venueTitle')}
             </p>
-            <p className="mt-2 font-serif text-2xl italic text-primary-700 sm:text-3xl">
+            <p className="mt-3 font-serif text-3xl italic leading-none text-primary-700 sm:text-4xl">
               {t('simpleTemplate.eventVenue')}
             </p>
-            <p className="mt-3 text-sm leading-7 text-gray-500">
-              {t('simpleTemplate.singerGuestsTitle')}: {t('simpleTemplate.singerGuestNames')}
+
+            <div className="mx-auto mt-5 h-px w-20 bg-gradient-to-r from-transparent via-primary-200 to-transparent" />
+
+            <p className="mt-5 text-[0.66rem] font-semibold uppercase tracking-[0.45em] text-primary-400">
+              {t('simpleTemplate.singerGuestsTitle')}
             </p>
-            <p className="mt-2 text-sm leading-7 text-gray-500">
+            <p className="mt-2 font-serif text-xl italic leading-snug text-primary-700 sm:text-2xl">
+              {t('simpleTemplate.singerGuestNames')}
+            </p>
+            <p className="mt-2 text-sm leading-7 text-gray-600 sm:text-base">
               {t('simpleTemplate.brideEntry')}
             </p>
           </div>
@@ -222,11 +228,16 @@ export default function MainContent() {
             </a>
           </div>
 
-          <div className="flex items-center justify-center gap-2 text-primary-500">
-            <CalendarDays className="h-4 w-4" />
-            <span className="text-[0.68rem] font-semibold uppercase tracking-[0.35em] text-primary-300">
-              {t('simpleTemplate.eventTimeLabel')}: {t('simpleTemplate.eventTime')}
-            </span>
+          <div className="flex flex-col items-center justify-center gap-2 text-center">
+            <p className="text-[0.66rem] font-semibold uppercase tracking-[0.5em] text-primary-300">
+              {t('simpleTemplate.eventTimeLabel')}
+            </p>
+            <div className="flex items-center justify-center gap-2 text-primary-500">
+              <CalendarDays className="h-5 w-5 shrink-0" />
+              <p className="font-serif text-2xl italic leading-none text-primary-700 sm:text-3xl">
+                {t('simpleTemplate.eventTime')}
+              </p>
+            </div>
           </div>
         </motion.section>
       </div>
