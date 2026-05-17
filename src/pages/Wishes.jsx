@@ -68,7 +68,7 @@ export default function Wishes() {
     setLoading(true);
     try {
       const response = await fetch(
-        'https://opensheet.vercel.app/1sTHtWNaox3xbiGAxDjCNak3SGwoBRIEb8eS0gs1Gcjo/Sheet1'
+        'https://opensheet.vercel.app/1w7Qnd3uFLZA-7o0UwtZ52V91M4jn0rAUqsZqvhz0ICU/Sheet1'
       );
       if (!response.ok) throw new Error('Fetch error');
 
@@ -115,7 +115,7 @@ export default function Wishes() {
 
       try {
         const response = await fetch(
-          'https://sheetdb.io/api/v1/ocm9qns4o5z5k',
+          'https://sheetdb.io/api/v1/vpe9n5b9wggj2',
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -298,13 +298,12 @@ export default function Wishes() {
                       >
                         {attendance
                           ? options.find((opt) => opt.value === attendance)
-                              ?.label
+                            ?.label
                           : t('wishes.selectAttendance')}
                       </span>
                       <ChevronDown
-                        className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${
-                          isOpen ? 'transform rotate-180' : ''
-                        }`}
+                        className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${isOpen ? 'transform rotate-180' : ''
+                          }`}
                       />
                     </button>
 
@@ -329,11 +328,10 @@ export default function Wishes() {
                                 backgroundColor: 'hsl(var(--primary-50))',
                               }}
                               className={`w-full px-4 py-2.5 text-left transition-colors
-                                        ${
-                                          attendance === option.value
-                                            ? 'bg-primary-50 text-primary-600'
-                                            : 'text-gray-700 hover:bg-primary-50'
-                                        }`}
+                                        ${attendance === option.value
+                                  ? 'bg-primary-50 text-primary-600'
+                                  : 'text-gray-700 hover:bg-primary-50'
+                                }`}
                             >
                               {option.label}
                             </motion.button>
@@ -384,11 +382,10 @@ export default function Wishes() {
                     whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                     whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                     className={`flex items-center text-sm space-x-2 px-6 py-2.5 rounded-xl text-white font-medium transition-all duration-200
-                    ${
-                      isSubmitting
+                    ${isSubmitting
                         ? 'bg-gray-300 cursor-not-allowed'
                         : 'bg-primary-500 hover:bg-primary-600'
-                    }`}
+                      }`}
                   >
                     {isSubmitting ? (
                       <>
@@ -502,12 +499,12 @@ export default function Wishes() {
                                 {Date.now() -
                                   new Date(wish.timestamp).getTime() <
                                   3600000 && (
-                                  <div className="absolute top-2 right-2">
-                                    <span className="px-2 py-1 rounded-full bg-primary-100 text-primary-600 text-xs font-medium">
-                                      New
-                                    </span>
-                                  </div>
-                                )}
+                                    <div className="absolute top-2 right-2">
+                                      <span className="px-2 py-1 rounded-full bg-primary-100 text-primary-600 text-xs font-medium">
+                                        New
+                                      </span>
+                                    </div>
+                                  )}
                               </div>
                             </motion.div>
                           );

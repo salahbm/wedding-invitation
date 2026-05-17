@@ -2,6 +2,7 @@ import Hero from '@/pages/Hero';
 import Events from '@/pages/Events';
 import Location from '@/pages/Location';
 import { motion } from 'framer-motion';
+import Wishes from './Wishes';
 
 // Main Invitation Content
 export default function MainContent() {
@@ -46,7 +47,7 @@ export default function MainContent() {
         <Location />
       </motion.section>
       {/* <Photos /> */}
-      {/* <Wishes /> */}
+      <Wishes />
     </motion.div>
   );
 }
