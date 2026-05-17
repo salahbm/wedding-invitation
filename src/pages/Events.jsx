@@ -21,13 +21,13 @@ export default function Events() {
   const timelineEvents = useMemo(
     () => [
       {
-        time: '18:00',
+        time: '',
         event: t('table.guestArrival'),
         description: t('table.arrivalDesc'),
         icon: <GlassWater className="w-full h-full text-primary-500" />,
       },
       {
-        time: '18:15',
+        time: '',
         event: t('table.rustamEntrance'),
         description: t('table.rustamEntranceDesc'),
         icon: <HeartHandshake className="w-full h-full text-primary-500" />,

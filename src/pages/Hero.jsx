@@ -44,68 +44,54 @@ export default function Hero() {
 
   const handleDownload = async () => {
     if (!cardRef.current) return;
-    const canvas = await html2canvas(cardRef.current, {
-      useCORS: true,
-      backgroundColor: 'hsl(var(--background))',
-      scale: 2,
-    });
+    try {
+      const canvas = await html2canvas(cardRef.current, {
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#fffdf7',
+        scale: 2,
+      });
 
-    // Convert canvas to blob
-    const blob = await new Promise((resolve) =>
-      canvas.toBlob(resolve, 'image/png')
-    );
-
-    // Check if running on mobile device
-    const isMobile =
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
+      // Convert canvas to blob
+      const blob = await new Promise((resolve) =>
+        canvas.toBlob(resolve, 'image/png')
       );
 
-    if (
-      isMobile &&
-      navigator.canShare &&
-      navigator.canShare({
-        files: [
-          new File([blob], 'Wedding-Invitation.png', { type: 'image/png' }),
-        ],
-      })
-    ) {
-      // Use Web Share API for mobile devices that support it
-      try {
-        const file = new File([blob], 'Wedding-Invitation.png', {
-          type: 'image/png',
-        });
-        await navigator.share({
-          files: [file],
-          title: 'Wedding Invitation',
-        });
-      } catch (error) {
-        console.error('Error sharing:', error);
-        // Fallback to traditional download
-        downloadFile(canvas);
-      }
-    } else if (
-      isMobile &&
-      'mediaDevices' in navigator &&
-      'MediaDevices' in window
-    ) {
-      // Try to use Media Gallery API for iOS devices (limited support)
-      try {
-        // For iOS 16+ with Photos API support
-        if ('photos' in navigator) {
-          await navigator.photos.save(blob, 'Wedding-Invitation.png');
-        } else {
+      // Check if running on mobile device
+      const isMobile =
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        );
+
+      if (
+        isMobile &&
+        navigator.canShare &&
+        navigator.canShare({
+          files: [
+            new File([blob], 'Wedding-Invitation.png', { type: 'image/png' }),
+          ],
+        })
+      ) {
+        // Use Web Share API for mobile devices that support it
+        try {
+          const file = new File([blob], 'Wedding-Invitation.png', {
+            type: 'image/png',
+          });
+          await navigator.share({
+            files: [file],
+            title: 'Wedding Invitation',
+          });
+        } catch (error) {
+          console.error('Error sharing:', error);
           // Fallback to traditional download
           downloadFile(canvas);
         }
-      } catch (error) {
-        console.error('Error saving to gallery:', error);
-        // Fallback to traditional download
+      } else {
+        // Desktop or unsupported mobile - use traditional download
         downloadFile(canvas);
       }
-    } else {
-      // Desktop or unsupported mobile - use traditional download
-      downloadFile(canvas);
+    } catch (error) {
+      console.error('Error generating card image:', error);
     }
   };
 
@@ -201,9 +187,11 @@ export default function Hero() {
               </motion.div>
 
               <motion.div className="space-y-2" variants={itemVariants}>
-                <p className="text-gray-500 font-serif italic text-sm">
-                  {t('landing.for')}
-                </p>
+                {guestName && (
+                  <p className="text-gray-500 font-serif italic text-sm">
+                    {t('landing.for')}
+                  </p>
+                )}
                 <p className="text-primary-500 font-semibold text-md">
                   {guestName ? (
                     <span
