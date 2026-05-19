@@ -28,11 +28,19 @@
     "eventVenueLabel": "Manzil",
     "singerGuestsTitle": "Xonanda mehmonlar",
     "singerGuestNames": "Iroda Dilfuz va Yulduz Turdiyeva",
-    "brideEntry": "Kelin soat 14:00 da kiradi",
+    "brideEntry": "Kelin soat 13:00 da kiradi",
     "eventDate": "13.06.26",
-    "eventTime": "14:00",
+    "eventTime": "13:00",
     "eventVenue": "Sahid Zarafshon",
-    "weekdays": ["DU", "SE", "CHOR", "PAY", "JU", "SHA", "YA"]
+    "weekdays": [
+      "DU",
+      "SE",
+      "CHOR",
+      "PAY",
+      "JU",
+      "SHA",
+      "YA"
+    ]
   },
   "hero": {
     "bismillah": "Mehribon va rahmli Alloh nomi bilan",

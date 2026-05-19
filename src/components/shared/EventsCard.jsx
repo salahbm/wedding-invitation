@@ -73,7 +73,7 @@ const CalendarButton = ({ icon: Icon, label, onClick, className = '' }) => (
  * @example
  * const eventData = {
  *   date: '2023-10-15',
- *   startTime: '14:00',
+ *   startTime: '13:00',
  *   endTime: '16:00',
  *   title: 'Wedding Ceremony - Reception',
  *   description: 'Join us to celebrate the wedding ceremony and reception.',

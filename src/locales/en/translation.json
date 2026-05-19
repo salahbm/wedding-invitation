@@ -28,11 +28,19 @@
     "eventVenueLabel": "Venue",
     "singerGuestsTitle": "Singer guests",
     "singerGuestNames": "Iroda Dilfuz and Yulduz Turdiyeva",
-    "brideEntry": "Bride enters at 14:00",
+    "brideEntry": "Bride enters at 13:00",
     "eventDate": "13.06.26",
-    "eventTime": "14:00",
+    "eventTime": "13:00",
     "eventVenue": "Sahid Zarafshon",
-    "weekdays": ["SU", "MO", "TU", "WE", "TH", "FR", "SA"]
+    "weekdays": [
+      "SU",
+      "MO",
+      "TU",
+      "WE",
+      "TH",
+      "FR",
+      "SA"
+    ]
   },
   "hero": {
     "bismillah": "In the name of Allah, the Most Gracious, the Most Merciful",

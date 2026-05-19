@@ -28,11 +28,19 @@
     "eventVenueLabel": "Место",
     "singerGuestsTitle": "Певцы-гости",
     "singerGuestNames": "Ирода Дилфуз и Юлдуз Турдиева",
-    "brideEntry": "Невеста входит в 14:00",
+    "brideEntry": "Невеста входит в 13:00",
     "eventDate": "13.06.26",
-    "eventTime": "14:00",
+    "eventTime": "13:00",
     "eventVenue": "Sahid Zarafshon",
-    "weekdays": ["ВС", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"]
+    "weekdays": [
+      "ВС",
+      "ПН",
+      "ВТ",
+      "СР",
+      "ЧТ",
+      "ПТ",
+      "СБ"
+    ]
   },
   "hero": {
     "bismillah": "Во имя Аллаха, Милостивого, Милосердного",
