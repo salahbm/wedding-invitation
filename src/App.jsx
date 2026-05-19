@@ -18,6 +18,13 @@ function App() {
   const pageDescription = config.data.metaDescription || t('meta.description');
 
   useEffect(() => {
+    const root = document.documentElement;
+    root.classList.remove('dark');
+    root.classList.add('light');
+    root.style.colorScheme = 'light';
+  }, []);
+
+  useEffect(() => {
     const primary = getComputedStyle(document.documentElement)
       .getPropertyValue('--primary')
       .trim();
