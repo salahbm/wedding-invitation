@@ -135,7 +135,7 @@ export default function Events() {
             >
               {t('events.saveTheDate')}
             </motion.span>
-
+            {/* 
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -144,7 +144,7 @@ export default function Events() {
               className="text-4xl md:text-5xl font-serif text-gray-800 leading-tight"
             >
               {t('events.weddingEvents')}
-            </motion.h2>
+            </motion.h2> */}
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
