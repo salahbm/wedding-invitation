@@ -1,8 +1,8 @@
 const config = {
   data: {
-    title: 'Мальчишник | Bachelor Party',
-    metaTitle: 'Мальчишник — Islombek',
-    metaDescription: 'You are invited to the bachelor party. June 12, 2026 at 19:00.',
+    title: 'Молодёжный вечер | Youth Evening',
+    metaTitle: 'Молодёжный вечер — Islombek & Umida',
+    metaDescription: 'You are invited to our pre-wedding youth party. June 12, 2026 at 19:00.',
     groomName: 'Islombek',
     brideName: 'Umida',
     date: '2026-06-12',

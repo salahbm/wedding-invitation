@@ -185,11 +185,11 @@
     "sinceWedding": "To'ydan o'tgan kun"
   },
   "bachelor": {
-    "title": "'Мальчишник' Kechasi",
-    "subtitle": "Oxirgi erkin kecha",
-    "greetingPrefix": "Ey",
-    "invitationText": "Seni o'zimning 'Мальчишник' kechamga chaqiraman — to'ydan oldin oxirgi marta yig'ilamiz. Go'sht, tostlar va zo'r kayfiyat. O'tkazib yuborma.",
-    "weddingOf": "{{groomName}} & {{brideName}} to'yi",
+    "title": "Yoshlar Kechasi",
+    "subtitle": "To'ydan oldingi do'stlar kechasi",
+    "greetingPrefix": "Salom",
+    "invitationText": "Sizni to'ydan oldingi yoshlar kechamizga taklif qilamiz — barcha yaqin do'stlarimiz bilan birga. Mazali taom, zo'r kayfiyat va unutilmas lahzalar. Kutamiz!",
+    "coupleNames": "{{groomName}} & {{brideName}}",
     "date": "Sana",
     "time": "Vaqt",
     "start": "Boshlanishi",
@@ -199,13 +199,13 @@
     "hours": "soat",
     "minutes": "daq",
     "seconds": "son",
-    "footer": "Kutaman, birodar. Kechikma",
-    "from": "Sening og'ang",
+    "footer": "Kutamiz! Kechikma",
+    "from": "Sevgi bilan",
     "dressCode": "Dress-kod",
-    "dressCodeValue": "Smart casual — chiroyli ko'rinaylik, birodarlar",
+    "dressCodeValue": "Smart casual — chiroyli ko'rinaylik",
     "schedule": "Dastur",
     "gathering": "Yig'ilish",
     "dinner": "Kechki ovqat va tostlar",
-    "party": "Kayfiyat"
+    "party": "Raqslar va ko'ngil ochar"
   }
 }

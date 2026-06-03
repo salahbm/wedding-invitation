@@ -184,11 +184,11 @@
     "sinceWedding": "결혼식 이후"
   },
   "bachelor": {
-    "title": "총각 파티",
-    "subtitle": "마지막 자유의 밤",
-    "greetingPrefix": "이봐",
-    "invitationText": "결혼 전 마지막 밤, 총각 파티에 초대해. 맛있는 음식, 좋은 분위기, 잊을 수 없는 밤이 될 거야.",
-    "weddingOf": "{{groomName}} & {{brideName}} 결혼식",
+    "title": "청춘의 밤",
+    "subtitle": "결혼 전 친구들과의 파티",
+    "greetingPrefix": "안녕",
+    "invitationText": "결혼 전 친구들과 함께하는 파티에 초대해요. 맛있는 음식, 좋은 분위기, 잊을 수 없는 밤이 될 거예요. 기다릴게요!",
+    "coupleNames": "{{groomName}} & {{brideName}}",
     "date": "날짜",
     "time": "시간",
     "start": "시작",
@@ -198,13 +198,13 @@
     "hours": "시",
     "minutes": "분",
     "seconds": "초",
-    "footer": "거기서 보자, 형제. 늦지 마",
-    "from": "너의 형제",
+    "footer": "기다릴게요! 늦지 마세요",
+    "from": "사랑을 담아",
     "dressCode": "드레스 코드",
-    "dressCodeValue": "스마트 캐주얼 — 멋지게 입자",
+    "dressCodeValue": "스마트 캐주얼 — 멋지게 입어요",
     "schedule": "일정",
     "gathering": "모임",
     "dinner": "저녁 & 건배",
-    "party": "파티 타임"
+    "party": "춤 & 즐거운 시간"
   }
 }

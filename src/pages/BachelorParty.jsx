@@ -157,7 +157,7 @@ export default function BachelorParty() {
             transition={{ delay: 0.35 }}
             className="text-primary-400 font-medium text-xs uppercase tracking-widest"
           >
-            {t('bachelor.weddingOf', { groomName: config.data.groomName, brideName: config.data.brideName })}
+            {t('bachelor.coupleNames', { groomName: config.data.groomName, brideName: config.data.brideName })}
           </motion.p>
         </section>
 
@@ -302,7 +302,7 @@ export default function BachelorParty() {
             {t('bachelor.from')}
           </p>
           <p className="text-foreground font-serif text-2xl">
-            {config.data.groomName}
+            {config.data.groomName} & {config.data.brideName}
           </p>
           <p className="text-muted-foreground text-sm">
             {t('bachelor.footer')} 🤝

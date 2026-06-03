@@ -199,11 +199,11 @@
     "sinceWedding": "Since the wedding"
   },
   "bachelor": {
-    "title": "Bachelor Party",
-    "subtitle": "The last night of freedom",
+    "title": "Youth Evening",
+    "subtitle": "A night with friends before the wedding",
     "greetingPrefix": "Hey",
-    "invitationText": "You're invited to my bachelor party — one last wild night before I tie the knot. Good food, great vibes, and memories we won't forget.",
-    "weddingOf": "{{groomName}} & {{brideName}}'s Wedding",
+    "invitationText": "We're inviting you to our pre-wedding party — a night with all our closest friends. Great food, good vibes, and unforgettable memories. Come through!",
+    "coupleNames": "{{groomName}} & {{brideName}}",
     "date": "Date",
     "time": "Time",
     "start": "Starts at",
@@ -213,13 +213,13 @@
     "hours": "hrs",
     "minutes": "min",
     "seconds": "sec",
-    "footer": "See you there, brother. Don't be late",
-    "from": "Your boy",
+    "footer": "We're waiting for you! Don't be late",
+    "from": "With love",
     "dressCode": "Dress Code",
-    "dressCodeValue": "Smart casual — look sharp, kings",
+    "dressCodeValue": "Smart casual — look your best",
     "schedule": "Schedule",
     "gathering": "Gathering",
     "dinner": "Dinner & Toasts",
-    "party": "Party Time"
+    "party": "Dancing & Fun"
   }
 }
