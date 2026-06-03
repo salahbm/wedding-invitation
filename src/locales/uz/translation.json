@@ -183,5 +183,29 @@
     "minutes": "Daqiqa",
     "seconds": "Soniya",
     "sinceWedding": "To'ydan o'tgan kun"
+  },
+  "bachelor": {
+    "title": "'Мальчишник' Kechasi",
+    "subtitle": "Oxirgi erkin kecha",
+    "greetingPrefix": "Ey",
+    "invitationText": "Seni o'zimning 'Мальчишник' kechamga chaqiraman — to'ydan oldin oxirgi marta yig'ilamiz. Go'sht, tostlar va zo'r kayfiyat. O'tkazib yuborma.",
+    "weddingOf": "{{groomName}} & {{brideName}} to'yi",
+    "date": "Sana",
+    "time": "Vaqt",
+    "start": "Boshlanishi",
+    "venue": "Joy",
+    "countdownLabel": "Qoldi",
+    "days": "kun",
+    "hours": "soat",
+    "minutes": "daq",
+    "seconds": "son",
+    "footer": "Kutaman, birodar. Kechikma",
+    "from": "Sening og'ang",
+    "dressCode": "Dress-kod",
+    "dressCodeValue": "Smart casual — chiroyli ko'rinaylik, birodarlar",
+    "schedule": "Dastur",
+    "gathering": "Yig'ilish",
+    "dinner": "Kechki ovqat va tostlar",
+    "party": "Kayfiyat"
   }
 }

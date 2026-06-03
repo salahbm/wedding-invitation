@@ -197,5 +197,29 @@
     "minutes": "Minutes",
     "seconds": "Seconds",
     "sinceWedding": "Since the wedding"
+  },
+  "bachelor": {
+    "title": "Bachelor Party",
+    "subtitle": "The last night of freedom",
+    "greetingPrefix": "Hey",
+    "invitationText": "You're invited to my bachelor party — one last wild night before I tie the knot. Good food, great vibes, and memories we won't forget.",
+    "weddingOf": "{{groomName}} & {{brideName}}'s Wedding",
+    "date": "Date",
+    "time": "Time",
+    "start": "Starts at",
+    "venue": "Venue",
+    "countdownLabel": "Countdown",
+    "days": "days",
+    "hours": "hrs",
+    "minutes": "min",
+    "seconds": "sec",
+    "footer": "See you there, brother. Don't be late",
+    "from": "Your boy",
+    "dressCode": "Dress Code",
+    "dressCodeValue": "Smart casual — look sharp, kings",
+    "schedule": "Schedule",
+    "gathering": "Gathering",
+    "dinner": "Dinner & Toasts",
+    "party": "Party Time"
   }
 }

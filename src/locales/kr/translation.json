@@ -182,5 +182,29 @@
     "minutes": "분",
     "seconds": "초",
     "sinceWedding": "결혼식 이후"
+  },
+  "bachelor": {
+    "title": "총각 파티",
+    "subtitle": "마지막 자유의 밤",
+    "greetingPrefix": "이봐",
+    "invitationText": "결혼 전 마지막 밤, 총각 파티에 초대해. 맛있는 음식, 좋은 분위기, 잊을 수 없는 밤이 될 거야.",
+    "weddingOf": "{{groomName}} & {{brideName}} 결혼식",
+    "date": "날짜",
+    "time": "시간",
+    "start": "시작",
+    "venue": "장소",
+    "countdownLabel": "카운트다운",
+    "days": "일",
+    "hours": "시",
+    "minutes": "분",
+    "seconds": "초",
+    "footer": "거기서 보자, 형제. 늦지 마",
+    "from": "너의 형제",
+    "dressCode": "드레스 코드",
+    "dressCodeValue": "스마트 캐주얼 — 멋지게 입자",
+    "schedule": "일정",
+    "gathering": "모임",
+    "dinner": "저녁 & 건배",
+    "party": "파티 타임"
   }
 }

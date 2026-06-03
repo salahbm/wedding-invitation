@@ -184,5 +184,29 @@
     "minutes": "Минут",
     "seconds": "Секунд",
     "sinceWedding": "После свадьбы"
+  },
+  "bachelor": {
+    "title": "Мальчишник",
+    "subtitle": "Последний вечер свободы",
+    "greetingPrefix": "Йо",
+    "invitationText": "Зову тебя на свой мальчишник — последний раз гуляем до свадьбы. Будет мясо, тосты и огонь. Не пропусти.",
+    "weddingOf": "Свадьба {{groomName}} & {{brideName}}",
+    "date": "Дата",
+    "time": "Время",
+    "start": "Начало в",
+    "venue": "Место",
+    "countdownLabel": "Осталось",
+    "days": "дн",
+    "hours": "ч",
+    "minutes": "мин",
+    "seconds": "сек",
+    "footer": "Жду тебя, брат. Не опаздывай",
+    "from": "Твой бро",
+    "dressCode": "Дресс-код",
+    "dressCodeValue": "Smart casual — выглядим по-королевски",
+    "schedule": "Программа",
+    "gathering": "Сбор гостей",
+    "dinner": "Ужин и тосты",
+    "party": "Движ"
   }
 }
