@@ -15,8 +15,8 @@ const config = {
     favicon: '/images/favicon.ico',
     siteUrl: '',
     audio: {
-      src: '/audio/howdeep.mp3',
-      title: 'Calvin Harris, Disciples - How Deep Is Your Love',
+      src: '/audio/Fox Zaya Ghosts of You .m4a',
+      title: 'Fox Zaya Ghosts of You .m4a',
       autoplay: true,
       loop: true,
     },
