@@ -29,6 +29,7 @@ const buildCalendar = (date) => {
     return {
       key: `${day.getFullYear()}-${day.getMonth()}-${day.getDate()}`,
       day: day.getDate(),
+      dow: day.getDay(),
       isEvent: day.toDateString() === current.toDateString(),
     };
   });
@@ -142,12 +143,12 @@ export default function MainContent() {
 
           <div className="grid grid-cols-7 gap-2 text-center">
             {Array.isArray(weekdays)
-              ? weekdays.map((label) => (
+              ? calendarDays.map((d) => (
                 <div
-                  key={label}
+                  key={`wd-${d.key}`}
                   className="text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-primary-300 sm:text-xs"
                 >
-                  {label}
+                  {weekdays[d.dow]}
                 </div>
               ))
               : null}
