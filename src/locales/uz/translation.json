@@ -22,7 +22,9 @@
     "address": "Manzil",
     "saveTheDate": "Sanani saqlang",
     "withJoy": "Quvonch va duolar bilan sizni to‘yimizga taklif qilamiz",
-    "downloadCard": "Taklifnomani yuklab olish"
+    "downloadCard": "Taklifnomani yuklab olish",
+    "preparingCard": "Taklifnoma tayyorlanmoqda…",
+    "downloadError": "Taklifnomani saqlab bo‘lmadi. Qayta urinib ko‘ring."
   },
   "events": {
     "title": "Tadbirlar",
