@@ -1,8 +1,9 @@
 // EventCard.jsx
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import PropTypes from "prop-types";
 import {
   Calendar,
   Clock,
@@ -12,38 +13,72 @@ import {
   Chrome,
   Apple,
   Calendar as CalendarIcon,
-} from 'lucide-react';
-import { formatEventDate } from '@/lib/formatEventDate';
+} from "lucide-react";
+import { formatEventDate } from "@/lib/formatEventDate";
 
 const Modal = ({ isOpen, onClose, children }) => {
-  return (
+  const dialogRef = useRef(null);
+  const { t } = useTranslation();
+  useEffect(() => {
+    if (!isOpen) return;
+    const previousFocus = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    dialogRef.current?.querySelector("button")?.focus();
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") onClose();
+      if (event.key !== "Tab") return;
+      const buttons = dialogRef.current?.querySelectorAll("button");
+      if (!buttons?.length) return;
+      const first = buttons[0];
+      const last = buttons[buttons.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+      previousFocus?.focus();
+    };
+  }, [isOpen, onClose]);
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
-        <>
+        <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60]"
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
           />
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={t("events.addToCalendar")}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[70] w-[90%] max-w-sm"
+            exit={{ opacity: 0, y: 16 }}
+            className="relative max-h-[85svh] w-full max-w-sm overflow-y-auto rounded-3xl border border-border bg-card p-6 shadow-xl"
           >
-            <div className="bg-white transform -translate-x-1/2 -translate-y-1/2 rounded-2xl p-6 shadow-2xl border border-gray-100">
-              {children}
-            </div>
+            {children}
           </motion.div>
-        </>
+        </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 };
 
-const CalendarButton = ({ icon: Icon, label, onClick, className = '' }) => (
+const CalendarButton = ({ icon: Icon, label, onClick, className = "" }) => (
   <motion.button
     onClick={onClick}
     className={`flex items-center space-x-3 w-full p-4 rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors ${className}`}
@@ -94,7 +129,7 @@ const SingleEventCard = ({ eventData }) => {
     const endDate = new Date(`${eventData.date}T${eventData.endTime}:00`);
 
     const formatDate = (date) => {
-      return date.toISOString().replace(/-|:|\.\d+/g, '');
+      return date.toISOString().replace(/-|:|\.\d+/g, "");
     };
 
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventData.title)}&dates=${formatDate(startDate)}/${formatDate(endDate)}&details=${encodeURIComponent(eventData.description)}&location=${encodeURIComponent(eventData.location)}&ctz=${eventData.timeZone}`;
@@ -105,7 +140,7 @@ const SingleEventCard = ({ eventData }) => {
     const endDate = new Date(`${eventData.date}T${eventData.endTime}:00`);
 
     const formatICSDate = (date) => {
-      return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+      return date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
     };
 
     return `BEGIN:VCALENDAR
@@ -124,11 +159,11 @@ END:VCALENDAR`;
   const downloadICSFile = () => {
     const icsContent = generateICSContent();
     const blob = new Blob([icsContent], {
-      type: 'text/calendar;charset=utf-8',
+      type: "text/calendar;charset=utf-8",
     });
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.download = `${eventData.title.toLowerCase().replace(/ /g, '-')}.ics`;
+    link.download = `${eventData.title.toLowerCase().replace(/ /g, "-")}.ics`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -137,19 +172,20 @@ END:VCALENDAR`;
   return (
     <div className="relative">
       <motion.div
-        className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 space-y-4"
+        className="bg-card rounded-3xl p-6 border border-border space-y-4"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
         <div className="flex justify-between items-center">
           <h3 className="text-xl font-semibold text-gray-800">
-            {eventData.title.split(' - ')[0]}
+            {eventData.title.split(" - ")[0]}
           </h3>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="text-primary-500 hover:text-primary-600 transition-colors"
+            className="min-h-11 min-w-11 flex items-center justify-center rounded-full bg-primary-50 text-primary hover:bg-primary-100 transition-colors"
+            aria-label={t("events.addToCalendar")}
             onClick={() => setShowCalendarModal(true)}
           >
             <CalendarPlus className="w-5 h-5" />
@@ -157,19 +193,19 @@ END:VCALENDAR`;
         </div>
         <div className="space-y-3 text-gray-600">
           <div className="flex items-center space-x-3">
-            <Calendar className="w-5 h-5 text-primary-500" />
+            <Calendar className="w-5 h-5 shrink-0 text-primary-500" />
             <span className="capitalize">
-              {formatEventDate(eventData.date, 'full', i18n.language)}
+              {formatEventDate(eventData.date, "full", i18n.language)}
             </span>
           </div>
           <div className="flex items-center space-x-3">
-            <Clock className="w-5 h-5 text-primary-500" />
+            <Clock className="w-5 h-5 shrink-0 text-primary-500" />
             <span>
               {eventData.startTime} - {eventData.endTime}
             </span>
           </div>
           <div className="flex items-center space-x-3">
-            <MapPin className="w-5 h-5 text-primary-500" />
+            <MapPin className="w-5 h-5 shrink-0 text-primary-500" />
             <span>{eventData.location}</span>
           </div>
         </div>
@@ -182,13 +218,14 @@ END:VCALENDAR`;
         <div className="space-y-6 ">
           <div className="flex justify-between  items-center">
             <h3 className="text-xl font-semibold text-gray-800">
-              {t('events.addToCalendar')}
+              {t("events.addToCalendar")}
             </h3>
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setShowCalendarModal(false)}
-              className="text-gray-500 hover:text-gray-700"
+              aria-label={t("controls.close")}
+              className="min-h-11 min-w-11 flex items-center justify-center rounded-full text-gray-500 hover:bg-muted"
             >
               <X className="w-5 h-5" />
             </motion.button>
@@ -197,17 +234,20 @@ END:VCALENDAR`;
           <div className="space-y-3">
             <CalendarButton
               icon={(props) => (
-                <Chrome {...props} className="w-5 h-5 text-primary-500" />
+                <Chrome
+                  {...props}
+                  className="w-5 h-5 shrink-0 text-primary-500"
+                />
               )}
-              label={t('events.googleCalendar')}
-              onClick={() => window.open(googleCalendarLink(), '_blank')}
+              label={t("events.googleCalendar")}
+              onClick={() => window.open(googleCalendarLink(), "_blank")}
             />
 
             <CalendarButton
               icon={(props) => (
                 <Apple {...props} className="w-5 h-5 text-gray-900" />
               )}
-              label={t('events.appleCalendar')}
+              label={t("events.appleCalendar")}
               onClick={downloadICSFile}
             />
 
@@ -215,7 +255,7 @@ END:VCALENDAR`;
               icon={(props) => (
                 <CalendarIcon {...props} className="w-5 h-5 text-blue-600" />
               )}
-              label={t('events.outlookCalendar')}
+              label={t("events.outlookCalendar")}
               onClick={downloadICSFile}
             />
           </div>
@@ -271,7 +311,7 @@ EventCards.propTypes = {
       description: PropTypes.string,
       location: PropTypes.string.isRequired,
       timeZone: PropTypes.string,
-    })
+    }),
   ).isRequired,
 };
 

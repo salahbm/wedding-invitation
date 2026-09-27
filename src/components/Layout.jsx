@@ -1,25 +1,26 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { Music, PauseCircle, PlayCircle } from 'lucide-react';
-import BottomBar from '@/components/BottomBar';
-import LanguageSwitcher from '@/components/shared/LanguageSwitcher';
-import PropTypes from 'prop-types';
-import { cn } from '@/lib/utils';
-import useMusic from '@/hooks/music/useMusic';
+import { motion, AnimatePresence } from "framer-motion";
+import { Music, PauseCircle, PlayCircle } from "lucide-react";
+import BottomBar from "@/components/BottomBar";
+import LanguageSwitcher from "@/components/shared/LanguageSwitcher";
+import PropTypes from "prop-types";
+import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
+import useMusic from "@/hooks/music/useMusic";
 
 const Layout = ({ children, startInvitation }) => {
+  const { t } = useTranslation();
   const { isPlaying, showToast, toggleMusic, audioTitle } = useMusic();
 
   return (
     <div
       className={cn(
-        'relative w-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center',
-        startInvitation ? 'min-h-screen' : 'h-screen'
+        "relative min-h-svh w-full bg-background flex items-center justify-center",
       )}
     >
       <motion.div
         className={cn(
-          'mx-auto w-full bg-white relative overflow-hidden border border-gray-200 shadow-lg',
-          startInvitation && 'max-w-screen-md'
+          "invitation-shell mx-auto w-full bg-background relative",
+          startInvitation && "max-w-screen-md",
         )}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -37,7 +38,11 @@ const Layout = ({ children, startInvitation }) => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={toggleMusic}
-          className="fixed top-4 right-4 z-50 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg border border-primary-100/50"
+          aria-label={t(
+            isPlaying ? "controls.pauseMusic" : "controls.playMusic",
+          )}
+          aria-pressed={isPlaying}
+          className="fixed top-4 right-4 z-50 flex h-11 w-11 items-center justify-center bg-card/95 backdrop-blur-sm rounded-full shadow-sm border border-border"
         >
           {isPlaying ? (
             <div className="relative">
@@ -51,8 +56,8 @@ const Layout = ({ children, startInvitation }) => {
 
         <main
           className={cn(
-            'relative h-full w-full ',
-            startInvitation && 'pb-[100px]'
+            "relative h-full w-full ",
+            startInvitation && "pb-[calc(112px+env(safe-area-inset-bottom))]",
           )}
         >
           {children}
@@ -67,8 +72,8 @@ const Layout = ({ children, startInvitation }) => {
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.3 }}
               className={cn(
-                'fixed left-1/2 transform -translate-x-1/2 z-50',
-                startInvitation ? 'bottom-24' : 'bottom-10'
+                "fixed left-1/2 transform -translate-x-1/2 z-50",
+                startInvitation ? "bottom-24" : "bottom-10",
               )}
             >
               <div className="bg-black/80 text-white transform -translate-x-1/2 px-4 py-2 rounded-full backdrop-blur-sm flex items-center space-x-2">

@@ -1,5 +1,5 @@
 // src/components/bottom-bar/BottomBar.jsx
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import config from '@/config/config';
@@ -57,28 +57,57 @@ const BottomBar = () => {
   const [active, setActive] = React.useState('home');
   const menuItems = useMemo(
     () => [...getMenuItems(t), ...getOptionalMenuItems(t)],
-    [t]
+    [t],
   );
+
+  useEffect(() => {
+    const updateActiveSection = () => {
+      const sections = menuItems
+        .map((item) => ({
+          id: item.id,
+          element: document.querySelector(item.href),
+        }))
+        .filter((item) => item.element);
+      const current = sections
+        .filter(
+          ({ element }) =>
+            element.getBoundingClientRect().top <= window.innerHeight * 0.4,
+        )
+        .at(-1);
+      setActive(current?.id || 'home');
+    };
+    updateActiveSection();
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    window.addEventListener('resize', updateActiveSection);
+    return () => {
+      window.removeEventListener('scroll', updateActiveSection);
+      window.removeEventListener('resize', updateActiveSection);
+    };
+  }, [menuItems]);
 
   return (
     <motion.div
-      className="fixed bottom-2 transform -translate-x-1/2 z-50 w-full px-2 max-w-screen-md"
+      className="bottom-navigation fixed inset-x-0 mx-auto z-50 w-full px-4 max-w-screen-md"
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, type: 'spring', stiffness: 100 }}
     >
-      <div className="backdrop-blur-md bg-white/90 border border-gray-200/80 rounded-xl shadow-[0_8px_30px_hsl(var(--black)_/_0.07)] px-4 py-2">
-        <nav className="flex justify-between items-center">
+      <div className="backdrop-blur-md bg-card/95 border border-border rounded-3xl shadow-[0_8px_32px_hsl(var(--primary)_/_0.1)] p-2">
+        <nav
+          aria-label={t('controls.navigation')}
+          className="flex justify-between items-center gap-1"
+        >
           {menuItems.map((item) => (
             <motion.a
               key={item.label}
               href={item.href}
+              aria-current={active === item.id ? 'location' : undefined}
               className={cn(
-                'flex flex-col items-center justify-center py-2 px-2 md:px-6 rounded-xl transition-all duration-200',
+                'min-h-14 min-w-0 flex-1 flex flex-col items-center justify-center py-2 px-1 md:px-6 rounded-2xl transition-all duration-200',
                 'hover:bg-gray-50/80',
                 active === item.id
-                  ? 'text-primary bg-primary/5'
-                  : 'text-gray-600'
+                  ? 'text-primary bg-primary-50'
+                  : 'text-gray-600',
               )}
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.95 }}
@@ -86,18 +115,18 @@ const BottomBar = () => {
             >
               <item.icon
                 className={cn(
-                  'h-[18px] w-[18px] sm:h-5 sm:w-5 mb-0.5 sm:mb-1 transition-colors duration-200',
-                  active === item.id ? 'stroke-primary-500' : 'stroke-gray-600'
+                  'size-6 transition-colors duration-200',
+                  active === item.id ? 'stroke-primary-500' : 'stroke-gray-600',
                 )}
               />
-              <span
+              {/* <span
                 className={cn(
-                  'text-[10px] sm:text-xs font-medium transition-all duration-200 line-clamp-1',
+                  'text-xs font-medium transition-all duration-200 line-clamp-1',
                   active === item.id ? 'scale-105 text-primary-500' : 'scale-100'
                 )}
               >
                 {item.label}
-              </span>
+              </span> */}
             </motion.a>
           ))}
         </nav>

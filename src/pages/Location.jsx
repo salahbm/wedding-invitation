@@ -1,4 +1,4 @@
-import config from '@/config/config';
+import config from "@/config/config";
 import {
   Clock,
   MapPin,
@@ -6,47 +6,17 @@ import {
   ExternalLink,
   Navigation,
   X,
-} from 'lucide-react';
-import { motion } from 'framer-motion';
-import { formatEventDate } from '@/lib/formatEventDate';
-import { useTranslation } from 'react-i18next';
-import { useState, useRef, useEffect } from 'react';
+} from "lucide-react";
+import { motion } from "framer-motion";
+import { formatEventDate } from "@/lib/formatEventDate";
+import { useTranslation } from "react-i18next";
+import { useState, useRef } from "react";
 
 export default function Location() {
   const { t, i18n } = useTranslation();
   const [isPlaying, setIsPlaying] = useState(false);
   const [isVideoVisible, setIsVideoVisible] = useState(true);
   const videoRef = useRef(null);
-  const mapContainerRef = useRef(null);
-  const detailsContainerRef = useRef(null);
-
-  // Function to ensure equal heights for map and details containers
-  useEffect(() => {
-    const adjustHeights = () => {
-      if (mapContainerRef.current && detailsContainerRef.current) {
-        // Reset heights first
-        mapContainerRef.current.style.height = 'auto';
-        detailsContainerRef.current.style.height = 'auto';
-
-        // Get the heights
-        const mapHeight = mapContainerRef.current.offsetHeight;
-        const detailsHeight = detailsContainerRef.current.offsetHeight;
-
-        // Set both to the larger height
-        const maxHeight = Math.max(mapHeight, detailsHeight);
-        mapContainerRef.current.style.height = `${maxHeight}px`;
-        detailsContainerRef.current.style.height = `${maxHeight}px`;
-      }
-    };
-
-    // Adjust on load and window resize
-    adjustHeights();
-    window.addEventListener('resize', adjustHeights);
-
-    return () => {
-      window.removeEventListener('resize', adjustHeights);
-    };
-  }, []);
 
   const togglePlayPause = () => {
     if (videoRef.current) {
@@ -91,7 +61,7 @@ export default function Location() {
               viewport={{ once: true }}
               className="inline-block text-primary-500 font-medium"
             >
-              {t('location.eventVenue')}
+              {t("location.eventVenue")}
             </motion.span>
 
             <motion.h2
@@ -101,7 +71,7 @@ export default function Location() {
               viewport={{ once: true }}
               className="text-4xl md:text-5xl font-serif text-gray-800"
             >
-              {t('location.title')}
+              {t("location.title")}
             </motion.h2>
 
             {/* Decorative Divider */}
@@ -119,17 +89,17 @@ export default function Location() {
           </motion.div>
 
           {/* Location Content */}
-          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
+          <div className="max-w-2xl mx-auto grid sm:grid-cols-2 gap-4">
             {/* Map Container */}
             <motion.div
-              ref={mapContainerRef}
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="w-full h-full min-h-[400px] rounded-2xl overflow-hidden shadow-lg border-8 border-white flex"
+              className="w-full min-h-[320px] rounded-3xl overflow-hidden border border-border flex"
             >
               <iframe
+                title={t("location.eventVenue")}
                 src={config.data.maps_embed}
                 width="100%"
                 height="100%"
@@ -137,41 +107,40 @@ export default function Location() {
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-full"
+                className="w-full min-h-[320px] h-full"
               ></iframe>
             </motion.div>
 
             {/* Venue Details */}
             <motion.div
-              ref={detailsContainerRef}
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
               className="space-y-6 h-full flex flex-col"
             >
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 h-full flex flex-col justify-between">
+              <div className="bg-card rounded-3xl p-6 border border-border h-full flex flex-col justify-between">
                 <h3 className="text-2xl font-serif text-gray-800 mb-6">
                   {config.data.location}
                 </h3>
 
                 <div className="space-y-4">
                   <div className="flex items-start space-x-4">
-                    <MapPin className="w-5 h-5 text-primary-500 mt-1" />
+                    <MapPin className="w-5 h-5 shrink-0 text-primary-500 mt-1" />
                     <p className="text-gray-600 flex-1">
                       {config.data.address}
                     </p>
                   </div>
 
                   <div className="flex items-center space-x-4">
-                    <CalendarCheck className="w-5 h-5 text-primary-500" />
+                    <CalendarCheck className="w-5 h-5 shrink-0 text-primary-500" />
                     <p className="text-gray-600">
-                      {formatEventDate(config.data.date, 'full', i18n.language)}
+                      {formatEventDate(config.data.date, "full", i18n.language)}
                     </p>
                   </div>
 
                   <div className="flex items-center space-x-4">
-                    <Clock className="w-5 h-5 text-primary-500" />
+                    <Clock className="w-5 h-5 shrink-0 text-primary-500" />
                     <p className="text-gray-600">{config.data.time}</p>
                   </div>
 
@@ -184,11 +153,11 @@ export default function Location() {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       viewport={{ once: true }}
-                      className="w-full flex items-center justify-center gap-1.5 bg-white text-gray-600 px-4 py-2 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors text-sm"
+                      className="primary-button w-full gap-2"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                       <span className="font-semibold">
-                        {t('location.viewMap')}
+                        {t("location.viewMap")}
                       </span>
                     </motion.a>
                   </div>
@@ -213,7 +182,7 @@ export default function Location() {
                 viewport={{ once: true }}
                 className="inline-block text-primary-500 font-medium"
               >
-                {t('location.howToReach')}
+                {t("location.howToReach")}
               </motion.span>
 
               <motion.h3
@@ -223,7 +192,7 @@ export default function Location() {
                 viewport={{ once: true }}
                 className="text-2xl md:text-3xl font-serif text-gray-800"
               >
-                {t('location.directionVideo')}
+                {t("location.directionVideo")}
               </motion.h3>
 
               {/* Decorative Divider */}
@@ -248,13 +217,13 @@ export default function Location() {
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
                 className="relative rounded-2xl overflow-hidden shadow-xl border-8 border-white group"
-                style={{ maxHeight: '70vh', height: '500px' }}
+                style={{ maxHeight: "70vh", height: "500px" }}
               >
                 {/* Close button */}
                 <button
                   onClick={hideVideo}
-                  className="absolute top-2 right-2 z-20 bg-white bg-opacity-80 p-2 rounded-full shadow-md hover:bg-opacity-100 transition-all duration-300"
-                  aria-label={t('location.closeVideo')}
+                  className="absolute top-2 right-2 z-20 bg-white bg-opacity-80 min-h-11 min-w-11 flex items-center justify-center p-2 rounded-full shadow-md hover:bg-opacity-100 transition-all duration-300"
+                  aria-label={t("location.closeVideo")}
                 >
                   <X className="w-5 h-5 text-gray-700" />
                 </button>
@@ -267,7 +236,7 @@ export default function Location() {
                   controlsList="nodownload"
                 >
                   <source src="/video/wedding-hall.mp4" type="video/mp4" />
-                  {t('location.videoNotSupported')}
+                  {t("location.videoNotSupported")}
                 </video>
 
                 {/* Play/Pause Button Overlay */}
@@ -276,7 +245,7 @@ export default function Location() {
                   className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300"
                 >
                   <div
-                    className={`${isPlaying ? 'opacity-0' : 'opacity-100'} group-hover:opacity-100 transition-opacity duration-300 bg-white bg-opacity-80 p-5 rounded-full`}
+                    className={`${isPlaying ? "opacity-0" : "opacity-100"} group-hover:opacity-100 transition-opacity duration-300 bg-white bg-opacity-80 p-5 rounded-full`}
                   >
                     {isPlaying ? (
                       <svg
@@ -321,7 +290,7 @@ export default function Location() {
                 {/* Video Caption */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 text-white text-left">
                   <p className="text-sm md:text-base font-medium">
-                    {t('location.videoCaption')}
+                    {t("location.videoCaption")}
                   </p>
                 </div>
               </motion.div>
@@ -335,7 +304,7 @@ export default function Location() {
                 <div className="relative">
                   <img
                     src="/images/video-thumbnail.jpg"
-                    alt={t('location.videoThumbnailAlt')}
+                    alt={t("location.videoThumbnailAlt")}
                     className="w-full h-[300px] object-cover"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
@@ -365,10 +334,10 @@ export default function Location() {
                 </div>
                 <div className="p-4 bg-white">
                   <h4 className="font-serif text-lg text-gray-800">
-                    {t('location.watchDirections')}
+                    {t("location.watchDirections")}
                   </h4>
                   <p className="text-sm text-gray-600">
-                    {t('location.clickToWatch')}
+                    {t("location.clickToWatch")}
                   </p>
                 </div>
               </motion.div>
@@ -382,7 +351,7 @@ export default function Location() {
               viewport={{ once: true }}
               className="text-gray-600 max-w-2xl mx-auto"
             >
-              {t('location.videoDescription')}
+              {t("location.videoDescription")}
             </motion.p>
 
             {/* Video Instructions */}
@@ -393,7 +362,7 @@ export default function Location() {
               viewport={{ once: true }}
               className="text-sm text-gray-500 max-w-2xl mx-auto italic"
             >
-              {t('location.videoInstructions')}
+              {t("location.videoInstructions")}
             </motion.div>
           </motion.div>
         </div>

@@ -1,32 +1,38 @@
-import { useEffect, useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
-import Layout from '@/components/Layout';
-import MainContent from '@/pages/MainContent';
-import LandingPage from '@/pages/LandingPage';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { useTranslation } from 'react-i18next';
-import config from '@/config/config';
+import { useEffect, useState } from "react";
+import { AnimatePresence, MotionConfig } from "framer-motion";
+import Layout from "@/components/Layout";
+import MainContent from "@/pages/MainContent";
+import LandingPage from "@/pages/LandingPage";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
+import config from "@/config/config";
 
 function App() {
   const [isInvitationOpen, setIsInvitationOpen] = useState(false);
-  const [themeColor, setThemeColor] = useState('');
-  const { t } = useTranslation();
-  const pageTitle = config.data.metaTitle || t('meta.title', {
-    groomName: config.data.groomName,
-    brideName: config.data.brideName,
-  });
-  const pageDescription = config.data.metaDescription || t('meta.description');
+  const [themeColor, setThemeColor] = useState("");
+  const { t, i18n } = useTranslation();
+  const pageTitle =
+    config.data.metaTitle ||
+    t("meta.title", {
+      groomName: config.data.groomName,
+      brideName: config.data.brideName,
+    });
+  const pageDescription = config.data.metaDescription || t("meta.description");
+
+  useEffect(() => {
+    document.documentElement.lang = i18n.resolvedLanguage || "en";
+  }, [i18n.resolvedLanguage]);
 
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.remove('dark');
-    root.classList.add('light');
-    root.style.colorScheme = 'light';
+    root.classList.remove("dark");
+    root.classList.add("light");
+    root.style.colorScheme = "light";
   }, []);
 
   useEffect(() => {
     const primary = getComputedStyle(document.documentElement)
-      .getPropertyValue('--primary')
+      .getPropertyValue("--primary")
       .trim();
 
     if (primary) {
@@ -66,24 +72,23 @@ function App() {
           href={`${config.data.siteUrl}${config.data.favicon}`}
         />
         {/* Additional Meta Tags */}
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {themeColor ? <meta name="theme-color" content={themeColor} /> : null}
       </Helmet>
 
-      <AnimatePresence mode="wait">
-        {!isInvitationOpen ? (
-          <Layout startInvitation={false}>
-            <LandingPage onOpenInvitation={() => setIsInvitationOpen(true)} />
-          </Layout>
-        ) : (
-          <Layout startInvitation={true}>
-            <MainContent />
-          </Layout>
-        )}
-      </AnimatePresence>
+      <MotionConfig reducedMotion="user">
+        <AnimatePresence mode="wait">
+          {!isInvitationOpen ? (
+            <Layout startInvitation={false}>
+              <LandingPage onOpenInvitation={() => setIsInvitationOpen(true)} />
+            </Layout>
+          ) : (
+            <Layout startInvitation={true}>
+              <MainContent />
+            </Layout>
+          )}
+        </AnimatePresence>
+      </MotionConfig>
     </HelmetProvider>
   );
 }

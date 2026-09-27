@@ -6,7 +6,7 @@ const config = {
     familyTitle: 'Xushnudbek va Muxlisaxon oilasi',
     groomName: 'Xushnudbek',
     brideName: 'Muxlisaxon',
-    themeColor: 'hsl(349 89% 60%)',
+    themeColor: 'hsl(345 35% 36%)',
     showPhotos: false,
     showWishes: true,
     parentGroom: {

@@ -1,14 +1,14 @@
-import { Download, Heart } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { Fragment, useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import html2canvas from 'html2canvas';
-import config from '@/config/config';
-import { CountdownTimer } from '@/components/shared/CountDownTimer';
+import { Download, Heart } from "lucide-react";
+import { motion } from "framer-motion";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import html2canvas from "html2canvas";
+import config from "@/config/config";
+import { CountdownTimer } from "@/components/shared/CountDownTimer";
 
 export default function Hero() {
   const { t } = useTranslation();
-  const [guestName, setGuestName] = useState('');
+  const [guestName, setGuestName] = useState("");
   const cardRef = useRef(null);
 
   const cardVariants = {
@@ -17,7 +17,7 @@ export default function Hero() {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { type: 'spring', stiffness: 115, damping: 18, mass: 0.8 },
+      transition: { type: "spring", stiffness: 115, damping: 18, mass: 0.8 },
     },
   };
 
@@ -33,14 +33,14 @@ export default function Hero() {
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.48, ease: 'easeOut' },
+      transition: { duration: 0.48, ease: "easeOut" },
     },
   };
 
   const downloadFile = (canvas) => {
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.download = `${config.data.groomName}-${config.data.brideName}-Wedding-Invitation.png`;
-    link.href = canvas.toDataURL('image/png');
+    link.href = canvas.toDataURL("image/png");
     link.click();
   };
 
@@ -51,16 +51,16 @@ export default function Hero() {
       const canvas = await html2canvas(cardRef.current, {
         useCORS: true,
         allowTaint: true,
-        backgroundColor: '#fffaf7',
+        backgroundColor: "#fdfbf7",
         scale: 2,
       });
       const blob = await new Promise((resolve) =>
-        canvas.toBlob(resolve, 'image/png'),
+        canvas.toBlob(resolve, "image/png"),
       );
       const file = new File(
         [blob],
         `${config.data.groomName}-${config.data.brideName}-Wedding-Invitation.png`,
-        { type: 'image/png' },
+        { type: "image/png" },
       );
       const isMobile =
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -71,21 +71,21 @@ export default function Hero() {
         try {
           await navigator.share({
             files: [file],
-            title: t('landing.invitation'),
+            title: t("landing.invitation"),
           });
         } catch (error) {
-          if (error.name !== 'AbortError') downloadFile(canvas);
+          if (error.name !== "AbortError") downloadFile(canvas);
         }
       } else {
         downloadFile(canvas);
       }
     } catch (error) {
-      console.error('Error generating card image:', error);
+      console.error("Error generating card image:", error);
     }
   };
 
   useEffect(() => {
-    const guestParam = new URLSearchParams(window.location.search).get('guest');
+    const guestParam = new URLSearchParams(window.location.search).get("guest");
     if (guestParam) setGuestName(guestParam);
   }, []);
 
@@ -103,7 +103,7 @@ export default function Hero() {
           variants={cardVariants}
           initial="hidden"
           animate="show"
-          className="relative min-h-[470px] w-full max-w-[430px] overflow-hidden rounded-[28px] border border-primary-100 bg-[#fffaf7] shadow-[0_22px_65px_hsl(var(--black)_/_0.12)] sm:min-h-[520px]"
+          className="relative min-h-[470px] w-full max-w-[430px] overflow-hidden rounded-[28px] border border-primary-100 bg-card shadow-[0_16px_48px_hsl(var(--primary)_/_0.08)] sm:min-h-[520px]"
         >
           <img
             src="/images/hero.jpg"
@@ -121,7 +121,7 @@ export default function Hero() {
           >
             <motion.div variants={itemVariants}>
               <p className="mx-auto max-w-xs text-[11px] font-medium leading-relaxed tracking-wide text-primary-600 sm:text-sm">
-                {t('hero.bismillah')}
+                {t("hero.bismillah")}
               </p>
               <div className="mx-auto mt-4 flex w-32 items-center gap-3 text-primary-300">
                 <span className="h-px flex-1 bg-current" />
@@ -134,13 +134,13 @@ export default function Hero() {
               variants={itemVariants}
               className="flex flex-1 flex-col items-center justify-center py-6"
             >
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-gray-500">
-                {t('hero.weddingOf')}
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.24em] text-gray-500">
+                {t("hero.weddingOf")}
               </p>
               <h1 className="font-serif text-[2.35rem] leading-[1.05] text-gray-800 sm:text-5xl">
                 <span className="block">{config.data.groomName}</span>
                 <span className="my-1 block text-2xl font-normal italic text-primary-400 sm:my-2 sm:text-3xl">
-                  {t('hero.and')}
+                  {t("hero.and")}
                 </span>
                 <span className="block">{config.data.brideName}</span>
               </h1>
@@ -149,8 +149,8 @@ export default function Hero() {
             <motion.div variants={itemVariants} className="space-y-3">
               <p className="rounded-xl bg-white/55 px-3 py-2 text-sm font-medium leading-relaxed text-primary-600 backdrop-blur-sm">
                 {guestName
-                  ? t('landing.personalInvitation', { guestName })
-                  : t('landing.generalInvitation')}
+                  ? t("landing.personalInvitation", { guestName })
+                  : t("landing.generalInvitation")}
               </p>
             </motion.div>
           </motion.div>
@@ -163,10 +163,10 @@ export default function Hero() {
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.97 }}
           onClick={handleDownload}
-          className="mt-5 flex items-center gap-2 rounded-full border border-primary-200 bg-white/90 px-5 py-2.5 text-sm font-semibold text-primary-600 shadow-sm backdrop-blur-sm transition-colors hover:bg-primary-50"
+          className="mt-6 min-h-12 flex items-center gap-2 rounded-full border border-primary-200 bg-white/90 px-5 py-2.5 text-sm font-semibold text-primary-600 shadow-sm backdrop-blur-sm transition-colors hover:bg-primary-50"
         >
           <Download className="h-4 w-4" />
-          {t('hero.downloadCard')}
+          {t("hero.downloadCard")}
         </motion.button>
 
         <motion.div
@@ -175,11 +175,11 @@ export default function Hero() {
           transition={{ duration: 0.65, delay: 0.3 }}
           className="relative z-10 mt-10 w-full max-w-2xl"
         >
-          <span className="inline-flex rounded-full border border-primary-200 bg-primary-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-primary-600">
-            {t('hero.saveTheDate')}
+          <span className="inline-flex rounded-full border border-primary-200 bg-primary-50 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.16em] text-primary-600">
+            {t("hero.saveTheDate")}
           </span>
           <p className="mx-auto mt-4 max-w-md text-sm italic leading-relaxed text-gray-500 sm:text-base">
-            {t('hero.withJoy')}
+            {t("hero.withJoy")}
           </p>
 
           <CountdownTimer targetDate={config.data.date} />

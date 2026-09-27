@@ -186,5 +186,11 @@
     "minutes": "Minutes",
     "seconds": "Seconds",
     "sinceWedding": "Since the wedding"
+  },
+  "controls": {
+    "playMusic": "Play music",
+    "pauseMusic": "Pause music",
+    "close": "Close",
+    "navigation": "Invitation sections"
   }
 }

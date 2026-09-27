@@ -173,5 +173,11 @@
     "minutes": "Минут",
     "seconds": "Секунд",
     "sinceWedding": "После свадьбы"
+  },
+  "controls": {
+    "playMusic": "Включить музыку",
+    "pauseMusic": "Приостановить музыку",
+    "close": "Закрыть",
+    "navigation": "Разделы приглашения"
   }
 }

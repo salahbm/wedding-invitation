@@ -34,73 +34,50 @@
 
 @layer base {
   :root {
-    /* Base */
-    --background: 40 60% 98%;
-    /* clean ivory */
-    --foreground: 10 20% 18%;
-    /* warm dark (not pure black) */
-
-    --card: 0 0% 100%;
-    --card-foreground: 10 20% 18%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 10 20% 18%;
-
-    /* Primary (elegant wedding red — clean, not neon) */
-    --primary: 2 70% 55%;
-    --primary-50: 2 70% 97%;
-    --primary-100: 2 65% 92%;
-    --primary-200: 2 60% 84%;
-    --primary-300: 2 60% 72%;
-    --primary-400: 2 65% 62%;
-    --primary-500: 2 70% 55%;
-    --primary-600: 2 72% 48%;
-    --primary-700: 2 75% 40%;
+    /* Warm paper, plum ink, and a restrained burgundy accent. */
+    --background: 40 33% 96%;
+    --foreground: 330 12% 20%;
+    --card: 40 50% 99%;
+    --card-foreground: 330 12% 20%;
+    --popover: 40 50% 99%;
+    --popover-foreground: 330 12% 20%;
+    --primary: 345 35% 36%;
+    --primary-50: 345 30% 97%;
+    --primary-100: 345 28% 92%;
+    --primary-200: 345 25% 82%;
+    --primary-300: 345 26% 65%;
+    --primary-400: 345 30% 45%;
+    --primary-500: 345 35% 36%;
+    --primary-600: 345 38% 30%;
+    --primary-700: 345 40% 24%;
     --primary-foreground: 0 0% 100%;
-
-    /* Secondary (soft champagne — keeps wedding feel) */
-    --secondary: 40 50% 94%;
-    --secondary-foreground: 30 25% 30%;
-
-    /* Accent (light warm highlight) */
-    --accent: 35 70% 96%;
-    --accent-foreground: 10 20% 18%;
-
-    /* Muted */
-    --muted: 30 25% 95%;
-    --muted-foreground: 20 10% 45%;
-
-    /* System */
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-
-    /* Borders (soft, clean) */
-    --border: 30 15% 90%;
-    --input: 30 15% 90%;
-
-    --ring: 2 70% 55%;
-    --radius: 0.6rem;
-
-    /* Base */
+    --secondary: 95 15% 91%;
+    --secondary-foreground: 100 16% 31%;
+    --accent: 35 35% 92%;
+    --accent-foreground: 330 12% 20%;
+    --muted: 35 22% 93%;
+    --muted-foreground: 25 8% 40%;
+    --destructive: 0 65% 42%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 30 20% 85%;
+    --input: 30 20% 80%;
+    --ring: 345 35% 36%;
+    --radius: 1rem;
     --white: 0 0% 100%;
-    --black: 10 20% 18%;
-
-    /* Neutral grays (kept clean) */
-    --gray-50: 30 25% 98%;
-    --gray-100: 30 20% 96%;
-    --gray-200: 30 18% 92%;
-    --gray-300: 30 15% 85%;
-    --gray-400: 25 12% 65%;
-    --gray-500: 25 10% 47%;
-    --gray-600: 25 12% 36%;
-    --gray-700: 25 15% 28%;
-    --gray-800: 10 20% 18%;
-    --gray-900: 10 25% 10%;
-
-    /* Supporting */
-    --red-400: 2 75% 65%;
-    --purple-600: 260 60% 55%;
-    --purple-700: 260 50% 45%;
+    --black: 330 12% 20%;
+    --gray-50: 40 33% 97%;
+    --gray-100: 35 25% 94%;
+    --gray-200: 30 20% 87%;
+    --gray-300: 30 15% 78%;
+    --gray-400: 25 8% 46%;
+    --gray-500: 25 8% 40%;
+    --gray-600: 25 10% 34%;
+    --gray-700: 330 10% 27%;
+    --gray-800: 330 12% 20%;
+    --gray-900: 330 15% 14%;
+    --red-400: 345 30% 45%;
+    --purple-600: 345 35% 36%;
+    --purple-700: 345 40% 24%;
   }
 }
 
@@ -111,5 +88,81 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+@layer base {
+  html {
+    scroll-padding-top: 88px;
+  }
+  body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button,
+  a {
+    touch-action: manipulation;
+  }
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 4px;
+  }
+  ::selection {
+    background: hsl(var(--primary-100));
+    color: hsl(var(--primary-700));
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.2em] text-primary;
+  }
+  .primary-button {
+    @apply inline-flex min-h-12 items-center justify-center rounded-2xl bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-600 disabled:cursor-wait disabled:opacity-70;
+    box-shadow:
+      0 4px 16px hsl(var(--primary) / 0.14),
+      inset 0 1px 0 hsl(var(--white) / 0.15);
+  }
+  .welcome-screen {
+    background: #282c27;
+  }
+  .welcome-shade {
+    background: linear-gradient(
+      180deg,
+      rgba(19, 24, 21, 0.65),
+      rgba(19, 24, 21, 0.44) 35%,
+      rgba(19, 24, 21, 0.54) 60%,
+      rgba(19, 24, 21, 0.92)
+    );
+  }
+  .welcome-names {
+    font-size: clamp(2.5rem, 10.5vw, 4rem);
+    line-height: 1.12;
+    text-shadow: 0 2px 24px rgba(19, 24, 21, 0.2);
+  }
+  .invitation-shell {
+    box-shadow: 0 0 80px hsl(var(--primary) / 0.05);
+  }
+  .bottom-navigation {
+    bottom: max(16px, env(safe-area-inset-bottom));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

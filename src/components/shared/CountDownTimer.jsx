@@ -1,7 +1,7 @@
-import { motion } from 'framer-motion';
-import { useEffect, useState, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import { motion } from "framer-motion";
+import { useEffect, useState, useCallback } from "react";
+import { useTranslation } from "react-i18next";
+import PropTypes from "prop-types";
 
 export const CountdownTimer = ({ targetDate }) => {
   const { t } = useTranslation();
@@ -20,23 +20,23 @@ export const CountdownTimer = ({ targetDate }) => {
     if (difference > 0) {
       // Future event → countdown
       return {
-        label: t('countdown.untilWedding'),
+        label: t("countdown.untilWedding"),
         values: {
-          [t('countdown.days')]: days,
-          [t('countdown.hours')]: hours,
-          [t('countdown.minutes')]: minutes,
-          [t('countdown.seconds')]: seconds,
+          [t("countdown.days")]: days,
+          [t("countdown.hours")]: hours,
+          [t("countdown.minutes")]: minutes,
+          [t("countdown.seconds")]: seconds,
         },
       };
     } else {
       // Past event → count up
       return {
-        label: t('countdown.sinceWedding'),
+        label: t("countdown.sinceWedding"),
         values: {
-          [t('countup.days')]: days,
-          [t('countup.hours')]: hours,
-          [t('countup.minutes')]: minutes,
-          [t('countup.seconds')]: seconds,
+          [t("countup.days")]: days,
+          [t("countup.hours")]: hours,
+          [t("countup.minutes")]: minutes,
+          [t("countup.seconds")]: seconds,
         },
       };
     }
@@ -56,16 +56,16 @@ export const CountdownTimer = ({ targetDate }) => {
       <h3 className="text-center text-primary-600 font-semibold mb-4">
         {timeLeft.label}
       </h3>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-2 sm:gap-4">
         {Object.keys(timeLeft.values).map((interval) => (
           <motion.div
             key={interval}
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className="flex flex-col items-center p-3 bg-white/80 backdrop-blur-sm rounded-xl border border-primary-100 shadow-sm"
+            className="flex flex-col items-center px-1 py-4 bg-secondary/50 rounded-2xl border border-secondary"
           >
-            <span className="text-xl sm:text-2xl font-bold text-primary-600">
+            <span className="text-2xl font-medium tabular-nums text-secondary-foreground">
               {timeLeft.values[interval]}
             </span>
             <span className="text-xs text-gray-500 capitalize">{interval}</span>

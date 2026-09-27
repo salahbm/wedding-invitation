@@ -172,5 +172,11 @@
     "minutes": "Daqiqa",
     "seconds": "Soniya",
     "sinceWedding": "To'ydan o'tgan kun"
+  },
+  "controls": {
+    "playMusic": "Musiqani ijro etish",
+    "pauseMusic": "Musiqani to‘xtatish",
+    "close": "Yopish",
+    "navigation": "Taklifnoma bo‘limlari"
   }
 }
