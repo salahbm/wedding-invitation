@@ -1,15 +1,14 @@
 const config = {
   data: {
-    title: 'Islombek & Umida',
-    metaTitle: "Islombek & Umida's Wedding Ceremony",
-    metaDescription:
-      'Join us on June 14, 2026, for our wedding ceremony.',
-    familyTitle: 'Семья Алимжановых и Исламовых',
-    groomName: 'Islombek',
-    brideName: 'Umida',
+    title: 'Xushnudbek & Muxlisaxon',
+    metaTitle: "Xushnudbek & Muxlisaxon's Wedding Ceremony",
+    metaDescription: 'Join us on October 10, 2026, for our wedding ceremony.',
+    familyTitle: 'Xushnudbek va Muxlisaxon oilasi',
+    groomName: 'Xushnudbek',
+    brideName: 'Muxlisaxon',
     themeColor: 'hsl(349 89% 60%)',
     showPhotos: false,
-    showWishes: false,
+    showWishes: true,
     parentGroom: {
       father: '-',
       mother: '-',
@@ -18,9 +17,9 @@ const config = {
       father: '-',
       mother: '-',
     },
-    date: '2026-06-14',
-    preWeddingDate: '2026-06-13',
-    weddingDate: '2026-06-14',
+    date: '2026-10-10',
+    preWeddingDate: '2026-10-10',
+    weddingDate: '2026-10-10',
     weddingTime: '18:00',
     preWeddingTime: '18:00',
     maps_url:
@@ -32,12 +31,12 @@ const config = {
     address: 'Sahid Zarafshon',
     ogImage: '/images/og-image.jpg',
     favicon: '/images/favicon.ico',
-    siteUrl: 'https://islombek-umida-wedding.vercel.app',
+    siteUrl: 'https://xushnudbek-muxlisaxon-wedding.vercel.app',
     agenda: [
       {
         title: 'Wedding',
         description: 'Our main wedding celebration with loved ones and guests.',
-        date: '2026-06-14',
+        date: '2026-10-10',
         startTime: '18:00',
         endTime: '23:45',
         location: 'Sahid Zarafshon',
@@ -45,8 +44,9 @@ const config = {
       },
     ],
     audio: {
-      src: '/audio/MeniSev.mp3',
-      title: 'Meni Sev - Sevara Nazarxon',
+      src: '/audio/the-world-we-knew-over-and-over.m4a',
+      title: 'The World We Knew — Herbert Rehbein',
+      startAt: 8,
       autoplay: true,
       loop: true,
     },

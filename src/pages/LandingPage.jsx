@@ -1,16 +1,19 @@
 // src/pages/LandingPage.jsx
 import config from '@/config/config';
 import { formatEventDate } from '@/lib/formatEventDate';
-import { motion } from 'framer-motion';
-import { Calendar, Clock, Globe } from 'lucide-react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { Calendar, Clock, Globe, Heart } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 
 const LandingPage = ({ onOpenInvitation }) => {
   const { t, i18n } = useTranslation();
   const [showLanguageModal, setShowLanguageModal] = useState(true);
+  const [isOpening, setIsOpening] = useState(false);
+  const openTimerRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
 
   // Available languages
   const languages = [
@@ -25,11 +28,28 @@ const LandingPage = ({ onOpenInvitation }) => {
     setShowLanguageModal(false);
   };
 
+  const handleOpenInvitation = () => {
+    if (isOpening) return;
+    setIsOpening(true);
+    openTimerRef.current = window.setTimeout(
+      onOpenInvitation,
+      shouldReduceMotion ? 180 : 1150
+    );
+  };
+
+  useEffect(
+    () => () => {
+      if (openTimerRef.current) window.clearTimeout(openTimerRef.current);
+    },
+    []
+  );
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      exit={{ opacity: 0, scale: 1.03 }}
+      transition={{ duration: 0.45 }}
       className="min-h-screen relative overflow-hidden flex flex-col justify-center"
     >
       {/* Language Selection Modal */}
@@ -156,8 +176,9 @@ const LandingPage = ({ onOpenInvitation }) => {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={onOpenInvitation}
-                className="group  duration-3000 relative w-full bg-primary-500 text-white px-6 py-3 sm:px-8 sm:py-3 rounded-xl font-medium shadow-lg hover:bg-primary-600 transition-all "
+                onClick={handleOpenInvitation}
+                disabled={isOpening}
+                className="group relative w-full overflow-hidden rounded-xl bg-primary-500 px-6 py-3 font-medium text-white shadow-lg transition-all hover:bg-primary-600 disabled:cursor-wait sm:px-8 sm:py-3"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   <span>{t('landing.openInvitation')}</span>
@@ -177,6 +198,61 @@ const LandingPage = ({ onOpenInvitation }) => {
           </div>
         </motion.div>
       </div>
+
+      <AnimatePresence>
+        {isOpening && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+            className="fixed inset-0 z-[100] overflow-hidden bg-[#fffaf7]"
+            aria-hidden="true"
+          >
+            <div className="absolute inset-0 flex items-center justify-center">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: [0, 1, 1, 0], scale: [0.9, 1, 1.04, 1.08] }}
+                transition={{ duration: 1.05, times: [0, 0.2, 0.72, 1] }}
+                className="relative z-10 text-center"
+              >
+                <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-primary-500">
+                  {t('landing.invitation')}
+                </p>
+                <p className="mt-3 font-serif text-3xl text-gray-800 sm:text-5xl">
+                  {config.data.groomName}
+                  <span className="mx-2 text-primary-400">&</span>
+                  {config.data.brideName}
+                </p>
+              </motion.div>
+            </div>
+
+            <motion.div
+              initial={{ x: 0 }}
+              animate={{ x: shouldReduceMotion ? 0 : '-105%' }}
+              transition={{ delay: 0.35, duration: 0.72, ease: [0.76, 0, 0.24, 1] }}
+              className="absolute inset-y-0 left-0 z-20 w-1/2 border-r border-primary-100 bg-gradient-to-r from-[#fffaf7] to-primary-50"
+            />
+            <motion.div
+              initial={{ x: 0 }}
+              animate={{ x: shouldReduceMotion ? 0 : '105%' }}
+              transition={{ delay: 0.35, duration: 0.72, ease: [0.76, 0, 0.24, 1] }}
+              className="absolute inset-y-0 right-0 z-20 w-1/2 border-l border-primary-100 bg-gradient-to-l from-[#fffaf7] to-primary-50"
+            />
+
+            <div className="absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.6 }}
+                animate={{ opacity: [0, 1, 1, 0], scale: [0.6, 1, 1.08, 0.3] }}
+                transition={{ duration: 0.82, times: [0, 0.2, 0.58, 1] }}
+                className="flex h-20 w-20 items-center justify-center rounded-full border-4 border-white bg-primary-500 text-white shadow-[0_12px_45px_hsl(var(--primary)_/_0.35)]"
+              >
+                <Heart className="h-8 w-8" fill="currentColor" />
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };

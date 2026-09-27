@@ -1,325 +1,162 @@
 import EventCards from '@/components/shared/EventsCard';
 import config from '@/config/config';
 import { motion } from 'framer-motion';
-import { Heart } from 'lucide-react';
+import { Clock, GlassWater, Heart, Music, PartyPopper } from 'lucide-react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Clock,
-  Music,
-  Utensils,
-  GlassWater,
-  PartyPopper,
-  HeartHandshake,
-} from 'lucide-react';
-import { useState, useEffect, useMemo } from 'react';
+
 export default function Events() {
   const { t } = useTranslation();
 
-  const [hasAnimated, setHasAnimated] = useState(false);
-
-  // Wedding timeline events
   const timelineEvents = useMemo(
     () => [
       {
         time: '18:00',
         event: t('table.guestArrival'),
         description: t('table.arrivalDesc'),
-        icon: <GlassWater className="w-full h-full text-primary-500" />,
+        icon: GlassWater,
       },
       {
-        time: '18:15',
-        event: t('table.rustamEntrance'),
-        description: t('table.rustamEntranceDesc'),
-        icon: <HeartHandshake className="w-full h-full text-primary-500" />,
+        event: t('table.artistAmir'),
+        description: t('table.artistAmirDesc'),
+        icon: Music,
       },
       {
-        time: '',
-        event: t('table.ziyadaEntrance'),
-        description: t('table.ziyadaEntranceDesc'),
-        icon: <Music className="w-full h-full text-primary-500" />,
+        event: t('table.artistJasmin'),
+        description: t('table.artistJasminDesc'),
+        icon: Music,
       },
       {
-        time: '',
         event: t('table.danceShow'),
         description: t('table.danceShowDesc'),
-        icon: <PartyPopper className="w-full h-full text-primary-500" />,
+        icon: PartyPopper,
       },
       {
-        time: '',
-        event: t('table.zohirshodSong'),
-        description: t('table.zohirshodSongDesc'),
-        icon: <Music className="w-full h-full text-primary-500" />,
+        event: t('table.artistTohir'),
+        description: t('table.artistTohirDesc'),
+        icon: Music,
       },
       {
-        time: '',
-        event: t('table.foodServingOne'),
-        description: t('table.foodServingOneDesc'),
-        icon: <Utensils className="w-full h-full text-primary-500" />,
-      },
-      {
-        time: '',
         event: t('table.danceShowAgain'),
         description: t('table.danceShowAgainDesc'),
-        icon: <PartyPopper className="w-full h-full text-primary-500" />,
+        icon: PartyPopper,
       },
       {
-        time: '',
-        event: t('table.farzonaiXurshid'),
-        description: t('table.farzonaiXurshidDesc'),
-        icon: <Music className="w-full h-full text-primary-500" />,
+        event: t('table.artistJBella'),
+        description: t('table.artistJBellaDesc'),
+        icon: Music,
       },
       {
-        time: '',
-        event: t('table.foodServingTwo'),
-        description: t('table.foodServingTwoDesc'),
-        icon: <Utensils className="w-full h-full text-primary-500" />,
-      },
-      {
-        time: '',
         event: t('table.danceShowFinal'),
         description: t('table.danceShowFinalDesc'),
-        icon: <PartyPopper className="w-full h-full text-primary-500" />,
-      },
-      {
-        time: '',
-        event: t('table.coupleDance'),
-        description: t('table.coupleDanceDesc'),
-        icon: <Music className="w-full h-full text-primary-500" />,
-      },
-      {
-        time: '',
-        event: t('table.cakeCutting'),
-        description: t('table.cakeCuttingDesc'),
-        icon: <PartyPopper className="w-full h-full text-primary-500" />,
-      },
-      {
-        time: '',
-        event: t('table.guestDances'),
-        description: t('table.guestDancesDesc'),
-        icon: <PartyPopper className="w-full h-full text-primary-500" />,
+        icon: PartyPopper,
       },
     ],
     [t]
   );
 
-  // Set animation to run once on component mount
-  useEffect(() => {
-    setHasAnimated(true);
-  }, []);
-
   return (
     <>
-      {/* Event Section */}
-      <section id="event" className="relative overflow-hidden">
+      <section id="event" className="relative overflow-hidden px-4 pb-8 pt-4 sm:pb-12">
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="relative container mx-auto px-4 pb-10"
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto max-w-2xl"
         >
-          {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center space-y-4 mb-16"
-          >
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="inline-block text-primary-500 font-medium mb-2"
-            >
+          <div className="mb-7 text-center sm:mb-10">
+            <span className="text-xs font-semibold uppercase tracking-[0.22em] text-primary-500 sm:text-sm">
               {t('events.saveTheDate')}
-            </motion.span>
-            {/* 
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="text-4xl md:text-5xl font-serif text-gray-800 leading-tight"
-            >
-              {t('events.weddingEvents')}
-            </motion.h2> */}
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="text-gray-500 max-w-md mx-auto"
-            >
+            </span>
+            <p className="mx-auto mt-2 max-w-md text-sm text-gray-500 sm:text-base">
               {t('events.invitation')}
-            </motion.p>
-
-            {/* Decorative Line */}
-            <motion.div
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-              className="flex items-center justify-center gap-4 mt-6"
-            >
-              <div className="h-[1px] w-12 bg-primary-200" />
-              <div className="text-primary-400">
-                <Heart className="w-4 h-4" fill="currentColor" />
-              </div>
-              <div className="h-[1px] w-12 bg-primary-200" />
-            </motion.div>
-          </motion.div>
-
-          {/* Events Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="max-w-2xl mx-auto"
-          >
-            <EventCards events={config.data.agenda} />
-          </motion.div>
-        </motion.div>
-      </section>
-      <section id="table" className="relative overflow-hidden">
-        <div className="container mx-auto px-4 py-10 relative ">
-          {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-center space-y-4 mb-16"
-          >
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2 }}
-              className="inline-block text-primary-500 font-medium"
-            >
-              {t('table.weddingSchedule')}
-            </motion.span>
-
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.3 }}
-              className="text-4xl md:text-5xl font-serif text-gray-800"
-            >
-              {t('table.timetable')}
-            </motion.h2>
-
-            {/* Decorative Divider */}
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={hasAnimated ? { scale: 1 } : {}}
-              transition={{ delay: 0.4 }}
-              className="flex items-center justify-center gap-4 pt-4"
-            >
-              <div className="h-[1px] w-12 bg-primary-200" />
-              <Clock className="w-5 h-5 text-primary-400" />
-              <div className="h-[1px] w-12 bg-primary-200" />
-            </motion.div>
-
-            {/* Message Container */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={hasAnimated ? { opacity: 1 } : {}}
-              transition={{ delay: 0.5 }}
-              className="space-y-4 max-w-md mx-auto"
-            >
-              {/* Main Message */}
-              <p className="text-gray-600 leading-relaxed">
-                {t('table.message')}
-              </p>
-
-              <p className="text-gray-600 italic text-sm">
-                {t('table.thankYou')}
-              </p>
-            </motion.div>
-
-            {/* Optional: Additional Decorative Element */}
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={hasAnimated ? { scale: 1 } : {}}
-              transition={{ delay: 0.6 }}
-              className="flex items-center justify-center gap-3 pt-4"
-            >
-              <div className="h-px w-8 bg-primary-200/50" />
-              <div className="w-1.5 h-1.5 rounded-full bg-primary-300" />
-              <div className="h-px w-8 bg-primary-200/50" />
-            </motion.div>
-          </motion.div>
-
-          {/* Timeline Header */}
-          <div className="max-w-2xl mx-auto mb-6 md:grid grid-cols-12 gap-6 px-4 text-gray-500 font-medium hidden">
-            <div className="col-span-3 text-left">{t('table.timeHeader')}</div>
-            <div className="col-span-3 text-left">{t('table.eventHeader')}</div>
-            <div className="col-span-6 text-left">
-              {t('table.descriptionHeader')}
+            </p>
+            <div className="mt-4 flex items-center justify-center gap-3 text-primary-300">
+              <span className="h-px w-10 bg-primary-200" />
+              <Heart className="h-3.5 w-3.5" fill="currentColor" />
+              <span className="h-px w-10 bg-primary-200" />
             </div>
           </div>
 
-          {/* Timeline Events */}
-          <div className="max-w-2xl mx-auto grid gap-6">
-            {timelineEvents.map((event, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.2 * index + 0.7 }}
-                className="relative group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-primary-100/50 to-primary-100/50 rounded-2xl transform transition-transform group-hover:scale-105 duration-300" />
-                <div className="relative backdrop-blur-sm bg-white/80 p-6 rounded-2xl border border-primary-100/50 shadow-lg">
-                  {/* Desktop layout (md and up) */}
-                  <div className="hidden md:grid md:grid-cols-12 md:gap-4 md:items-center">
-                    <div className="col-span-3 flex items-center space-x-3">
-                      <div className="w-10 h-10 rounded-lg bg-white p-2 shadow-sm flex-shrink-0">
-                        {event.icon}
-                      </div>
-                      <span className="font-mono text-gray-800 font-medium">
-                        {event.time}
-                      </span>
-                    </div>
+          <EventCards events={config.data.agenda} />
+        </motion.div>
+      </section>
 
-                    <div className="col-span-3">
-                      <h3 className="font-medium text-gray-800">
-                        {event.event}
-                      </h3>
-                    </div>
+      <section id="table" className="relative overflow-hidden px-4 py-10 sm:py-16">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-primary-50/45 to-transparent" />
+        <div className="relative mx-auto max-w-2xl">
+          <motion.header
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.6 }}
+            className="mb-8 text-center sm:mb-12"
+          >
+            <span className="text-xs font-semibold uppercase tracking-[0.22em] text-primary-500 sm:text-sm">
+              {t('table.weddingSchedule')}
+            </span>
+            <h2 className="mt-2 font-serif text-3xl text-gray-800 sm:text-5xl">
+              {t('table.timetable')}
+            </h2>
+            <div className="mt-4 flex items-center justify-center gap-3 text-primary-400">
+              <span className="h-px w-10 bg-primary-200" />
+              <Clock className="h-4 w-4" />
+              <span className="h-px w-10 bg-primary-200" />
+            </div>
+            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-gray-500 sm:text-base">
+              {t('table.message')}
+            </p>
+          </motion.header>
 
-                    <div className="col-span-6">
-                      <p className="text-gray-600">{event.description}</p>
-                    </div>
+          <ol className="relative">
+            {timelineEvents.map((event, index) => {
+              const EventIcon = event.icon;
+              const isLast = index === timelineEvents.length - 1;
+
+              return (
+                <motion.li
+                  key={`${event.event}-${index}`}
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.45 }}
+                  transition={{ duration: 0.45, delay: Math.min(index * 0.05, 0.25) }}
+                  className="relative flex gap-3 pb-3.5 sm:gap-5 sm:pb-5"
+                >
+                  {!isLast && (
+                    <span className="absolute bottom-0 left-5 top-10 w-px bg-gradient-to-b from-primary-300 to-primary-100 sm:left-6 sm:top-12" />
+                  )}
+
+                  <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-4 border-white bg-primary-50 text-primary-500 shadow-sm ring-1 ring-primary-100 sm:h-12 sm:w-12">
+                    <EventIcon className="h-4 w-4 sm:h-5 sm:w-5" />
                   </div>
 
-                  {/* Mobile layout (smaller than md) */}
-                  <div className="md:hidden space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 rounded-lg bg-white p-2 shadow-sm flex-shrink-0">
-                          {event.icon}
+                  <div className="min-w-0 flex-1 rounded-2xl border border-primary-100/80 bg-white/90 px-4 py-3 shadow-[0_8px_28px_hsl(var(--black)_/_0.05)] backdrop-blur-sm sm:px-5 sm:py-4">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <div className="mb-1 flex items-center gap-2">
+                          <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-primary-400">
+                            {String(index + 1).padStart(2, '0')}
+                          </span>
+                          {event.time && (
+                            <span className="rounded-full bg-primary-50 px-2 py-0.5 font-mono text-[11px] font-semibold text-primary-600">
+                              {event.time}
+                            </span>
+                          )}
                         </div>
-                        <h3 className="font-medium text-gray-800">
+                        <h3 className="truncate text-sm font-semibold text-gray-800 sm:text-base">
                           {event.event}
                         </h3>
+                        <p className="mt-1 text-xs leading-relaxed text-gray-500 sm:text-sm">
+                          {event.description}
+                        </p>
                       </div>
-                      <span className="font-mono text-gray-800 font-medium">
-                        {event.time}
-                      </span>
-                    </div>
-
-                    <div>
-                      <p className="text-gray-600">{event.description}</p>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                </motion.li>
+              );
+            })}
+          </ol>
         </div>
       </section>
     </>

@@ -1,93 +1,82 @@
-import { Calendar, Clock, Download, Heart } from 'lucide-react';
+import { Download, Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Fragment, useEffect, useState, useRef } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import config from '@/config/config';
-import { formatEventDate } from '@/lib/formatEventDate';
-import FloatingHearts from '@/components/shared/FloatingHearts';
-import { CountdownTimer } from '@/components/shared/CountDownTimer';
 import html2canvas from 'html2canvas';
+import config from '@/config/config';
+import { CountdownTimer } from '@/components/shared/CountDownTimer';
 
 export default function Hero() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [guestName, setGuestName] = useState('');
   const cardRef = useRef(null);
-  const heroVariants = {
-    hidden: { opacity: 0, y: 18, scale: 0.96, rotate: -2 },
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 28, scale: 0.94 },
     show: {
       opacity: 1,
       y: 0,
       scale: 1,
-      rotate: 0,
-      transition: { type: 'spring', stiffness: 130, damping: 16, mass: 0.7 },
+      transition: { type: 'spring', stiffness: 115, damping: 18, mass: 0.8 },
     },
   };
 
   const contentVariants = {
     hidden: {},
     show: {
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.08,
-      },
+      transition: { staggerChildren: 0.09, delayChildren: 0.12 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 14 },
+    hidden: { opacity: 0, y: 12 },
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.45, ease: 'easeOut' },
+      transition: { duration: 0.48, ease: 'easeOut' },
     },
+  };
+
+  const downloadFile = (canvas) => {
+    const link = document.createElement('a');
+    link.download = `${config.data.groomName}-${config.data.brideName}-Wedding-Invitation.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
   };
 
   const handleDownload = async () => {
     if (!cardRef.current) return;
+
     try {
       const canvas = await html2canvas(cardRef.current, {
         useCORS: true,
         allowTaint: true,
-        backgroundColor: '#fffdf7',
+        backgroundColor: '#fffaf7',
         scale: 2,
       });
-
-      // Convert canvas to blob
       const blob = await new Promise((resolve) =>
-        canvas.toBlob(resolve, 'image/png')
+        canvas.toBlob(resolve, 'image/png'),
       );
-
-      // Check if running on mobile device
+      const file = new File(
+        [blob],
+        `${config.data.groomName}-${config.data.brideName}-Wedding-Invitation.png`,
+        { type: 'image/png' },
+      );
       const isMobile =
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-          navigator.userAgent
+          navigator.userAgent,
         );
 
-      if (
-        isMobile &&
-        navigator.canShare &&
-        navigator.canShare({
-          files: [
-            new File([blob], 'Wedding-Invitation.png', { type: 'image/png' }),
-          ],
-        })
-      ) {
-        // Use Web Share API for mobile devices that support it
+      if (isMobile && navigator.canShare?.({ files: [file] })) {
         try {
-          const file = new File([blob], 'Wedding-Invitation.png', {
-            type: 'image/png',
-          });
           await navigator.share({
             files: [file],
-            title: 'Wedding Invitation',
+            title: t('landing.invitation'),
           });
         } catch (error) {
-          console.error('Error sharing:', error);
-          // Fallback to traditional download
-          downloadFile(canvas);
+          if (error.name !== 'AbortError') downloadFile(canvas);
         }
       } else {
-        // Desktop or unsupported mobile - use traditional download
         downloadFile(canvas);
       }
     } catch (error) {
@@ -95,16 +84,8 @@ export default function Hero() {
     }
   };
 
-  // Helper function for traditional download
-  const downloadFile = (canvas) => {
-    const link = document.createElement('a');
-    link.download = 'Wedding-Invitation.png';
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-  };
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const guestParam = urlParams.get('guest');
+    const guestParam = new URLSearchParams(window.location.search).get('guest');
     if (guestParam) setGuestName(guestParam);
   }, []);
 
@@ -112,181 +93,101 @@ export default function Hero() {
     <Fragment>
       <section
         id="home"
-        className="flex flex-col items-center justify-center px-4 pt-16 sm:pt-20 w-full text-center relative overflow-hidden"
+        className="relative flex w-full flex-col items-center overflow-hidden px-4 pb-12 pt-20 text-center sm:pb-16 sm:pt-24"
       >
-        {/* 💌 Card with solid background */}
-        <motion.div
+        <div className="pointer-events-none absolute -left-20 top-36 h-56 w-56 rounded-full bg-primary-100/45 blur-3xl" />
+        <div className="pointer-events-none absolute -right-24 top-12 h-64 w-64 rounded-full bg-accent/80 blur-3xl" />
+
+        <motion.article
           ref={cardRef}
-          variants={heroVariants}
+          variants={cardVariants}
           initial="hidden"
           animate="show"
-          className="relative max-w-[420px] max-h-[640px] w-full mx-auto rounded-2xl overflow-hidden bg-white border border-primary-100 shadow-lg"
+          className="relative min-h-[470px] w-full max-w-[430px] overflow-hidden rounded-[28px] border border-primary-100 bg-[#fffaf7] shadow-[0_22px_65px_hsl(var(--black)_/_0.12)] sm:min-h-[520px]"
         >
-          {/* 👰🏻 Background image */}
-          <picture className="absolute inset-0 z-0">
-            <img
-              src="/images/hero.jpg"
-              alt="Background"
-              className="w-full h-full object-cover opacity-20"
-            />
-          </picture>
-          <div className="absolute inset-0 bg-gradient-to-b from-primary-100/20 to-white/40" />
+          <img
+            src="/images/hero.jpg"
+            alt="Wedding invitation background"
+            className="absolute inset-0 h-full w-full object-cover object-center opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/75 via-[#fffaf7]/45 to-white/90" />
+          <div className="absolute inset-3 rounded-[22px] border border-white/80" />
 
-          {/* 📝 Card content */}
-          <div className="relative px-6 sm:px-10 py-10 sm:py-12 z-10">
-            {/* top line */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-px">
-              <div className="w-24 sm:w-36 h-0.5 bg-gradient-to-r from-transparent via-primary-200 to-transparent" />
-            </div>
-
-            <motion.div
-              className="space-y-8 text-center"
-              variants={contentVariants}
-              initial="hidden"
-              animate="show"
-            >
-              <div className="space-y-6">
-                <motion.h1 className="font-serif text-gray-800" variants={itemVariants}>
-                  <div className="text-sm sm:text-base text-primary-500 mb-2 font-sans">
-                    {t('hero.bismillah')}
-                  </div>
-                  <div className="text-md mt-2 sm:text-lg mb-1">
-                    {t('hero.weddingOf')}
-                  </div>
-                  <div className="text-3xl sm:text-4xl md:text-5xl mb-2">
-                    {config.data.groomName}
-                  </div>
-                  <div className="text-3xl sm:text-4xl md:text-5xl mb-2">
-                    <span className="text-primary-400 mx-2 text-md font-thin">
-                      {t('hero.and')}
-                    </span>
-                    {config.data.brideName}
-                  </div>
-                </motion.h1>
-
-                <motion.div className="flex items-center justify-center space-x-2" variants={itemVariants}>
-                  <Calendar className="w-4 h-4 text-primary-400" />
-                  <p className="text-gray-700 font-medium capitalize">
-                    {formatEventDate(config.data.date, 'full', i18n.language)}
-                  </p>
-                </motion.div>
-
-                <motion.div className="flex items-center justify-center space-x-2" variants={itemVariants}>
-                  <Clock className="w-4 h-4 text-primary-400" />
-                  <span className="text-gray-700 capitalize font-medium text-sm sm:text-base">
-                    {config.data.time}
-                  </span>
-                </motion.div>
+          <motion.div
+            variants={contentVariants}
+            initial="hidden"
+            animate="show"
+            className="relative z-10 flex min-h-[470px] flex-col px-5 py-7 sm:min-h-[520px] sm:px-9 sm:py-9"
+          >
+            <motion.div variants={itemVariants}>
+              <p className="mx-auto max-w-xs text-[11px] font-medium leading-relaxed tracking-wide text-primary-600 sm:text-sm">
+                {t('hero.bismillah')}
+              </p>
+              <div className="mx-auto mt-4 flex w-32 items-center gap-3 text-primary-300">
+                <span className="h-px flex-1 bg-current" />
+                <Heart className="h-3 w-3" fill="currentColor" />
+                <span className="h-px flex-1 bg-current" />
               </div>
-
-              {/* Separator */}
-              <motion.div className="flex items-center justify-center gap-3" variants={itemVariants}>
-                <div className="h-px w-8 sm:w-12 bg-primary-200/70" />
-                <div className="w-2 h-2 rounded-full bg-primary-200" />
-                <div className="h-px w-8 sm:w-12 bg-primary-200/70" />
-              </motion.div>
-
-              <motion.div className="space-y-2" variants={itemVariants}>
-                {guestName && (
-                  <p className="text-gray-500 font-serif italic text-sm">
-                    {t('landing.for')}
-                  </p>
-                )}
-                <p className="text-primary-500 font-semibold text-md">
-                  {guestName ? (
-                    <span
-                      className='block'
-                      dangerouslySetInnerHTML={{
-                        __html: t('landing.personalInvitation', {
-                          guestName,
-                        }),
-                      }}
-                    />
-                  ) : (
-                    t('landing.generalInvitation')
-                  )}
-                </p>
-              </motion.div>
             </motion.div>
 
-            {/* bottom line */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-px">
-              <div className="w-24 sm:w-36 h-0.5 bg-gradient-to-r from-transparent via-primary-200 to-transparent" />
-            </div>
-          </div>
-        </motion.div>
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-1 flex-col items-center justify-center py-6"
+            >
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-gray-500">
+                {t('hero.weddingOf')}
+              </p>
+              <h1 className="font-serif text-[2.35rem] leading-[1.05] text-gray-800 sm:text-5xl">
+                <span className="block">{config.data.groomName}</span>
+                <span className="my-1 block text-2xl font-normal italic text-primary-400 sm:my-2 sm:text-3xl">
+                  {t('hero.and')}
+                </span>
+                <span className="block">{config.data.brideName}</span>
+              </h1>
+            </motion.div>
 
+            <motion.div variants={itemVariants} className="space-y-3">
+              <p className="rounded-xl bg-white/55 px-3 py-2 text-sm font-medium leading-relaxed text-primary-600 backdrop-blur-sm">
+                {guestName
+                  ? t('landing.personalInvitation', { guestName })
+                  : t('landing.generalInvitation')}
+              </p>
+            </motion.div>
+          </motion.div>
+        </motion.article>
 
         <motion.button
-          whileHover={{ scale: 1.04 }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.45 }}
+          whileHover={{ y: -2 }}
           whileTap={{ scale: 0.97 }}
           onClick={handleDownload}
-          className="my-6 flex mx-auto duration-700 items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white px-6 py-2.5 rounded-full font-medium shadow-lg transition-all"
+          className="mt-5 flex items-center gap-2 rounded-full border border-primary-200 bg-white/90 px-5 py-2.5 text-sm font-semibold text-primary-600 shadow-sm backdrop-blur-sm transition-colors hover:bg-primary-50"
         >
-          <Download className="w-4 h-4" />
+          <Download className="h-4 w-4" />
           {t('hero.downloadCard')}
         </motion.button>
+
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="space-y-10 relative z-10 w-full"
+          transition={{ duration: 0.65, delay: 0.3 }}
+          className="relative z-10 mt-10 w-full max-w-2xl"
         >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.05, type: 'spring', stiffness: 200, damping: 18 }}
-            className="inline-block mx-auto"
-          >
-            <span className="px-4 py-1 text-sm bg-primary-50 text-primary-600 rounded-full border border-primary-200">
-              {t('hero.saveTheDate')}
-            </span>
-          </motion.div>
-
-          <div className="space-y-6 w-full">
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.12, duration: 0.5 }}
-              className="text-gray-500 font-light italic text-base sm:text-lg"
-            >
-              {t('hero.withJoy')}
-            </motion.p>
-            <motion.h2
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.18, type: 'spring', stiffness: 150, damping: 14 }}
-              className="text-2xl sm:text-4xl md:text-5xl font-serif bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-600"
-            >
-              {config.data.groomName} & {config.data.brideName}
-            </motion.h2>
-          </div>
-
-
-
+          <span className="inline-flex rounded-full border border-primary-200 bg-primary-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-primary-600">
+            {t('hero.saveTheDate')}
+          </span>
+          <p className="mx-auto mt-4 max-w-md text-sm italic leading-relaxed text-gray-500 sm:text-base">
+            {t('hero.withJoy')}
+          </p>
 
           <CountdownTimer targetDate={config.data.date} />
 
-          <div className="pt-12 relative w-full h-48">
-            <div className="absolute inset-0 pointer-events-none z-0">
-              <FloatingHearts />
-            </div>
-            <motion.div
-              animate={{
-                scale: [1, 1.03, 1.06, 1.03, 1],
-                rotate: [0, 2, -2, 0],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-            >
-              <Heart
-                className="w-20 sm:w-22 h-20 sm:h-22 text-primary-500 mx-auto"
-                fill="currentColor"
-              />
-            </motion.div>
+          <div className="mt-9 flex items-center justify-center gap-4 text-primary-300">
+            <span className="h-px w-16 bg-primary-200" />
+            <Heart className="h-5 w-5" fill="currentColor" />
+            <span className="h-px w-16 bg-primary-200" />
           </div>
         </motion.div>
       </section>

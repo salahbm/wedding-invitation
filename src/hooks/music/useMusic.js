@@ -16,6 +16,9 @@ const useMusic = () => {
       try {
         const audio = new Audio(config.data.audio.src);
         audio.loop = config.data.audio.loop;
+        audio.addEventListener('loadedmetadata', () => {
+          audio.currentTime = config.data.audio.startAt || 0;
+        });
         audioRef.current = audio;
         await audio.play();
         setIsPlaying(true);
